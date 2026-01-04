@@ -4329,3 +4329,16 @@ body.dark-mode :-ms-input-placeholder {
 body.dark-mode ::-moz-placeholder {
 	color: #aaaaaa !important;
 }
+
+/* Dark Mode Toggle Logic for Logos */
+body.dark-mode .light-logo {
+	display: none !important;
+}
+
+body:not(.dark-mode) .dark-logo {
+	display: none !important;
+}
+
+body.dark-mode .dark-logo {
+	display: inline-block !important;
+}
