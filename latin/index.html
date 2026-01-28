@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Latin</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bitmaks/cm-web-fonts@latest/fonts.css">
+    <link rel="icon" type="image/png" href="../images/logo.png">
+
+
+
+    <noscript>
+        <link rel="stylesheet" href="../assets/css/noscript.css" />
+    </noscript>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            }
+        };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        // Apply dark mode immediately to prevent flash
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.documentElement.classList.add('dark-mode');
+            document.addEventListener('DOMContentLoaded', function () {
+                document.body.classList.add('dark-mode');
+            });
+        }
+    </script>
+</head>
+
+<body class="is-preload">
+
+    <!-- Information: Hamburger Menu -->
+    <div id="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+    <div id="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="toggleMenu()">&times;</a>
+        <a href="../">Home</a>
+        <span class="dropdown-btn" onclick="toggleDropdown()">PRIMES &#9662;</span>
+        <div id="primes-dropdown" class="dropdown-container">
+            <a href="../primes/">Home</a>
+            <a href="../primes/2025/">2025</a>
+            <a href="../primes/jmm2026/">JMM 2026</a>
+        </div>
+
+    </div>
+
+
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <h1>Latin</h1>
+            <p>I currently take Latin as a foreign language.</p>
+        </header>
+
+
+        <!-- Main -->
+        <div id="main">
+
+            <!-- Content -->
+            <section id="content" class="main">
+                <h2>UHS JCL Head Academic</h2>
+                <p>Hi!</p>
+            </section>
+
+            <section id="awards" class="main">
+                <h2>Awards</h2>
+                <p>Hi!</p>
+            </section>
+
+        </div>
+
+        <!-- Footer -->
+        <footer id="footer">
+        </footer>
+
+    </div>
+
+    <!-- Dark Mode Toggle -->
+    <div id="dark-mode-toggle" onclick="toggleDarkMode()">&#x00AC;</div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../assets/js/jquery.scrolly.min.js"></script>
+    <script src="../assets/js/browser.min.js"></script>
+    <script src="../assets/js/breakpoints.min.js"></script>
+    <script src="../assets/js/util.js"></script>
+    <script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>
