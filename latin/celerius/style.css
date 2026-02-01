@@ -1,3 +1,42 @@
+/* CSS Variables for Theming */
+:root {
+    --bg-primary: #f0f0f0;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #fafafa;
+    --text-primary: #333;
+    --text-secondary: #555;
+    --text-tertiary: #666;
+    --border-color: #e0e0e0;
+    --border-light: #eee;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --shadow-strong: rgba(0, 0, 0, 0.2);
+    --accent-primary: #5c5ccc;
+    --accent-success: #5cdd5c;
+    --accent-error: #dd5c5c;
+    --accent-info: #5ccccc;
+    --table-even: #f9f9f9;
+    --table-header: #f0f0f0;
+}
+
+[data-theme="dark"] {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2a2a2a;
+    --bg-tertiary: #333333;
+    --text-primary: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --text-tertiary: #909090;
+    --border-color: #404040;
+    --border-light: #4a4a4a;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --shadow-strong: rgba(0, 0, 0, 0.5);
+    --accent-primary: #7c7cec;
+    --accent-success: #5cdd5c;
+    --accent-error: #ff6b6b;
+    --accent-info: #5ccccc;
+    --table-even: #2f2f2f;
+    --table-header: #3a3a3a;
+}
+
 /* Main Reset & Box Sizing */
 * {
     margin: 0;
@@ -13,8 +52,10 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f0f0f0;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
     font-family: 'Helvetica', 'Arial', sans-serif;
+    transition: background-color 0.3s, color 0.3s;
     /* Fallback fonts */
 }
 
@@ -22,18 +63,19 @@ html {
 .main-container {
     width: 80vw;
     height: 80vh;
-    background-color: #ffffff;
+    background-color: var(--bg-secondary);
     border-radius: 4vh;
-    box-shadow: 0px 1vh 3vh rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 1vh 3vh var(--shadow-color);
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     font-size: 24px;
-    color: #333;
+    color: var(--text-primary);
     overflow: hidden;
     flex-direction: column;
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 /* Top Icons Navigation */
@@ -56,15 +98,15 @@ html {
 .icon {
     font-size: 20px;
     cursor: pointer;
-    color: #555;
+    color: var(--text-secondary);
     padding: 3vh;
     text-align: center;
     border-radius: 50%;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .icon:hover {
-    text-shadow: 0 0 4px #5ccccc;
+    text-shadow: 0 0 4px var(--accent-info);
 }
 
 /* Typography & Content */
@@ -88,14 +130,16 @@ input#response {
     border-radius: 6px;
     height: 2.5em;
     font-size: 1.2rem;
-    border: 2px solid #ddd;
+    border: 2px solid var(--border-color);
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
     padding: 0 1rem;
     width: 60%;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s, background-color 0.3s, color 0.3s;
 }
 
 input#response:focus {
-    border-color: #5c5ccc;
+    border-color: var(--accent-primary);
 }
 
 button {
@@ -103,22 +147,22 @@ button {
     margin-top: 2vh;
     padding: 1.5vh 3vh;
     cursor: pointer;
-    background-color: #dd5c5c;
+    background-color: var(--accent-error);
     border: none;
     border-radius: 1.5vh;
     color: white;
     font-weight: bold;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.1s, box-shadow 0.1s;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    transition: transform 0.1s, box-shadow 0.1s, background-color 0.3s;
 }
 
 button:active {
     transform: translateY(2px);
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 3px var(--shadow-color);
 }
 
 #advancer {
-    background-color: #5cdd5c;
+    background-color: var(--accent-success);
     margin-top: 5vh;
     min-width: 150px;
 }
@@ -132,18 +176,19 @@ table {
 }
 
 tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: var(--table-even);
 }
 
 th,
 td {
-    border: 1px solid #e0e0e0;
+    border: 1px solid var(--border-color);
     padding: 8px;
     font-size: 0.9rem;
+    color: var(--text-primary);
 }
 
 th {
-    background-color: #f0f0f0;
+    background-color: var(--table-header);
     font-weight: 600;
 }
 
@@ -154,7 +199,7 @@ td.empty {
 }
 
 th.sideways {
-    background-color: #f0f0f0;
+    background-color: var(--table-header);
     writing-mode: vertical-lr;
     transform: rotate(180deg);
     padding: 10px 2px;
@@ -165,7 +210,9 @@ dialog {
     border: none;
     border-radius: 16px;
     padding: 40px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    box-shadow: 0 10px 40px var(--shadow-strong);
     font-size: 18px;
     margin: auto;
     width: min(90%, 800px);
@@ -179,7 +226,7 @@ dialog::backdrop {
 }
 
 .scroll {
-    background-color: #5c5cdd;
+    background-color: var(--accent-primary);
     margin-left: 20px;
 }
 
@@ -187,18 +234,19 @@ dialog::backdrop {
 .options,
 #easy {
     width: 100%;
-    background-color: #fafafa;
+    background-color: var(--bg-tertiary);
     border-radius: 8px;
-    border: 1px solid #eee;
-    color: #333;
+    border: 1px solid var(--border-light);
+    color: var(--text-primary);
     margin-bottom: 20px;
     padding: 20px;
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
 .sub-options {
     display: none;
     margin-top: 15px;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--border-light);
     padding-top: 15px;
 }
 
@@ -214,7 +262,7 @@ button.extra {
     outline: none;
     padding: 6px 12px;
     border-radius: 6px;
-    background: #5c5ccc;
+    background: var(--accent-primary);
     font-size: 0.9rem;
     margin: 0;
     width: auto;
@@ -230,8 +278,11 @@ select {
     width: 100%;
     padding: 10px;
     border-radius: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
     margin-top: 10px;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
 
 /* Sliders */
@@ -240,10 +291,10 @@ select {
     width: 100%;
     height: 8px;
     border-radius: 4px;
-    background: #e0e0e0;
+    background: var(--border-color);
     outline: none;
     opacity: 0.8;
-    transition: opacity .2s;
+    transition: opacity .2s, background 0.3s;
     margin: 10px 0 20px 0;
 }
 
@@ -257,7 +308,7 @@ select {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: #5c5ccc;
+    background: var(--accent-primary);
     cursor: pointer;
 }
 
@@ -265,7 +316,7 @@ select {
 hr {
     border: 0;
     height: 1px;
-    background: #eee;
+    background: var(--border-light);
     margin: 20px 0;
 }
 
@@ -273,22 +324,23 @@ hr {
     display: block;
     text-align: center;
     width: 100%;
-    color: #666;
+    color: var(--text-tertiary);
     margin-bottom: 10px;
 }
 
 /* New Settings Layout */
 .setting-group {
-    background: #fff;
+    background: var(--bg-secondary);
     padding: 10px;
     border-radius: 6px;
-    border: 1px solid #eee;
+    border: 1px solid var(--border-light);
     margin-bottom: 10px;
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
 .setting-group h5 {
     margin-bottom: 8px;
-    color: #444;
+    color: var(--text-primary);
     font-size: 0.9em;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -296,13 +348,13 @@ hr {
 
 .category {
     margin-bottom: 20px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-light);
     padding-bottom: 15px;
 }
 
 .category h4 {
     margin-bottom: 10px;
-    color: #5c5ccc;
+    color: var(--accent-primary);
 }
 
 .task-instruction {
@@ -321,7 +373,7 @@ hr {
 }
 
 .word-info {
-    color: #666;
+    color: var(--text-tertiary);
     font-style: italic;
 }
 

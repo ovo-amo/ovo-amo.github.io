@@ -642,7 +642,12 @@
         <label for="voice">Voice</label>
         <select name="voice" id="voice"></select>
         <br><br>
-        <button onclick="closeDialog(this.parentElement.id),update()">Close</button><button class="scroll"
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+            <input type="checkbox" id="darkModeToggle" style="width: auto; margin: 0;">
+            <label for="darkModeToggle" style="cursor: pointer;">Dark Mode</label>
+        </div>
+        <br><br>
+        <button onclick="closeDialog(this.parentElement.id)">Close</button><button class="scroll"
             onclick="this.parentElement.children[0].scrollIntoView();">Scroll to top</button>
     </dialog>
 

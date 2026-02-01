@@ -3291,19 +3291,95 @@ const predefined = {
     month: {
         param: "month",
         default: 4
+    },
+    darkMode: {
+        param: "dark",
+        default: false
     }
 };
 
-const params = new URLSearchParams(window.location.search);
+// Function to load settings from localStorage
+function loadSettings() {
+    const params = new URLSearchParams(window.location.search);
+    const hasUrlParams = Array.from(params.keys()).some(key =>
+        Object.values(predefined).some(p => p.param === key)
+    );
 
-for (let key in predefined) {
-    settings[key] = params.has(predefined[key].param) ? params.get(predefined[key].param) : predefined[key].default;
+    // If URL parameters exist, use them and save to localStorage (migration)
+    if (hasUrlParams) {
+        for (let key in predefined) {
+            if (params.has(predefined[key].param)) {
+                settings[key] = params.get(predefined[key].param);
+            } else {
+                settings[key] = predefined[key].default;
+            }
+        }
+        // Save to localStorage for future use
+        saveSettings();
+    } else {
+        // Load from localStorage or use defaults
+        const stored = localStorage.getItem('celeriusSettings');
+        if (stored) {
+            try {
+                const parsed = JSON.parse(stored);
+                for (let key in predefined) {
+                    settings[key] = parsed[key] !== undefined ? parsed[key] : predefined[key].default;
+                }
+            } catch (e) {
+                console.error('Error parsing settings:', e);
+                // Use defaults if parsing fails
+                for (let key in predefined) {
+                    settings[key] = predefined[key].default;
+                }
+            }
+        } else {
+            // No stored settings, use defaults
+            for (let key in predefined) {
+                settings[key] = predefined[key].default;
+            }
+        }
+    }
+
+    // Convert BigInt strings back to BigInt
+    settings.verbs = BigInt(settings.verbs);
+    settings.nouns = BigInt(settings.nouns);
+    settings.adjectives = BigInt(settings.adjectives);
+    settings.pronouns = BigInt(settings.pronouns);
+
+    // Convert darkMode to boolean
+    settings.darkMode = settings.darkMode === true || settings.darkMode === 'true';
 }
 
-settings.verbs = BigInt(settings.verbs);
-settings.nouns = BigInt(settings.nouns);
-settings.adjectives = BigInt(settings.adjectives);
-settings.pronouns = BigInt(settings.pronouns);
+// Function to save settings to localStorage
+function saveSettings() {
+    try {
+        // Convert BigInts to strings for JSON serialization
+        const toSave = {
+            ...settings,
+            verbs: settings.verbs.toString(),
+            nouns: settings.nouns.toString(),
+            adjectives: settings.adjectives.toString(),
+            pronouns: settings.pronouns.toString()
+        };
+        localStorage.setItem('celeriusSettings', JSON.stringify(toSave));
+    } catch (e) {
+        console.error('Error saving settings:', e);
+    }
+}
+
+// Function to apply theme
+function applyTheme() {
+    if (settings.darkMode) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+        document.documentElement.removeAttribute('data-theme');
+    }
+}
+
+// Load settings on page load
+loadSettings();
+applyTheme();
+
 
 // presets[level][month] need not always exist for a given month (leading to a disabled checkbox),
 // but when it does exist, it is an object of BigInts
@@ -3443,6 +3519,7 @@ for (let index = 0; index < 43; index++) {
         months.forEach(e => {
             e.checked = false;
         });
+        saveSettings();
     });
 }
 
@@ -3465,6 +3542,7 @@ for (let index = 0; index < 14; index++) {
         months.forEach(e => {
             e.checked = false;
         });
+        saveSettings();
     });
 }
 
@@ -3479,7 +3557,7 @@ let adjectiveboxes = document.querySelectorAll(".adjectivebox");
 for (let index = 0; index < 14; index++) {
     adjectiveboxes[index].dataset.value = index;
     adjectiveboxes[index].addEventListener("click", () => {
-        settings.adjectives = 0n;
+        settings.adjectives = 0n; // theoretically, this could be made faster by just XORing no matter what
         adjectiveboxes.forEach(adjectivebox => {
             if (adjectivebox.checked) settings.adjectives |= 1n << BigInt(adjectivebox.dataset.value);
         });
@@ -3487,6 +3565,7 @@ for (let index = 0; index < 14; index++) {
         months.forEach(e => {
             e.checked = false;
         });
+        saveSettings();
     });
 }
 
@@ -3509,6 +3588,7 @@ for (let index = 0; index < 12; index++) {
         months.forEach(e => {
             e.checked = false;
         });
+        saveSettings();
     });
 }
 
@@ -3547,6 +3627,7 @@ months.forEach((e, i) => {
         settings.month = i + 1;
         updatesets();
         updateboxes();
+        saveSettings();
     });
 });
 
@@ -3574,29 +3655,35 @@ function updatePOS() {
 verbs.addEventListener("click", event => {
     settings.POS = "verbs";
     updatePOS();
+    saveSettings();
 });
 
 nouns.addEventListener("click", event => {
     settings.POS = "nouns";
     updatePOS();
+    saveSettings();
 });
 
 adjectives.addEventListener("click", event => {
     settings.POS = "adjectives";
     updatePOS();
+    saveSettings();
 });
 
 pronouns.addEventListener("click", event => {
     settings.POS = "pronouns";
     updatePOS();
+    saveSettings();
 });
 
 pitch.addEventListener("input", event => {
     settings.pitch = pitch.value;
+    saveSettings();
 });
 
 rate.addEventListener("input", event => {
     settings.rate = rate.value;
+    saveSettings();
 });
 
 level.addEventListener("input", event => {
@@ -3605,21 +3692,29 @@ level.addEventListener("input", event => {
     settings.month = 4;
     updatesets();
     updatemonths();
+    saveSettings();
 });
 
 voice.addEventListener("input", event => {
     settings.voice = speechSynthesis.getVoices()[voice.value];
+    saveSettings();
 });
 
-function update() {
-    for (let key in predefined) {
-        params.set(predefined[key].param, settings[key]);
-    }
-    history.replaceState(null, "", "?" + params.toString());
+// Dark mode toggle handler
+const darkModeToggle = document.getElementById('darkModeToggle');
+if (darkModeToggle) {
+    // Set initial state
+    darkModeToggle.checked = settings.darkMode;
 
-    // update the list of words instead of just using randomness?
-    // in particular, change the vocabulary difficulty, as well
+    // Add event listener
+    darkModeToggle.addEventListener('change', () => {
+        settings.darkMode = darkModeToggle.checked;
+        applyTheme();
+        saveSettings();
+    });
 }
+// update the list of words instead of just using randomness?
+// in particular, change the vocabulary difficulty, as well
 
 function populateVoices() {
     const voices = speechSynthesis.getVoices();
