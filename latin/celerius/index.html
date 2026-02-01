@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celerius</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="main-container">
+        <p id="main">
+            <i>Celerius</i> helps you practice your endings, Certamen-style.
+            <br>
+            <span style="font-size:17px;font-weight:300;">Make sure your volume is turned on. Contact <i>timothyc.</i>
+                on Discord for help.</span>
+        </p>
+        <input id="response" placeholder="Type here..." style="display:none;" autocomplete="off" autocorrect="off"
+            autocapitalize="off" spellcheck="false">
+        <button id="advancer">Start!</button>
+    </div>
+
+    <div class="top-icons">
+        <span class="icon" onclick="openDialog('dialog-info')">🛈</span>
+        <span class="icon" onclick="openDialog('dialog-settings')">⚙️</span>
+        <span class="icon" onclick="openDialog('dialog-statistics')">📈</span>
+        <span class="icon" onclick="openDialog('dialog-skibidi')">📅</span>
+    </div>
+
+    <dialog id="dialog-info">
+        <p>Coming soon!</p>
+        <button onclick="closeDialog(this.parentElement.id)">Close</button><button class="scroll"
+            onclick="this.parentElement.children[0].scrollIntoView();">Scroll to top</button>
+    </dialog>
+
+    <dialog id="dialog-settings">
+        <h2>Settings!</h2>
+        <br>
+        <label for="level">I am a... <small>(selecting <i>Certamener</i> gives you more buttons to press but is not
+                recommended)</small></label>
+        <select name="level" id="level">
+            <option value="1">Latin 1</option>
+            <option value="2">Latin 2</option>
+            <option value="3">Latin 3</option>
+            <option value="4">AP Latin/Latin 4</option>
+            <option value="5" selected>Certamener</option>
+        </select>
+        <br>
+        <br>
+        <div id="easy">
+            <small class="help"><label for="months">How many months into the year are you?</label></small>
+            <table>
+                <thead>
+                    <tr>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>6</th>
+                        <th>7</th>
+                        <th>8</th>
+                        <th>9</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="radio" name="months" checked></td>
+                        <td><input type="radio" name="months"></td>
+                        <td><input type="radio" name="months"></td>
+                        <td><input type="radio" name="months"></td>
+                        <td><input type="radio" name="months"></td>
+                        <td><input type="radio" name="months"></td>
+                        <td><input type="radio" name="months"></td>
+                        <td><input type="radio" name="months"></td>
+                        <td><input type="radio" name="months"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="options">
+            <h3>
+                <input type="radio" id="verbs" name="POS" value="verbs" checked>
+                <label for="verbs">Verbs</label>
+            </h3>
+            <div class="sub-options" id="subverbs">
+                <hr>
+                <table>
+                    <thead>
+                        <tr>
+                            <th rowspan="2" class="sideways">Mood</th>
+                            <th rowspan="2">Tense (Time and Aspect)</th>
+                            <th colspan="2">Voice</th>
+                        </tr>
+                        <tr>
+                            <th>Active</th>
+                            <th>Passive</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th rowspan="6" class="sideways">Indicative</th>
+                            <td>Present</td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                        </tr>
+                        <tr>
+                            <td>Perfect</td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                        </tr>
+                        <tr>
+                            <td>Imperfect</td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                        </tr>
+                        <tr>
+                            <td>Pluperfect</td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                        </tr>
+                        <tr>
+                            <td>Future</td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                        </tr>
+                        <tr>
+                            <td>Future Perfect</td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                        </tr>
+                        <tr>
+                            <th rowspan="4" class="sideways">Subjunctive</th>
+                            <td>Present</td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                        </tr>
+                        <tr>
+                            <td>Perfect</td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                        </tr>
+                        <tr>
+                            <td>Imperfect</td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                        </tr>
+                        <tr>
+                            <td>Pluperfect</td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                        </tr>
+                        <tr>
+                            <th rowspan="3" class="sideways">Infinitive</th>
+                            <td>Present</td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                        </tr>
+                        <tr>
+                            <td>Perfect</td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                        </tr>
+                        <tr>
+                            <td>Future</td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                        </tr>
+                        <tr>
+                            <th rowspan="3" class="sideways">Participle</th>
+                            <td>Present</td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                            <td class="empty"></td>
+                        </tr>
+                        <tr>
+                            <td>Perfect</td>
+                            <td class="empty"></td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                        </tr>
+                        <tr>
+                            <td>Future</td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                            <td><input type="checkbox" class="verbbox" checked id="firstgerundivesverbbox"
+                                    onclick="secondgerundivesverbbox.checked=this.checked;"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <thead>
+                        <tr>
+                            <th rowspan="2" colspan="4">Imperative</th>
+                            <th colspan="3">Singular</th>
+                            <th colspan="3">Plural</th>
+                            <th>Number</th>
+                        </tr>
+                        <tr>
+                            <th>First</th>
+                            <th>Second</th>
+                            <th>Third</th>
+                            <th>First</th>
+                            <th>Second</th>
+                            <th>Third</th>
+                            <th>Person</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th rowspan="4" class="sideways">Voice</th>
+                            <th rowspan="2">Active</th>
+                            <th rowspan="4" class="sideways">Time</th>
+                            <td>Present</td>
+                            <td class="empty"></td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                            <td class="empty"></td>
+                            <td class="empty"></td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                            <td class="empty"></td>
+                        </tr>
+                        <tr>
+                            <td>Future</td>
+                            <td class="empty"></td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                            <td class="empty"></td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                        </tr>
+                        <tr>
+                            <th rowspan="2">Passive</th>
+                            <td>Present</td>
+                            <td class="empty"></td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                            <td class="empty"></td>
+                            <td class="empty"></td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                            <td class="empty"></td>
+                        </tr>
+                        <tr>
+                            <td>Future</td>
+                            <td class="empty"></td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                            <td class="empty"></td>
+                            <td class="empty"></td>
+                            <td><input type="checkbox" class="verbbox" checked></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="line-height:2em;height:2em;margin-top:0.5em;">
+                    <button class="extra" onclick="openDialog('extra-gerundives')">
+                        <b>Gerundives:</b>
+                    </button>
+                    <input type="checkbox" id="secondgerundivesverbbox" checked
+                        onclick="firstgerundivesverbbox.checked=this.checked;">
+                </div>
+                <div style="line-height:2em;height:2em;margin-top:0.5em;">
+                    <button class="extra" onclick="openDialog('extra-gerunds')">
+                        <b>Gerunds:</b>
+                    </button>
+                    <input type="checkbox" class="verbbox" checked>
+                </div>
+                <div style="line-height:2em;height:2em;margin-top:0.5em;">
+                    <button class="extra" onclick="openDialog('extra-supines')">
+                        <b>Supines:</b>
+                    </button>
+                    <input type="checkbox" class="verbbox" checked>
+                </div>
+            </div>
+        </div>
+        <div class="options">
+            <h3>
+                <input type="radio" id="nouns" name="POS" value="nouns">
+                <label for="nouns">Nouns</label>
+            </h3>
+            <div class="sub-options" id="subnouns">
+                <hr>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Case</th>
+                            <th>Singular</th>
+                            <th>Plural</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nominative</td>
+                            <td><input type="checkbox" class="nounbox" checked></td>
+                            <td><input type="checkbox" class="nounbox" checked></td>
+                        </tr>
+                        <tr>
+                            <td>Genitive</td>
+                            <td><input type="checkbox" class="nounbox" checked></td>
+                            <td><input type="checkbox" class="nounbox" checked></td>
+                        </tr>
+                        <tr>
+                            <td>Dative</td>
+                            <td><input type="checkbox" class="nounbox" checked></td>
+                            <td><input type="checkbox" class="nounbox" checked></td>
+                        </tr>
+                        <tr>
+                            <td>Accusative</td>
+                            <td><input type="checkbox" class="nounbox" checked></td>
+                            <td><input type="checkbox" class="nounbox" checked></td>
+                        </tr>
+                        <tr>
+                            <td>Ablative</td>
+                            <td><input type="checkbox" class="nounbox" checked></td>
+                            <td><input type="checkbox" class="nounbox" checked></td>
+                        </tr>
+                        <tr>
+                            <td>Vocative</td>
+                            <td><input type="checkbox" class="nounbox" checked></td>
+                            <td><input type="checkbox" class="nounbox" checked></td>
+                        </tr>
+                        <tr>
+                            <td>Locative</td>
+                            <td><input type="checkbox" class="nounbox" checked></td>
+                            <td><input type="checkbox" class="nounbox" checked></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="blank"></th>
+                            <th class="blank"></th>
+                            <th>Exclude</th>
+                            <th>Permit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th class="sideways" rowspan="5">Noun Declensions</th>
+                            <th><label for="firstdeclension">1<sup>st</sup></label></th>
+                            <td><input type="radio" name="firstdeclension" id="firstdeclension" checked></td>
+                            <td><input type="radio" name="firstdeclension"></td>
+                        </tr>
+                        <tr>
+                            <th><label for="seconddeclension">2<sup>nd</sup></label></th>
+                            <td><input type="radio" name="seconddeclension" id="seconddeclension" checked></td>
+                            <td><input type="radio" name="seconddeclension"></td>
+                        </tr>
+                        <tr>
+                            <th><label for="thirddeclension">3<sup>rd</sup></label></th>
+                            <td><input type="radio" name="thirddeclension" id="thirddeclension" checked></td>
+                            <td><input type="radio" name="thirddeclension"></td>
+                        </tr>
+                        <tr>
+                            <th><label for="fourthdeclension">4<sup>th</sup></label></th>
+                            <td><input type="radio" name="fourthdeclension"></td>
+                            <td><input type="radio" name="fourthdeclension" id="fourthdeclension" checked></td>
+                        </tr>
+                        <tr>
+                            <th><label for="fifthdeclension">5<sup>th</sup></label></th>
+                            <td><input type="radio" name="fifthdeclension"></td>
+                            <td><input type="radio" name="fifthdeclension" id="fifthdeclension" checked></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"><i>the rest are coming soon!</i></td>
+                        </tr>
+                        <tr>
+                            <th class="sideways empty" rowspan="2">
+                                <button class="extra" onclick="openDialog('extra-istems')">
+                                    <b><i>i</i>-stems</b>
+                                </button>
+                            </th>
+                            <th><label for="pureistems">Pure</label></th>
+                            <td><input type="radio" name="pureistems" id="pureistems" checked></td>
+                            <td><input type="radio" name="pureistems" disabled></td>
+                        </tr>
+                        <tr>
+                            <th><label for="mixedistems">Mixed</label></th>
+                            <td><input type="radio" name="mixedistems" id="mixedistems" checked></td>
+                            <td><input type="radio" name="mixedistems" disabled></td>
+                        </tr>
+                        <tr>
+                            <th class="empty" colspan="2">
+                                <button class="extra" onclick="openDialog('extra-pluraliatantum')">
+                                    <label for="pluraliatantum"><b><i>pluralia tantum</i></b></label>
+                                </button>
+                            </th>
+                            <td><input type="radio" name="pluraliatantum" id="pluraliatantum" checked></td>
+                            <td><input type="radio" name="pluraliatantum" disabled></td>
+                        </tr>
+                        <tr>
+                            <th class="empty" colspan="2">
+                                <button class="extra" onclick="openDialog('extra-singulariatantum')">
+                                    <label for="singulariatantum"><b><i>singularia tantum</i></b></label>
+                                </button>
+                            </th>
+                            <td><input type="radio" name="singulariatantum" id="singulariatantum" checked></td>
+                            <td><input type="radio" name="singulariatantum" disabled></td>
+                        </tr>
+                        <tr>
+                            <th class="empty" colspan="2">
+                                <button class="extra" onclick="openDialog('extra-greek')">
+                                    <label for="greek"><b>Greek loanwards</b></label>
+                                </button>
+                            </th>
+                            <td><input type="radio" name="greek" id="greek" checked></td>
+                            <td><input type="radio" name="greek" disabled></td>
+                        </tr>
+                        <tr>
+                            <th class="empty" colspan="2">
+                                <button class="extra" onclick="openDialog('extra-heteroclites')">
+                                    <label for="heteroclites"><b>Heteroclites</b></label>
+                                </button>
+                            </th>
+                            <td><input type="radio" name="heteroclites" id="heteroclites" checked></td>
+                            <td><input type="radio" name="heteroclites" disabled></td>
+                        </tr>
+                        <tr>
+                            <th class="empty" colspan="2">
+                                <button class="extra" onclick="openDialog('extra-heterogeneous')">
+                                    <label for="heterogeneous"><b>Heterogeneous nouns</b></label>
+                                </button>
+                            </th>
+                            <td><input type="radio" name="heterogeneous" id="heterogeneous" checked></td>
+                            <td><input type="radio" name="heterogeneous" disabled></td>
+                        </tr>
+                        <tr>
+                            <th class="empty" colspan="2">
+                                <button class="extra" onclick="openDialog('extra-differentplural')">
+                                    <label for="differentplural"><b>Nouns different in the plural</b></label>
+                                </button>
+                            </th>
+                            <td><input type="radio" name="differentplural" id="differentplural" checked></td>
+                            <td><input type="radio" name="differentplural" disabled></td>
+                        </tr>
+                        <tr>
+                            <th class="empty" colspan="2">
+                                <button class="extra" onclick="openDialog('extra-defectivenouns')">
+                                    <label for="defectivenouns"><b>Defective nouns</b></label>
+                                </button>
+                            </th>
+                            <td><input type="radio" name="defectivenouns" id="defectivenouns" checked></td>
+                            <td><input type="radio" name="defectivenouns" disabled></td>
+                        </tr>
+                        <tr>
+                            <th class="empty" colspan="2">
+                                <button class="extra" onclick="openDialog('extra-otherirregularnouns')">
+                                    <label for="otherirregularnouns"><b>Other irregular nouns</b></label>
+                                </button>
+                            </th>
+                            <td><input type="radio" name="otherirregularnouns" id="otherirregularnouns" checked></td>
+                            <td><input type="radio" name="otherirregularnouns" disabled></td>
+                        </tr>
+                        <tr>
+                            <th class="empty" colspan="2">
+                                <button class="extra" onclick="openDialog('extra-indeclinablenouns')">
+                                    <label for="indeclinablenouns"><b>Indeclinable nouns</b></label>
+                                </button>
+                            </th>
+                            <td><input type="radio" name="indeclinablenouns" id="indeclinablenouns" checked></td>
+                            <td><input type="radio" name="indeclinablenouns" disabled></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="options">
+            <h3>
+                <input type="radio" id="adjectives" name="POS" value="adjectives">
+                <label for="adjectives">Adjectives</label>
+            </h3>
+            <div class="sub-options" id="subadjectives">
+                <hr>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Case</th>
+                            <th>Singular</th>
+                            <th>Plural</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nominative</td>
+                            <td><input type="checkbox" class="adjectivebox" checked></td>
+                            <td><input type="checkbox" class="adjectivebox"></td>
+                        </tr>
+                        <tr>
+                            <td>Genitive</td>
+                            <td><input type="checkbox" class="adjectivebox" checked></td>
+                            <td><input type="checkbox" class="adjectivebox"></td>
+                        </tr>
+                        <tr>
+                            <td>Dative</td>
+                            <td><input type="checkbox" class="adjectivebox"></td>
+                            <td><input type="checkbox" class="adjectivebox"></td>
+                        </tr>
+                        <tr>
+                            <td>Accusative</td>
+                            <td><input type="checkbox" class="adjectivebox"></td>
+                            <td><input type="checkbox" class="adjectivebox"></td>
+                        </tr>
+                        <tr>
+                            <td>Ablative</td>
+                            <td><input type="checkbox" class="adjectivebox"></td>
+                            <td><input type="checkbox" class="adjectivebox"></td>
+                        </tr>
+                        <tr>
+                            <td>Vocative</td>
+                            <td><input type="checkbox" class="adjectivebox"></td>
+                            <td><input type="checkbox" class="adjectivebox"></td>
+                        </tr>
+                        <tr>
+                            <td>Locative</td>
+                            <td><input type="checkbox" class="adjectivebox"></td>
+                            <td><input type="checkbox" class="adjectivebox"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th class="empty" rowspan="2">
+                                <button class="extra big" onclick="openDialog('extra-adjectivedegree')">
+                                    <label for="adjectivedegree"><b>Degree</b></label>
+                                </button>
+                            </th>
+                            <th><label for="positive">Positive</label></th>
+                            <th><label for="comparative">Comparative</label></th>
+                            <th colspan="3"><label for="superlative">Superlative</label></th>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" id="positive" checked></td>
+                            <td><input type="checkbox" id="comparative"></td>
+                            <td colspan="3"><input type="checkbox" id="superlative"></td>
+                        </tr>
+                        <tr>
+                            <th rowspan="2">Gender</th>
+                            <th><label for="masculine">Masculine</label></th>
+                            <th><label for="feminine">Feminine</label></th>
+                            <th colspan="3"><label for="neuter">Neuter</label></th>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" id="masculine" checked></td>
+                            <td><input type="checkbox" id="feminine"></td>
+                            <td colspan="3"><input type="checkbox" id="neuter"></td>
+                        </tr>
+                        <tr>
+                            <th class="empty" rowspan="2">
+                                <button class="extra big" onclick="openDialog('extra-adjectivedeclension')">
+                                    <label for="adjectivedeclension"><b>Declension</b></label>
+                                </button>
+                            </th>
+                            <th colspan="2"><label for="firstsecondadjective">1<sup>st</sup> and 2<sup>nd</sup></label>
+                            </th>
+                            <th><label for="thirdoneadjective">3<sup>rd</sup> (1-term.)</label></th>
+                            <th><label for="thirdtwoadjective">3<sup>rd</sup> (2-term.)</label></th>
+                            <th><label for="thirdthreeadjective">3<sup>rd</sup> (3-term.)</label></th>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input type="checkbox" id="firstsecondadjective" checked></td>
+                            <td><input type="checkbox" id="thirdoneadjective"></td>
+                            <td><input type="checkbox" id="thirdtwoadjective"></td>
+                            <td><input type="checkbox" id="thirdthreeadjective"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="line-height:2em;height:2em;margin-top:0.5em;">
+                    <button class="extra" onclick="openDialog('extra-pronominal')">
+                        <b>Pronominal adjectives:</b>
+                    </button>
+                    <input type="checkbox">
+                </div>
+            </div>
+        </div>
+        <div class="options">
+            <h3>
+                <input type="radio" id="pronouns" name="POS" value="pronouns">
+                <label for="pronouns">Pronouns</label>
+            </h3>
+            <div class="sub-options" id="subpronouns">
+                <hr>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Case</th>
+                            <th>Singular</th>
+                            <th>Plural</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nominative</td>
+                            <td><input type="checkbox" class="pronounbox" checked></td>
+                            <td><input type="checkbox" class="pronounbox"></td>
+                        </tr>
+                        <tr>
+                            <td>Genitive</td>
+                            <td><input type="checkbox" class="pronounbox"></td>
+                            <td><input type="checkbox" class="pronounbox"></td>
+                        </tr>
+                        <tr>
+                            <td>Dative</td>
+                            <td><input type="checkbox" class="pronounbox"></td>
+                            <td><input type="checkbox" class="pronounbox"></td>
+                        </tr>
+                        <tr>
+                            <td>Accusative</td>
+                            <td><input type="checkbox" class="pronounbox"></td>
+                            <td><input type="checkbox" class="pronounbox"></td>
+                        </tr>
+                        <tr>
+                            <td>Ablative</td>
+                            <td><input type="checkbox" class="pronounbox"></td>
+                            <td><input type="checkbox" class="pronounbox"></td>
+                        </tr>
+                        <tr>
+                            <td>Vocative</td>
+                            <td><input type="checkbox" class="pronounbox"></td>
+                            <td><input type="checkbox" class="pronounbox"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th rowspan="2">Gender</th>
+                            <th><label for="masculine">Masculine</label></th>
+                            <th><label for="feminine">Feminine</label></th>
+                            <th colspan="3"><label for="neuter">Neuter</label></th>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" id="masculine" checked></td>
+                            <td><input type="checkbox" id="feminine"></td>
+                            <td colspan="3"><input type="checkbox" id="neuter"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <label for="rate">Speed</label>
+        <input type="range" min="0.5" max="2" value="1" step="0.1" class="slider" name="rate" id="rate">
+        <label for="pitch">Pitch</label>
+        <input type="range" min="0.5" max="2" value="1" step="0.1" class="slider" name="pitch" id="pitch">
+        <label for="voice">Voice</label>
+        <select name="voice" id="voice"></select>
+        <br><br>
+        <button onclick="closeDialog(this.parentElement.id),update()">Close</button><button class="scroll"
+            onclick="this.parentElement.children[0].scrollIntoView();">Scroll to top</button>
+    </dialog>
+
+    <dialog id="dialog-statistics">
+        <p>Coming soon!</p>
+        <button onclick="closeDialog(this.parentElement.id)">Close</button><button class="scroll"
+            onclick="this.parentElement.children[0].scrollIntoView();">Scroll to top</button>
+    </dialog>
+
+    <dialog id="dialog-skibidi">
+        <img src="https://upload.wikimedia.org/wikipedia/en/0/09/Skibidi_toilet_screenshot.webp"
+            alt="Skibidi toilet!"><br>
+        <button onclick="closeDialog(this.parentElement.id)">Close</button><button class="scroll"
+            onclick="this.parentElement.children[0].scrollIntoView();">Scroll to top</button>
+    </dialog>
+
+    <div id="extra-dialogs">
+        <dialog class="extra-dialog" id="extra-istems">
+            <h2><i>i</i>-stems</h2>
+            <hr>
+            <p>
+                Certain third-declension nouns and all third-declension adjectives are <i>i</i>-stems, which stick a
+                couple of random <i>i</i>'s near the end of inflected forms. <i>i</i>-stems are extremely
+                inconsistent—not every rule listed is always followed.
+            </p>
+            <br>
+            <p>
+                Typically, genitive plurals ends in <tt>-ium</tt> instead of <tt>um</tt>, neuter plurals (nominative and
+                accusative) end in <tt>-ia</tt> instead of <tt>-a</tt>, neuter ablative singulars end in <tt>-i</tt>,
+                and sometimes there are other changes. For an in-depth explanation and a discussion of pure and mixed
+                <i>i</i>-stems, <a href="https://dcc.dickinson.edu/grammar/latin/3rd-declension-i-stems"><i>Allen and
+                        Greenough</i> from Dickinson College Commentaries</a> is a good source (keep clicking the next
+                arrow).
+            </p>
+            <button onclick="closeDialog(this.parentElement.id)">Close</button><button class="scroll"
+                onclick="this.parentElement.children[0].scrollIntoView();">Scroll to top</button>
+        </dialog>
+
+        <dialog class="extra-dialog" id="extra-pluraliatantum">
+            <h2><i>Pluralia Tantum</i></h2>
+            <hr>
+            <p>
+                Certain words only appear in the plural even though they may refer to singular entities. For instance,
+                we do not say <i>a single pant</i>, only <i>pants</i>. In Latin, such a word is termed <i>plurale
+                    tantum</i> and include <i>Athenae</i> (Athens), <i>gratiae</i> (thanks), and <i>liberi</i>
+                (children).
+            </p>
+            <button onclick="closeDialog(this.parentElement.id)">Close</button><button class="scroll"
+                onclick="this.parentElement.children[0].scrollIntoView();">Scroll to top</button>
+        </dialog>
+
+        <dialog class="extra-dialog" id="extra-singulariatantum">
+            <h2><i>Singularia Tantum</i></h2>
+            <hr>
+            <p>
+                Similar to <i>plurale tantum</i>, a word is termed <i>singularia tantum</i> if it exists solely in the
+                singular. It is pretty hard to have <i>waters</i> (so, Latin only has <i>aqua</i>), <i>milks</i> (hence,
+                <i>lac</i>), and <i>hungers</i> (so, <i>fames</i>).
+            </p>
+            <button onclick="closeDialog(this.parentElement.id)">Close</button><button class="scroll"
+                onclick="this.parentElement.children[0].scrollIntoView();">Scroll to top</button>
+        </dialog>
+
+        <dialog class="extra-dialog" id="extra-greek">
+            <h2>Greek Loanwords</h2>
+            <hr>
+            <p>
+                Since Latin was heavily influenced by Greek, there are some weird words that were loaned from Greek but
+                were not fully assimilated into Latin. For instance, there are the first declension masculine
+                occupations <i>auriga</i>, <i>poeta</i>, <i>pirata</i>, <i>incola</i>, <i>agricola</i>, and <i>nauta</i>
+                (<tt>APPIAN</tt>). Many names also have strange forms (e.g., the accusative of <i>Aeneas</i> is
+                <i>Aenean</i>).
+            </p>
+            <button onclick="closeDialog(this.parentElement.id)">Close</button><button class="scroll"
+                onclick="this.parentElement.children[0].scrollIntoView();">Scroll to top</button>
+        </dialog>
+
+        <dialog class="extra-dialog" id="extra-heteroclites">
+            <h2>Heteroclites</h2>
+            <hr>
+            <p>
+                Certain words have some forms from one declension and other forms from a different declension, switching
+                back and forth. For instance, <i>domus</i> (house) is very weird because you can choose which declension
+                to use. Meanwhile, <i>vas</i> (vessil) and <i>virus</i> (virus) are third-declension in the singular but
+                second-declension in the plural.
+            </p>
+            <button onclick="closeDialog(this.parentElement.id)">Close</button><button class="scroll"
+                onclick="this.parentElement.children[0].scrollIntoView();">Scroll to top</button>
+        </dialog>
+
+        <dialog class="extra-dialog" id="extra-heterogeneous">
+            <h2>Heterogeneous Nouns</h2>
+            <hr>
+            <p>
+                These are nouns that change their gender when changing from singular to plural. For instance, <i>epulum,
+                    n.</i> (feast, banquet) changes to the feminine <i>epulae</i> in the plural. There are other words,
+                like <i>balneum</i> occur in the plural as either feminine or neuter. Still other words occur of the
+                second declension occur in either the neuter or the masculine.
+            </p>
+            <button onclick="closeDialog(this.parentElement.id)">Close</button><button class="scroll"
+                onclick="this.parentElement.children[0].scrollIntoView();">Scroll to top</button>
+        </dialog>
+
+        <dialog class="extra-dialog" id="extra-differentplural">
+            <h2>Nouns Different in the Plural</h2>
+            <hr>
+            <p>
+                Certain nouns have different meanings in the singular and plural. <a
+                    href="https://en.wikipedia.org/wiki/Latin_declension#Plurals_with_alternative_meanings">Wikipedia</a>
+                maintains a nice list.
+            </p>
+            <button onclick="closeDialog(this.parentElement.id)">Close</button><button class="scroll"
+                onclick="this.parentElement.children[0].scrollIntoView();">Scroll to top</button>
+        </dialog>
+
+        <dialog class="extra-dialog" id="extra-defectivenouns">
+            <h2>Defective Nouns</h2>
+            <hr>
+            <p>
+                These nouns lack forms in certain cases and numbers, making them very easy to decline (you don't), but
+                pretty difficult to work with. For instance, <i>vesper</i> (evening) doesn't really have a genitive. See
+                <a href="https://dcc.dickinson.edu/grammar/latin/nouns-defective-cases"><i>Allen and Greenough</i> from
+                    Dickinson College Commentaries</a> for more information.
+            </p>
+            <button onclick="closeDialog(this.parentElement.id)">Close</button><button class="scroll"
+                onclick="this.parentElement.children[0].scrollIntoView();">Scroll to top</button>
+        </dialog>
+
+        <dialog class="extra-dialog" id="extra-otherirregularnouns">
+            <h2>Other Irregular Nouns</h2>
+            <hr>
+            <p>
+                There are still more nouns that look pretty scary, like <i>bos, bovis, m./f. — cow</i> and <i>sus, suis,
+                    m./f. — pig</i>, which both occasionally appear with some interesting forms. We also sometimes see
+                <i>filiabus</i> and <i>deabus</i> for the ablative/dative plurals of <i>filia</i> and <i>dea</i>, for
+                their normal ablative/dative plural would be <i>filiis</i> or <i>deis</i>, which would be
+                indistinguishable from the masculine form. But, <i>deus</i> also has its own irregularities. Then,
+                <i>vis, f. — force</i> has no real genitive or dative, while <i>vicis, f.</i> is missing the nominative
+                and some other forms. Finally, some Greek words are also weird like <i>lexis, lexeos, f. — word</i>.
+            </p>
+            <button onclick="closeDialog(this.parentElement.id)">Close</button><button class="scroll"
+                onclick="this.parentElement.children[0].scrollIntoView();">Scroll to top</button>
+        </dialog>
+
+        <dialog class="extra-dialog" id="extra-indeclinablenouns">
+            <h2>Indeclinable Nouns</h2>
+            <hr>
+            <p>
+                Indeclinable nouns have only one pattern that remains the same regardless of the case. See <a
+                    href="https://dcc.dickinson.edu/grammar/latin/nouns-defective-cases"><i>Allen and Greenough</i> from
+                    Dickinson College Commentaries</a> for more details.
+            </p>
+            <button onclick="closeDialog(this.parentElement.id)">Close</button><button class="scroll"
+                onclick="this.parentElement.children[0].scrollIntoView();">Scroll to top</button>
+        </dialog>
+
+        <dialog class="extra-dialog" id="extra-gerundives">
+            <h2>Gerundives</h2>
+            <hr>
+            <p>
+                The gerundive is essentially the future passive participle (which is why clicking on the
+                <tt>gerundive</tt> checkbox is the same as clicking on the <tt>future passive participle</tt> checkbox).
+                The gerundive denotes necessity, obligation, or propriety and is often used in constructions such as
+                <i>Carthago delenda est</i>. See <a
+                    href="https://dcc.dickinson.edu/grammar/latin/gerund-and-gerundive"><i>Allen and Greenough</i> from
+                    Dickinson College Commentaries</a> for more details.
+            </p>
+            <button onclick="closeDialog(this.parentElement.id)">Close</button><button class="scroll"
+                onclick="this.parentElement.children[0].scrollIntoView();">Scroll to top</button>
+        </dialog>
+
+        <dialog class="extra-dialog" id="extra-gerunds">
+            <h2>Gerunds</h2>
+            <hr>
+            <p>
+                The gerund expresses an action of the verb in the form of a verbal noun. As a <i>noun</i> the gerund is
+                itself governed by other words; as a <i>verb</i> it may take an object in the proper case. Gerunds act
+                as genitives, datives, accusatives, or ablative (always neuter) nouns, while the nominative noun form of
+                a verb is supplied by the infinitive. See <a
+                    href="https://dcc.dickinson.edu/grammar/latin/gerund-and-gerundive"><i>Allen and Greenough</i> from
+                    Dickinson College Commentaries</a> for more details.
+            </p>
+            <button onclick="closeDialog(this.parentElement.id)">Close</button><button class="scroll"
+                onclick="this.parentElement.children[0].scrollIntoView();">Scroll to top</button>
+        </dialog>
+
+        <dialog class="extra-dialog" id="extra-supines">
+            <h2>Supines</h2>
+            <hr>
+            <p>
+                The supine is a verbal abstract of the 4th declension, having no distinction of tense or person, and
+                limited to two uses. First, the form in <tt>-um</tt> is the accusative of the end of motion (to express
+                purpose). Second, the form in <tt>-u</tt> is usually the dative of purpose, but the ablative was early
+                confused with it (so we call it the ablative supine). The ablative supine denotes an action in reference
+                to which the quality is asserted. See <a
+                    href="https://dcc.dickinson.edu/grammar/latin/gerund-and-gerundive"><i>Allen and Greenough</i> from
+                    Dickinson College Commentaries</a> for more details.
+            </p>
+            <button onclick="closeDialog(this.parentElement.id)">Close</button><button class="scroll"
+                onclick="this.parentElement.children[0].scrollIntoView();">Scroll to top</button>
+        </dialog>
+
+        <dialog class="extra-dialog" id="extra-adjectivedegree">
+            <h2>Adjective Degree</h2>
+            <hr>
+            <p>
+                In English, <i>happy</i>, <i>happier</i>, and <i>happiest</i> all express the same concept, but to
+                different <b>degrees</b>. If you are <i>happy</i>, the happiness exists but you cannot say much about
+                it, so we call this form <tt>positive</tt> (it's there). If you are <i>happier</i>, you need to be
+                happier than something else, so we call this <tt>comparative</tt>. But, the adjective <i>happiest</i> is
+                <tt>superlative</tt>. Latin does the same. See <a
+                    href="https://dcc.dickinson.edu/grammar/latin/comparison-adjectives"><i>Allen and Greenough</i> from
+                    Dickinson College Commentaries</a> for more details.
+            </p>
+            <button onclick="closeDialog(this.parentElement.id)">Close</button><button class="scroll"
+                onclick="this.parentElement.children[0].scrollIntoView();">Scroll to top</button>
+        </dialog>
+
+        <dialog class="extra-dialog" id="extra-adjectivedeclension">
+            <h2>Adjective Degree</h2>
+            <hr>
+            <p>
+                Adjectives fall into two major declensions, <i>1<sup>st</sup> + 2<sup>nd</sup></i> and
+                <i>3<sup>rd</sup></i>. The first category has 1<sup>st</sup> declension endings for feminine nouns, but
+                2<sup>nd</sup> declension endings for masculine and neuter nouns. The second category uses
+                3<sup>rd</sup> declension endings, but is split into categories based on <tt>termination</tt>. See <a
+                    href="https://dcc.dickinson.edu/grammar/latin/formation-adjectives"><i>Allen and Greenough</i> from
+                    Dickinson College Commentaries</a> for more details.
+            </p>
+            <button onclick="closeDialog(this.parentElement.id)">Close</button><button class="scroll"
+                onclick="this.parentElement.children[0].scrollIntoView();">Scroll to top</button>
+        </dialog>
+
+        <dialog class="extra-dialog" id="extra-pronominal">
+            <h2>Pronominal Adjectives</h2>
+            <hr>
+            <p>
+                Certain adjectives are pronominal not only because they have pronoun-like meanings (e.g., <i>alius,
+                    alia, aliud — the other</i> is sort of like a pronoun) but that they decline as pronouns do.
+                Specifically, these nine adjectives end with <tt>-ius</tt> in the genitive singular and <tt>-i</tt> in
+                the dative singular. <a
+                    href="https://latintutorial.com/watch/naughty-nine-pronominal-adjectives">LatinTutorial</a> has a
+                great video.
+            </p>
+            <button onclick="closeDialog(this.parentElement.id)">Close</button><button class="scroll"
+                onclick="this.parentElement.children[0].scrollIntoView();">Scroll to top</button>
+        </dialog>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

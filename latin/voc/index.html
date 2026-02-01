@@ -333,7 +333,7 @@
                                         for (r = "", 8 < (i = (t = le[ue].split(",")).length) && (n = i % 2 == 0 ? i / 2 : (i + 1) / 2), e = 0; e < i; e++) s = t[e], e === n && (r += "<br>"), r += "<span id=ttw" + "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN".charAt(e) + s + " class=latin>" + s + "</span>&nbsp;";
                                         q("ttip", r)
                                     }(), d("ttip", "display:inline;top:-1000px;"), me = !0, setTimeout(x, 50)) : (d("ttip", "display:inline;"), me = !0)
-                                }(t = i.substr(2))) : i.match(/^ttw/) ? (t = i.charCodeAt(3) - 97, r = i.substr(4), ce[ue].innerHTML = l(i).textContent.trim() || r, de[ue] = t) : "reviewbtn" === i ? function () {
+                                }(t = i.substr(2))) : i.match(/^ttw/) ? (t = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN".indexOf(i.charAt(3)), r = i.substr(4), ce[ue].innerHTML = l(i).textContent.trim() || r, de[ue] = t) : "reviewbtn" === i ? function () {
                                     var e, i, t, r, s, n, a, o, u, c, l = 0;
                                     for (Be = 4, U = oe[0][de[0]], Y = oe[1][de[1]], j = oe[2][de[2]], J = oe[3][de[3]], B = +oe[4][de[4]], N = +oe[5][de[5]], O = +oe[6][de[6]], oe[7][de[7]], re && oe[8][de[8]], e = 0, Fe.length = 0; e < M; e++)
                                         if (B)

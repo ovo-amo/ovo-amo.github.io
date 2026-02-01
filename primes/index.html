@@ -21,7 +21,6 @@
             }
         };
     </script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>
         // Apply dark mode immediately to prevent flash
@@ -37,18 +36,8 @@
 <body class="is-preload">
 
     <!-- Information: Hamburger Menu -->
-    <div id="menu-toggle" onclick="toggleMenu()">&#9776;</div>
-    <div id="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="toggleMenu()">&times;</a>
-        <a href="../">Home</a>
-        <span class="dropdown-btn" onclick="toggleDropdown()">PRIMES &#9662;</span>
-        <div id="primes-dropdown" class="dropdown-container">
-            <a href="./">Home</a>
-            <a href="2025/">2025</a>
-            <a href="2025/jmm2026/">JMM 2026</a>
-        </div>
-
-    </div>
+    <!-- Information: Hamburger Menu -->
+    <script src="../assets/js/menubar.js" data-base=".."></script>
 
 
 

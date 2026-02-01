@@ -28,25 +28,6 @@
 
 		// Restore sidebar state if open (optional, but good for UX)
 		// For now, simpler to leave closed on load.
-
-		/* Hamburger Menu Logic */
-		window.toggleMenu = function () {
-			var sidebar = document.getElementById("sidebar");
-			if (sidebar.style.width === "250px") {
-				sidebar.style.width = "0";
-			} else {
-				sidebar.style.width = "250px";
-			}
-		};
-
-		window.toggleDropdown = function () {
-			var dropdownContent = document.getElementById("primes-dropdown");
-			if (dropdownContent.style.display === "block") {
-				dropdownContent.style.display = "none";
-			} else {
-				dropdownContent.style.display = "block";
-			}
-		};
 	});
 
 
