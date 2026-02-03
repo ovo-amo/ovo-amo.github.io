@@ -3941,6 +3941,7 @@ function openDialog(id) {
     const dialog = document.getElementById(id);
     if (dialog) {
         dialog.showModal();
+        updateScrollButton(dialog);
     } else {
         console.error("Dialog not found: " + id);
     }
@@ -3954,3 +3955,24 @@ function closeDialog(id) {
         console.error("Dialog not found: " + id);
     }
 }
+
+function updateScrollButton(dialog) {
+    const scrollButton = dialog.querySelector('.scroll');
+    if (scrollButton) {
+        // Check if content overflows (scrollHeight > clientHeight)
+        // We might need to check the parent if the button is absolute/fixed, 
+        // but based on valid context, the dialog itself scrolls.
+        // If the scroll button is inside the dialog, we want to know if the dialog has scrollbars.
+        if (dialog.scrollHeight > dialog.clientHeight) {
+            scrollButton.style.display = ''; // Use default display
+        } else {
+            scrollButton.style.display = 'none';
+        }
+    }
+}
+
+window.addEventListener('resize', () => {
+    document.querySelectorAll('dialog[open]').forEach(dialog => {
+        updateScrollButton(dialog);
+    });
+});
