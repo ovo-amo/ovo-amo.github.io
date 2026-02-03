@@ -663,7 +663,7 @@ const machines = {
                             }
                     }
                 },
-                level: [0, 5]
+                level: [0, 0.5]
             }, {
                 name: "third-person singular present active indicative",
                 task: "Give the third-person singular present active indicative.",
@@ -703,7 +703,7 @@ const machines = {
                             }
                     }
                 },
-                level: [0, 5]
+                level: [0, 0.5]
             }, {
                 name: "first-person plural present active indicative",
                 task: "Give the first-person plural present active indicative.",
@@ -2520,7 +2520,7 @@ const machines = {
                             }
                     }
                 },
-                level: [1.5, 5]
+                level: [2, 5]
             }, {
                 name: "second-person singular present passive indicative",
                 task: "Give the second-person singular present passive indicative.",
@@ -2544,7 +2544,7 @@ const machines = {
                             }
                     }
                 },
-                level: [1.5, 5]
+                level: [2, 5]
             }, {
                 name: "third-person singular present passive indicative",
                 task: "Give the third-person singular present passive indicative.",
@@ -2568,7 +2568,7 @@ const machines = {
                             }
                     }
                 },
-                level: [1.5, 5]
+                level: [2, 5]
             }, {
                 name: "first-person plural present passive indicative",
                 task: "Give the first-person plural present passive indicative.",
@@ -2592,7 +2592,7 @@ const machines = {
                             }
                     }
                 },
-                level: [1.5, 5]
+                level: [2, 5]
             }, {
                 name: "second-person plural present passive indicative",
                 task: "Give the second-person plural present passive indicative.",
@@ -2616,7 +2616,7 @@ const machines = {
                             }
                     }
                 },
-                level: [1.5, 5]
+                level: [2, 5]
             }, {
                 name: "third-person plural present passive indicative",
                 task: "Give the third-person plural present passive indicative.",
@@ -2640,7 +2640,7 @@ const machines = {
                             }
                     }
                 },
-                level: [1.5, 5]
+                level: [2, 5]
             }, {
                 // IMPERFECT PASSIVE INDICATIVE
                 name: "first-person singular imperfect passive indicative",
@@ -3917,6 +3917,12 @@ function play() {
     }
 
     task = machine.task;
+
+    // Simplify instruction for Latin 1 & 2
+    // Remove "active indicative", "indicative" (so passive remains), and "active" (so subjunctive remains)
+    if (settings.level <= 2 && !task.toLowerCase().includes("imperative")) {
+        task = task.replace(" active indicative", "").replace(" indicative", "").replace(" active", "");
+    }
 
     speechSynthesis.cancel();
     utterance = new SpeechSynthesisUtterance(task);
