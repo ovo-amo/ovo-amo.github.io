@@ -4,11 +4,13 @@
 <head></head>
 
 <body>
-    <!-- <textarea id="d"></textarea>
-    <br>
-    <button
-        onclick="data=[...d.value].map(n=>parseInt(n));localStorage.setItem('data',d.value);refresh()">Update</button>
-    <hr> -->
+    <div style="display:none">
+        <textarea id="d"></textarea>
+        <br>
+        <button
+            onclick="data=[...d.value].map(n=>parseInt(n));localStorage.setItem('data',d.value);refresh()">Update</button>
+        <hr>
+    </div>
     <button onclick="refresh()">Refresh</button><button onclick="localStorage.clear();refresh()">Restart</button>
     <hr>
     <label for="l"><b>Level</b></label>
