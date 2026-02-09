@@ -13,6 +13,7 @@
         <span class="dropdown-btn" onclick="toggleDropdown()">PRIMES &#9662;</span>
         <div id="primes-dropdown" class="dropdown-container">
             <a href="${basePath}/primes/">Home</a>
+            <a href="${basePath}/primes/2026/">2026</a>
             <a href="${basePath}/primes/2025/">2025</a>
             <a href="${basePath}/primes/2025/jmm2026/">JMM 2026</a>
         </div>
