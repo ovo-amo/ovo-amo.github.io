@@ -655,9 +655,9 @@ const machines = {
                             } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                                 return verb.present + "mavis";
                             } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                                return verb.present + "faris";
+                                return "faris";
                             } else if (verb.identity == "edo, edere, edi, esus") {
-                                return verb.present + "edis";
+                                return "edis";
                             } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                                 return verb.present + "fis";
                             }
@@ -695,9 +695,9 @@ const machines = {
                             } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                                 return verb.present + "mavult";
                             } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                                return verb.present + "fatur";
+                                return "fatur";
                             } else if (verb.identity == "edo, edere, edi, esus") {
-                                return verb.present + "edit";
+                                return "edit";
                             } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                                 return verb.present + "fit";
                             }
@@ -735,9 +735,9 @@ const machines = {
                             } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                                 return verb.present + "malumus";
                             } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                                return verb.present + "famur";
+                                return "famur";
                             } else if (verb.identity == "edo, edere, edi, esus") {
-                                return verb.present + "edimus";
+                                return "edimus";
                             } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                                 return verb.present + "fimus";
                             }
@@ -775,9 +775,9 @@ const machines = {
                             } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                                 return verb.present + "mavultis";
                             } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                                return verb.present + "famini";
+                                return "famini";
                             } else if (verb.identity == "edo, edere, edi, esus") {
-                                return verb.present + "editis";
+                                return "editis";
                             } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                                 return verb.present + "fitis";
                             }
@@ -815,9 +815,9 @@ const machines = {
                             } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                                 return verb.present + "malunt";
                             } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                                return verb.present + "fantur";
+                                return "fantur";
                             } else if (verb.identity == "edo, edere, edi, esus") {
-                                return verb.present + "edunt";
+                                return "edunt";
                             } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                                 return verb.present + "fiunt";
                             }
@@ -855,9 +855,9 @@ const machines = {
                             } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                                 return verb.present + "malebam";
                             } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                                return verb.present + "fabar";
+                                return "fabar";
                             } else if (verb.identity == "edo, edere, edi, esus") {
-                                return verb.present + "edebam";
+                                return "edebam";
                             } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                                 return verb.present + "fiebam";
                             }
@@ -895,9 +895,9 @@ const machines = {
                             } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                                 return verb.present + "malebas";
                             } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                                return verb.present + "fabaris";
+                                return "fabaris";
                             } else if (verb.identity == "edo, edere, edi, esus") {
-                                return verb.present + "edebas";
+                                return "edebas";
                             } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                                 return verb.present + "fiebas";
                             }
@@ -935,9 +935,9 @@ const machines = {
                             } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                                 return verb.present + "malebat";
                             } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                                return verb.present + "fabatur";
+                                return "fabatur";
                             } else if (verb.identity == "edo, edere, edi, esus") {
-                                return verb.present + "edebat";
+                                return "edebat";
                             } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                                 return verb.present + "fiebat";
                             }
@@ -975,9 +975,9 @@ const machines = {
                             } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                                 return verb.present + "malebamus";
                             } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                                return verb.present + "fabamur";
+                                return "fabamur";
                             } else if (verb.identity == "edo, edere, edi, esus") {
-                                return verb.present + "edebamus";
+                                return "edebamus";
                             } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                                 return verb.present + "fiebamus";
                             }
@@ -1015,9 +1015,9 @@ const machines = {
                             } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                                 return verb.present + "malebatis";
                             } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                                return verb.present + "fabamini";
+                                return "fabamini";
                             } else if (verb.identity == "edo, edere, edi, esus") {
-                                return verb.present + "edebatis";
+                                return "edebatis";
                             } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                                 return verb.present + "fiebatis";
                             }
@@ -1055,9 +1055,9 @@ const machines = {
                             } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                                 return verb.present + "malebant";
                             } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                                return verb.present + "fabantur";
+                                return "fabantur";
                             } else if (verb.identity == "edo, edere, edi, esus") {
-                                return verb.present + "edebant";
+                                return "edebant";
                             } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                                 return verb.present + "fiebant";
                             }
@@ -1095,9 +1095,9 @@ const machines = {
                             } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                                 return verb.present + "malam";
                             } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                                return verb.present + "fabor";
+                                return "fabor";
                             } else if (verb.identity == "edo, edere, edi, esus") {
-                                return verb.present + "edam";
+                                return "edam";
                             } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                                 return verb.present + "fiam";
                             }
@@ -1135,9 +1135,9 @@ const machines = {
                             } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                                 return verb.present + "males";
                             } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                                return verb.present + "faberis";
+                                return "faberis";
                             } else if (verb.identity == "edo, edere, edi, esus") {
-                                return verb.present + "edes";
+                                return "edes";
                             } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                                 return verb.present + "fies";
                             }
@@ -1175,9 +1175,9 @@ const machines = {
                             } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                                 return verb.present + "malet";
                             } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                                return verb.present + "fabitur";
+                                return "fabitur";
                             } else if (verb.identity == "edo, edere, edi, esus") {
-                                return verb.present + "edet";
+                                return "edet";
                             } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                                 return verb.present + "fiet";
                             }
@@ -1215,9 +1215,9 @@ const machines = {
                             } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                                 return verb.present + "malemus";
                             } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                                return verb.present + "fabimur";
+                                return "fabimur";
                             } else if (verb.identity == "edo, edere, edi, esus") {
-                                return verb.present + "edemus";
+                                return "edemus";
                             } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                                 return verb.present + "fiemus";
                             }
@@ -1255,9 +1255,9 @@ const machines = {
                             } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                                 return verb.present + "maletis";
                             } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                                return verb.present + "fabimini";
+                                return "fabimini";
                             } else if (verb.identity == "edo, edere, edi, esus") {
-                                return verb.present + "edetis";
+                                return "edetis";
                             } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                                 return verb.present + "fietis";
                             }
@@ -1295,9 +1295,9 @@ const machines = {
                             } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                                 return verb.present + "malent";
                             } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                                return verb.present + "fabuntur";
+                                return "fabuntur";
                             } else if (verb.identity == "edo, edere, edi, esus") {
-                                return verb.present + "edent";
+                                return "edent";
                             } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                                 return verb.present + "fient";
                             }
@@ -1323,7 +1323,7 @@ const machines = {
                         } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                             return verb.perfect + "i";
                         } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                            return verb.perfect + "fatus sum";
+                            return "fatus sum";
                         } else if (verb.identity == "edo, edere, edi, esus") {
                             return verb.perfect + "i";
                         } else if (verb.identity.split(", ")[0].endsWith("fio")) {
@@ -1353,7 +1353,7 @@ const machines = {
                         } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                             return verb.perfect + "isti";
                         } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                            return verb.perfect + "fatus es";
+                            return "fatus es";
                         } else if (verb.identity == "edo, edere, edi, esus") {
                             return verb.perfect + "isti";
                         } else if (verb.identity.split(", ")[0].endsWith("fio")) {
@@ -1383,7 +1383,7 @@ const machines = {
                         } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                             return verb.perfect + "it";
                         } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                            return verb.perfect + "fatus est";
+                            return "fatus est";
                         } else if (verb.identity == "edo, edere, edi, esus") {
                             return verb.perfect + "it";
                         } else if (verb.identity.split(", ")[0].endsWith("fio")) {
@@ -1413,7 +1413,7 @@ const machines = {
                         } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                             return verb.perfect + "imus";
                         } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                            return verb.perfect + "fati sumus";
+                            return "fati sumus";
                         } else if (verb.identity == "edo, edere, edi, esus") {
                             return verb.perfect + "imus";
                         } else if (verb.identity.split(", ")[0].endsWith("fio")) {
@@ -1443,7 +1443,7 @@ const machines = {
                         } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                             return verb.perfect + "istis";
                         } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                            return verb.perfect + "fati estis";
+                            return "fati estis";
                         } else if (verb.identity == "edo, edere, edi, esus") {
                             return verb.perfect + "istis";
                         } else if (verb.identity.split(", ")[0].endsWith("fio")) {
@@ -1473,7 +1473,7 @@ const machines = {
                         } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                             return verb.perfect + "erunt";
                         } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                            return verb.perfect + "fati sunt";
+                            return "fati sunt";
                         } else if (verb.identity == "edo, edere, edi, esus") {
                             return verb.perfect + "erunt";
                         } else if (verb.identity.split(", ")[0].endsWith("fio")) {
@@ -1503,7 +1503,7 @@ const machines = {
                         } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                             return verb.perfect + "eram";
                         } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                            return verb.perfect + "fatus eram";
+                            return "fatus eram";
                         } else if (verb.identity == "edo, edere, edi, esus") {
                             return verb.perfect + "eram";
                         } else if (verb.identity.split(", ")[0].endsWith("fio")) {
@@ -1533,7 +1533,7 @@ const machines = {
                         } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                             return verb.perfect + "eras";
                         } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                            return verb.perfect + "fatus eras";
+                            return "fatus eras";
                         } else if (verb.identity == "edo, edere, edi, esus") {
                             return verb.perfect + "eras";
                         } else if (verb.identity.split(", ")[0].endsWith("fio")) {
@@ -1563,7 +1563,7 @@ const machines = {
                         } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                             return verb.perfect + "erat";
                         } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                            return verb.perfect + "fatus erat";
+                            return "fatus erat";
                         } else if (verb.identity == "edo, edere, edi, esus") {
                             return verb.perfect + "erat";
                         } else if (verb.identity.split(", ")[0].endsWith("fio")) {
@@ -1593,7 +1593,7 @@ const machines = {
                         } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                             return verb.perfect + "eramus";
                         } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                            return verb.perfect + "fati eramus";
+                            return "fati eramus";
                         } else if (verb.identity == "edo, edere, edi, esus") {
                             return verb.perfect + "eramus";
                         } else if (verb.identity.split(", ")[0].endsWith("fio")) {
@@ -1623,7 +1623,7 @@ const machines = {
                         } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                             return verb.perfect + "eratis";
                         } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                            return verb.perfect + "fati eratis";
+                            return "fati eratis";
                         } else if (verb.identity == "edo, edere, edi, esus") {
                             return verb.perfect + "eratis";
                         } else if (verb.identity.split(", ")[0].endsWith("fio")) {
@@ -1653,7 +1653,7 @@ const machines = {
                         } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                             return verb.perfect + "erant";
                         } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                            return verb.perfect + "fati erant";
+                            return "fati erant";
                         } else if (verb.identity == "edo, edere, edi, esus") {
                             return verb.perfect + "erant";
                         } else if (verb.identity.split(", ")[0].endsWith("fio")) {
@@ -1683,7 +1683,7 @@ const machines = {
                         } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                             return verb.perfect + "ero";
                         } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                            return verb.perfect + "fatus ero";
+                            return "fatus ero";
                         } else if (verb.identity == "edo, edere, edi, esus") {
                             return verb.perfect + "ero";
                         } else if (verb.identity.split(", ")[0].endsWith("fio")) {
@@ -1713,7 +1713,7 @@ const machines = {
                         } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                             return verb.perfect + "eris";
                         } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                            return verb.perfect + "fatus eris";
+                            return "fatus eris";
                         } else if (verb.identity == "edo, edere, edi, esus") {
                             return verb.perfect + "eris";
                         } else if (verb.identity.split(", ")[0].endsWith("fio")) {
@@ -1743,7 +1743,7 @@ const machines = {
                         } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                             return verb.perfect + "erit";
                         } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                            return verb.perfect + "fatus erit";
+                            return "fatus erit";
                         } else if (verb.identity == "edo, edere, edi, esus") {
                             return verb.perfect + "erit";
                         } else if (verb.identity.split(", ")[0].endsWith("fio")) {
@@ -1773,7 +1773,7 @@ const machines = {
                         } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                             return verb.perfect + "erimus";
                         } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                            return verb.perfect + "fati erimus";
+                            return "fati erimus";
                         } else if (verb.identity == "edo, edere, edi, esus") {
                             return verb.perfect + "erimus";
                         } else if (verb.identity.split(", ")[0].endsWith("fio")) {
@@ -1803,7 +1803,7 @@ const machines = {
                         } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                             return verb.perfect + "eritis";
                         } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                            return verb.perfect + "fati eritis";
+                            return "fati eritis";
                         } else if (verb.identity == "edo, edere, edi, esus") {
                             return verb.perfect + "eritis";
                         } else if (verb.identity.split(", ")[0].endsWith("fio")) {
@@ -1833,7 +1833,7 @@ const machines = {
                         } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                             return verb.perfect + "erint";
                         } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                            return verb.perfect + "fati erint";
+                            return "fati erint";
                         } else if (verb.identity == "edo, edere, edi, esus") {
                             return verb.perfect + "erint";
                         } else if (verb.identity.split(", ")[0].endsWith("fio")) {
@@ -1876,9 +1876,9 @@ const machines = {
                             } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                                 return verb.present + "malim";
                             } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                                return verb.present + "far";
+                                return "far";
                             } else if (verb.identity == "edo, edere, edi, esus") {
-                                return verb.present + "edam";
+                                return "edam";
                             } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                                 return verb.present + "fiam";
                             }
@@ -1916,9 +1916,9 @@ const machines = {
                             } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                                 return verb.present + "malis";
                             } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                                return verb.present + "faris";
+                                return "faris";
                             } else if (verb.identity == "edo, edere, edi, esus") {
-                                return verb.present + "edas";
+                                return "edas";
                             } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                                 return verb.present + "fias";
                             }
@@ -1956,9 +1956,9 @@ const machines = {
                             } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                                 return verb.present + "malit";
                             } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                                return verb.present + "fatur";
+                                return "fatur";
                             } else if (verb.identity == "edo, edere, edi, esus") {
-                                return verb.present + "edat";
+                                return "edat";
                             } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                                 return verb.present + "fiat";
                             }
@@ -1996,9 +1996,9 @@ const machines = {
                             } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                                 return verb.present + "malimus";
                             } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                                return verb.present + "famur";
+                                return "famur";
                             } else if (verb.identity == "edo, edere, edi, esus") {
-                                return verb.present + "edamus";
+                                return "edamus";
                             } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                                 return verb.present + "fiamus";
                             }
@@ -2036,9 +2036,9 @@ const machines = {
                             } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                                 return verb.present + "malitis";
                             } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                                return verb.present + "famini";
+                                return "famini";
                             } else if (verb.identity == "edo, edere, edi, esus") {
-                                return verb.present + "edatis";
+                                return "edatis";
                             } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                                 return verb.present + "fiatis";
                             }
@@ -2076,9 +2076,9 @@ const machines = {
                             } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                                 return verb.present + "malint";
                             } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                                return verb.present + "fantur";
+                                return "fantur";
                             } else if (verb.identity == "edo, edere, edi, esus") {
-                                return verb.present + "edant";
+                                return "edant";
                             } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                                 return verb.present + "fiant";
                             }
@@ -2142,7 +2142,7 @@ const machines = {
                     if (verb.transitive == 4) return verb.supine + "us sim";
                     if (verb.conjugation == 0) {
                         if (verb.identity.split(", ")[0].endsWith("fero")) {
-                            return verb.present + "tulerim";
+                            return verb.perfect + "erim";
                         } else if (verb.identity.split(", ")[0].endsWith("eo")) {
                             return verb.present + "ierim";
                         } else if (verb.identity.split(", ")[0].endsWith("sum")) {
@@ -2154,9 +2154,9 @@ const machines = {
                         } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                             return verb.present + "maluerim";
                         } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                            return verb.present + "fatus sim";
+                            return "fatus sim";
                         } else if (verb.identity == "edo, edere, edi, esus") {
-                            return verb.present + "ederim";
+                            return "ederim";
                         } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                             return verb.present + "factus sim";
                         }
@@ -2172,7 +2172,7 @@ const machines = {
                     if (verb.transitive == 4) return verb.supine + "us sis";
                     if (verb.conjugation == 0) {
                         if (verb.identity.split(", ")[0].endsWith("fero")) {
-                            return verb.present + "tuleris";
+                            return verb.perfect + "eris";
                         } else if (verb.identity.split(", ")[0].endsWith("eo")) {
                             return verb.present + "ieris";
                         } else if (verb.identity.split(", ")[0].endsWith("sum")) {
@@ -2184,9 +2184,9 @@ const machines = {
                         } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                             return verb.present + "malueris";
                         } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                            return verb.present + "fatus sis";
+                            return "fatus sis";
                         } else if (verb.identity == "edo, edere, edi, esus") {
-                            return verb.present + "ederis";
+                            return "ederis";
                         } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                             return verb.present + "factus sis";
                         }
@@ -2202,7 +2202,7 @@ const machines = {
                     if (verb.transitive == 4) return verb.supine + "us sit";
                     if (verb.conjugation == 0) {
                         if (verb.identity.split(", ")[0].endsWith("fero")) {
-                            return verb.present + "tulerit";
+                            return verb.perfect + "erit";
                         } else if (verb.identity.split(", ")[0].endsWith("eo")) {
                             return verb.present + "ierit";
                         } else if (verb.identity.split(", ")[0].endsWith("sum")) {
@@ -2214,9 +2214,9 @@ const machines = {
                         } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                             return verb.present + "maluerit";
                         } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                            return verb.present + "fatus sit";
+                            return "fatus sit";
                         } else if (verb.identity == "edo, edere, edi, esus") {
-                            return verb.present + "ederit";
+                            return "ederit";
                         } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                             return verb.present + "factus sit";
                         }
@@ -2232,7 +2232,7 @@ const machines = {
                     if (verb.transitive == 4) return verb.supine + "i simus";
                     if (verb.conjugation == 0) {
                         if (verb.identity.split(", ")[0].endsWith("fero")) {
-                            return verb.present + "tulerimus";
+                            return verb.perfect + "erimus";
                         } else if (verb.identity.split(", ")[0].endsWith("eo")) {
                             return verb.present + "ierimus";
                         } else if (verb.identity.split(", ")[0].endsWith("sum")) {
@@ -2244,9 +2244,9 @@ const machines = {
                         } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                             return verb.present + "maluerimus";
                         } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                            return verb.present + "fati simus";
+                            return "fati simus";
                         } else if (verb.identity == "edo, edere, edi, esus") {
-                            return verb.present + "ederimus";
+                            return "ederimus";
                         } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                             return verb.present + "facti simus";
                         }
@@ -2262,7 +2262,7 @@ const machines = {
                     if (verb.transitive == 4) return verb.supine + "i sitis";
                     if (verb.conjugation == 0) {
                         if (verb.identity.split(", ")[0].endsWith("fero")) {
-                            return verb.present + "tuleritis";
+                            return verb.perfect + "eritis";
                         } else if (verb.identity.split(", ")[0].endsWith("eo")) {
                             return verb.present + "ieritis";
                         } else if (verb.identity.split(", ")[0].endsWith("sum")) {
@@ -2274,9 +2274,9 @@ const machines = {
                         } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                             return verb.present + "malueritis";
                         } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                            return verb.present + "fati sitis";
+                            return "fati sitis";
                         } else if (verb.identity == "edo, edere, edi, esus") {
-                            return verb.present + "ederitis";
+                            return "ederitis";
                         } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                             return verb.present + "facti sitis";
                         }
@@ -2292,7 +2292,7 @@ const machines = {
                     if (verb.transitive == 4) return verb.supine + "i sint";
                     if (verb.conjugation == 0) {
                         if (verb.identity.split(", ")[0].endsWith("fero")) {
-                            return verb.present + "tulerint";
+                            return verb.perfect + "erint";
                         } else if (verb.identity.split(", ")[0].endsWith("eo")) {
                             return verb.present + "ierint";
                         } else if (verb.identity.split(", ")[0].endsWith("sum")) {
@@ -2304,9 +2304,9 @@ const machines = {
                         } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                             return verb.present + "maluerint";
                         } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                            return verb.present + "fati sint";
+                            return "fati sint";
                         } else if (verb.identity == "edo, edere, edi, esus") {
-                            return verb.present + "ederint";
+                            return "ederint";
                         } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                             return verb.present + "facti sint";
                         }
@@ -2323,7 +2323,7 @@ const machines = {
                     if (verb.transitive == 4) return verb.supine + "us essem";
                     if (verb.conjugation == 0) {
                         if (verb.identity.split(", ")[0].endsWith("fero")) {
-                            return verb.present + "tulissem";
+                            return verb.perfect + "issem";
                         } else if (verb.identity.split(", ")[0].endsWith("eo")) {
                             return verb.present + "issem";
                         } else if (verb.identity.split(", ")[0].endsWith("sum")) {
@@ -2335,9 +2335,9 @@ const machines = {
                         } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                             return verb.present + "maluissem";
                         } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                            return verb.present + "fatus essem";
+                            return "fatus essem";
                         } else if (verb.identity == "edo, edere, edi, esus") {
-                            return verb.present + "edissem";
+                            return "edissem";
                         } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                             return verb.present + "factus essem";
                         }
@@ -2353,7 +2353,7 @@ const machines = {
                     if (verb.transitive == 4) return verb.supine + "us esses";
                     if (verb.conjugation == 0) {
                         if (verb.identity.split(", ")[0].endsWith("fero")) {
-                            return verb.present + "tulisses";
+                            return verb.perfect + "isses";
                         } else if (verb.identity.split(", ")[0].endsWith("eo")) {
                             return verb.present + "isses";
                         } else if (verb.identity.split(", ")[0].endsWith("sum")) {
@@ -2365,9 +2365,9 @@ const machines = {
                         } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                             return verb.present + "maluisses";
                         } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                            return verb.present + "fatus esses";
+                            return "fatus esses";
                         } else if (verb.identity == "edo, edere, edi, esus") {
-                            return verb.present + "edisses";
+                            return "edisses";
                         } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                             return verb.present + "factus esses";
                         }
@@ -2383,7 +2383,7 @@ const machines = {
                     if (verb.transitive == 4) return verb.supine + "us esset";
                     if (verb.conjugation == 0) {
                         if (verb.identity.split(", ")[0].endsWith("fero")) {
-                            return verb.present + "tulisset";
+                            return verb.perfect + "isset";
                         } else if (verb.identity.split(", ")[0].endsWith("eo")) {
                             return verb.present + "isset";
                         } else if (verb.identity.split(", ")[0].endsWith("sum")) {
@@ -2395,9 +2395,9 @@ const machines = {
                         } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                             return verb.present + "maluisset";
                         } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                            return verb.present + "fatus esset";
+                            return "fatus esset";
                         } else if (verb.identity == "edo, edere, edi, esus") {
-                            return verb.present + "edisset";
+                            return "edisset";
                         } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                             return verb.present + "factus esset";
                         }
@@ -2413,7 +2413,7 @@ const machines = {
                     if (verb.transitive == 4) return verb.supine + "i essemus";
                     if (verb.conjugation == 0) {
                         if (verb.identity.split(", ")[0].endsWith("fero")) {
-                            return verb.present + "tulissemus";
+                            return verb.perfect + "issemus";
                         } else if (verb.identity.split(", ")[0].endsWith("eo")) {
                             return verb.present + "issemus";
                         } else if (verb.identity.split(", ")[0].endsWith("sum")) {
@@ -2425,9 +2425,9 @@ const machines = {
                         } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                             return verb.present + "maluissemus";
                         } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                            return verb.present + "fati essemus";
+                            return "fati essemus";
                         } else if (verb.identity == "edo, edere, edi, esus") {
-                            return verb.present + "edissemus";
+                            return "edissemus";
                         } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                             return verb.present + "facti essemus";
                         }
@@ -2443,7 +2443,7 @@ const machines = {
                     if (verb.transitive == 4) return verb.supine + "i essetis";
                     if (verb.conjugation == 0) {
                         if (verb.identity.split(", ")[0].endsWith("fero")) {
-                            return verb.present + "tulissetis";
+                            return verb.perfect + "issetis";
                         } else if (verb.identity.split(", ")[0].endsWith("eo")) {
                             return verb.present + "issetis";
                         } else if (verb.identity.split(", ")[0].endsWith("sum")) {
@@ -2455,9 +2455,9 @@ const machines = {
                         } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                             return verb.present + "maluissetis";
                         } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                            return verb.present + "fati essetis";
+                            return "fati essetis";
                         } else if (verb.identity == "edo, edere, edi, esus") {
-                            return verb.present + "edissetis";
+                            return "edissetis";
                         } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                             return verb.present + "facti essetis";
                         }
@@ -2473,7 +2473,7 @@ const machines = {
                     if (verb.transitive == 4) return verb.supine + "i essent";
                     if (verb.conjugation == 0) {
                         if (verb.identity.split(", ")[0].endsWith("fero")) {
-                            return verb.present + "tulissent";
+                            return verb.perfect + "issent";
                         } else if (verb.identity.split(", ")[0].endsWith("eo")) {
                             return verb.present + "issent";
                         } else if (verb.identity.split(", ")[0].endsWith("sum")) {
@@ -2485,9 +2485,9 @@ const machines = {
                         } else if (verb.identity.split(", ")[0].endsWith("malo")) {
                             return verb.present + "maluissent";
                         } else if (verb.identity.split(", ")[0].endsWith("for")) {
-                            return verb.present + "fati essent";
+                            return "fati essent";
                         } else if (verb.identity == "edo, edere, edi, esus") {
-                            return verb.present + "edissent";
+                            return "edissent";
                         } else if (verb.identity.split(", ")[0].endsWith("fio")) {
                             return verb.present + "facti essent";
                         }
@@ -3999,8 +3999,6 @@ function stop(forceReveal = false) {
 
         response.disabled = true;
         advancer.focus();
-
-        main.insertAdjacentHTML("beforeend", `<br><span style="font-size:12px;font-weight:lighter;">(${task})</span>`);
     } else if (forceReveal) {
         // Incorrect answer or Reveal (only if forced)
         skippable = false;
@@ -4013,9 +4011,9 @@ function stop(forceReveal = false) {
 
         response.disabled = true;
         advancer.focus();
-
-        main.insertAdjacentHTML("beforeend", `<br><span style="font-size:12px;font-weight:lighter;">(${task})</span>`);
     }
+
+    main.insertAdjacentHTML("beforeend", `<br><span style="font-size:12px;font-weight:lighter;line-height:1.15;display:block;">(${task})</span>`);
 }
 
 
