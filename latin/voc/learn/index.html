@@ -120,7 +120,7 @@
                     random = "";
                 }
 
-                main.insertAdjacentHTML("beforeend", `<b>${shuffled[index][data[data.length - 2]]}</b> <button class="reveal-btn" onclick="this.outerHTML=' — <i>${shuffled[index][1 - data[data.length - 2]]}</i>'">Reveal</button> <input type="checkbox" onclick="data[${shuffled[index][4]}]=0+this.checked;d.value=data.join('');localStorage.setItem('data',data.join(''))">` + (Math.random() < 0.4 ? random : "") + "<br>");
+                main.insertAdjacentHTML("beforeend", `<b>${shuffled[index][data[data.length - 2]]}</b> <button class="reveal-btn" onclick="this.outerHTML=' — <i>${shuffled[index][1 - data[data.length - 2]].replaceAll("'", "\\'")}</i>'">Reveal</button> <input type="checkbox" onclick="data[${shuffled[index][4]}]=0+this.checked;d.value=data.join('');localStorage.setItem('data',data.join(''))">` + (Math.random() < 0.4 ? random : "") + "<br>");
             }
         }
 
