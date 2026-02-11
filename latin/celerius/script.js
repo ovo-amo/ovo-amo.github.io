@@ -4013,7 +4013,9 @@ function stop(forceReveal = false) {
         advancer.focus();
     }
 
-    main.insertAdjacentHTML("beforeend", `<br><span style="font-size:12px;font-weight:lighter;line-height:1.15;display:block;">(${task})</span>`);
+    if (userAnswer == correctAnswer || forceReveal) {
+        main.insertAdjacentHTML("beforeend", `<br><span style="font-size:12px;font-weight:lighter;line-height:1.15;display:block;">(${task})</span>`);
+    }
 }
 
 
