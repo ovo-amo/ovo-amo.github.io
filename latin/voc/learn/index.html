@@ -11,14 +11,14 @@
             document.documentElement.classList.add('dark-mode');
             document.addEventListener('DOMContentLoaded', function () {
                 document.body.classList.add('dark-mode');
-                document.getElementById('dark-mode-toggle').textContent = '☀️';
+                document.getElementById('dark-mode-toggle').textContent = '\u00AC';
             });
         }
     </script>
 </head>
 
 <body>
-    <div id="dark-mode-toggle" onclick="toggleDarkMode()">&#x263D;</div>
+    <div id="dark-mode-toggle" onclick="toggleDarkMode()">&#x00AC;</div>
     <script>
         function toggleDarkMode() {
             var body = document.body;
@@ -29,10 +29,9 @@
             var toggleBtn = document.getElementById('dark-mode-toggle');
             if (body.classList.contains('dark-mode')) {
                 localStorage.setItem('darkMode', 'enabled');
-                toggleBtn.textContent = '☀️'; // Sun icon
+                // Icon allows stays as logical NOT
             } else {
                 localStorage.setItem('darkMode', 'disabled');
-                toggleBtn.textContent = '☽'; // Moon icon
             }
         }
     </script>
@@ -43,7 +42,11 @@
             onclick="data=[...d.value].map(n=>parseInt(n));localStorage.setItem('data',d.value);refresh()">Update</button>
         <hr>
     </div>
-    <div class="control-panel">
+    <div style="text-align: center; margin-bottom: 10px;">
+        <button
+            onclick="var p=document.querySelector('.control-panel'); p.style.display = p.style.display === 'none' ? 'flex' : 'none';">Options</button>
+    </div>
+    <div class="control-panel" style="display: none;">
         <label for="min-l"><b>Min Level <span id="min-level-val">1</span></b></label>
         <input id="min-l" type="range" min="1" max="40" value="1" oninput="updateLevels('min')">
 
