@@ -62,7 +62,7 @@
         <div class="button-group">
             <button class="control-btn" onclick="refresh()">Refresh</button>
             <button class="control-btn"
-                onclick="if(confirm('Are you sure you want to reset ALL progress?')) { localStorage.clear(); location.reload(); }">Restart
+                onclick="if(confirm('Are you sure you want to reset ALL progress?')) { localStorage.removeItem('minLevel'); localStorage.removeItem('maxLevel'); localStorage.removeItem('data'); location.reload(); }">Restart
                 All</button>
         </div>
     </div>
