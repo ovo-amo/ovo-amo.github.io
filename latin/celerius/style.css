@@ -142,6 +142,11 @@ input#response:focus {
     border-color: var(--accent-primary);
 }
 
+input[type="radio"]:disabled,
+input[type="checkbox"]:disabled {
+    cursor: not-allowed;
+}
+
 button {
     font-size: 2vh;
     margin-top: 2vh;

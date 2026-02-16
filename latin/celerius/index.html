@@ -318,9 +318,9 @@
                             <td><input type="checkbox" class="nounbox" checked></td>
                         </tr>
                         <tr>
-                            <td>Locative</td>
-                            <td><input type="checkbox" class="nounbox" checked></td>
-                            <td><input type="checkbox" class="nounbox" checked></td>
+                            <td>Locative <i>(coming soon)</i></td>
+                            <td><input type="checkbox" class="nounbox" disabled></td>
+                            <td><input type="checkbox" class="nounbox" disabled></td>
                         </tr>
                     </tbody>
                 </table>
@@ -334,6 +334,9 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr>
+                            <td colspan="4"><i>Coming soon!</i></td>
+                        </tr>
                         <tr>
                             <th class="sideways" rowspan="5">Noun Declensions</th>
                             <th><label for="firstdeclension">1<sup>st</sup></label></th>
@@ -359,9 +362,6 @@
                             <th><label for="fifthdeclension">5<sup>th</sup></label></th>
                             <td><input type="radio" name="fifthdeclension"></td>
                             <td><input type="radio" name="fifthdeclension" id="fifthdeclension" checked></td>
-                        </tr>
-                        <tr>
-                            <td colspan="4"><i>the rest are coming soon!</i></td>
                         </tr>
                         <tr>
                             <th class="sideways empty" rowspan="2">
@@ -465,9 +465,9 @@
         </div>
 
         <div class="options">
-            <h3>
-                <input type="radio" id="adjectives" name="POS" value="adjectives">
-                <label for="adjectives">Adjectives</label>
+            <h3 style="cursor: not-allowed;">
+                <input type="radio" id="adjectives" name="POS" value="adjectives" disabled>
+                <label for="adjectives">Adjectives <i>(coming soon)</i></label>
             </h3>
             <div class="sub-options" id="subadjectives">
                 <hr>
@@ -511,9 +511,9 @@
                             <td><input type="checkbox" class="adjectivebox"></td>
                         </tr>
                         <tr>
-                            <td>Locative</td>
-                            <td><input type="checkbox" class="adjectivebox"></td>
-                            <td><input type="checkbox" class="adjectivebox"></td>
+                            <td>Locative <i>(coming soon)</i></td>
+                            <td><input type="checkbox" class="adjectivebox" disabled></td>
+                            <td><input type="checkbox" class="adjectivebox" disabled></td>
                         </tr>
                     </tbody>
                 </table>
@@ -536,14 +536,14 @@
                         </tr>
                         <tr>
                             <th rowspan="2">Gender</th>
-                            <th><label for="masculine">Masculine</label></th>
-                            <th><label for="feminine">Feminine</label></th>
-                            <th colspan="3"><label for="neuter">Neuter</label></th>
+                            <th><label for="adj-masculine">Masculine</label></th>
+                            <th><label for="adj-feminine">Feminine</label></th>
+                            <th colspan="3"><label for="adj-neuter">Neuter</label></th>
                         </tr>
                         <tr>
-                            <td><input type="checkbox" id="masculine" checked></td>
-                            <td><input type="checkbox" id="feminine"></td>
-                            <td colspan="3"><input type="checkbox" id="neuter"></td>
+                            <td><input type="checkbox" id="adj-masculine" checked></td>
+                            <td><input type="checkbox" id="adj-feminine" checked></td>
+                            <td colspan="3"><input type="checkbox" id="adj-neuter" checked></td>
                         </tr>
                         <tr>
                             <th class="empty" rowspan="2">
@@ -592,32 +592,32 @@
                         <tr>
                             <td>Nominative</td>
                             <td><input type="checkbox" class="pronounbox" checked></td>
-                            <td><input type="checkbox" class="pronounbox"></td>
+                            <td><input type="checkbox" class="pronounbox" checked></td>
                         </tr>
                         <tr>
                             <td>Genitive</td>
-                            <td><input type="checkbox" class="pronounbox"></td>
-                            <td><input type="checkbox" class="pronounbox"></td>
+                            <td><input type="checkbox" class="pronounbox" checked></td>
+                            <td><input type="checkbox" class="pronounbox" checked></td>
                         </tr>
                         <tr>
                             <td>Dative</td>
-                            <td><input type="checkbox" class="pronounbox"></td>
-                            <td><input type="checkbox" class="pronounbox"></td>
+                            <td><input type="checkbox" class="pronounbox" checked></td>
+                            <td><input type="checkbox" class="pronounbox" checked></td>
                         </tr>
                         <tr>
                             <td>Accusative</td>
-                            <td><input type="checkbox" class="pronounbox"></td>
-                            <td><input type="checkbox" class="pronounbox"></td>
+                            <td><input type="checkbox" class="pronounbox" checked></td>
+                            <td><input type="checkbox" class="pronounbox" checked></td>
                         </tr>
                         <tr>
                             <td>Ablative</td>
-                            <td><input type="checkbox" class="pronounbox"></td>
-                            <td><input type="checkbox" class="pronounbox"></td>
+                            <td><input type="checkbox" class="pronounbox" checked></td>
+                            <td><input type="checkbox" class="pronounbox" checked></td>
                         </tr>
                         <tr>
                             <td>Vocative</td>
-                            <td><input type="checkbox" class="pronounbox"></td>
-                            <td><input type="checkbox" class="pronounbox"></td>
+                            <td><input type="checkbox" class="pronounbox" checked></td>
+                            <td><input type="checkbox" class="pronounbox" checked></td>
                         </tr>
                     </tbody>
                 </table>
@@ -625,14 +625,14 @@
                     <tbody>
                         <tr>
                             <th rowspan="2">Gender</th>
-                            <th><label for="masculine">Masculine</label></th>
-                            <th><label for="feminine">Feminine</label></th>
-                            <th colspan="3"><label for="neuter">Neuter</label></th>
+                            <th><label for="pron-masculine">Masculine</label></th>
+                            <th><label for="pron-feminine">Feminine</label></th>
+                            <th colspan="3"><label for="pron-neuter">Neuter</label></th>
                         </tr>
                         <tr>
-                            <td><input type="checkbox" id="masculine" checked></td>
-                            <td><input type="checkbox" id="feminine"></td>
-                            <td colspan="3"><input type="checkbox" id="neuter"></td>
+                            <td><input type="checkbox" id="pron-masculine" checked></td>
+                            <td><input type="checkbox" id="pron-feminine" checked></td>
+                            <td colspan="3"><input type="checkbox" id="pron-neuter" checked></td>
                         </tr>
                     </tbody>
                 </table>
@@ -649,7 +649,6 @@
             <input type="checkbox" id="darkModeToggle" style="width: auto; margin: 0;">
             <label for="darkModeToggle" style="cursor: pointer;">Dark Mode</label>
         </div>
-        <br><br>
         <button onclick="closeDialog(this.parentElement.id)">Close</button><button class="scroll"
             onclick="this.parentElement.children[0].scrollIntoView();">Scroll to top</button>
     </dialog>

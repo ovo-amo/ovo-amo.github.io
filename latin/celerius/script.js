@@ -12,21 +12,21 @@ const tests = {
         let names = [];
 
         if (!(noun.first in ["copiae", "tenebrae", "litterae", "insidiae", "epulae", "divitiae", "deliciae", "liberi", "arma", "castra", "manes", "moenia", "milia"])) { // pluralia tantum
-            names.push("nominative singular");
-            names.push("genitive singular");
-            names.push("dative singular");
-            names.push("accusative singular");
-            names.push("ablative singular");
-            names.push("vocative singular");
+            if (settings.nouns & 1n) names.push("nominative singular");
+            if (settings.nouns & 4n) names.push("genitive singular");
+            if (settings.nouns & 16n) names.push("dative singular");
+            if (settings.nouns & 64n) names.push("accusative singular");
+            if (settings.nouns & 256n) names.push("ablative singular");
+            if (settings.nouns & 1024n) names.push("vocative singular");
         }
 
-        if (!(noun.first in ["Iesus", "pontus", "sitis", "fames"])) {
-            names.push("nominative plural");
-            names.push("genitive plural");
-            names.push("dative plural");
-            names.push("accusative plural");
-            names.push("ablative plural");
-            names.push("vocative plural");
+        if (!(noun.first in ["Iesus", "pontus", "sitis", "fames"])) { // singularia tantum
+            if (settings.nouns & 2n) names.push("nominative plural");
+            if (settings.nouns & 8n) names.push("genitive plural");
+            if (settings.nouns & 32n) names.push("dative plural");
+            if (settings.nouns & 128n) names.push("accusative plural");
+            if (settings.nouns & 512n) names.push("ablative plural");
+            if (settings.nouns & 2048n) names.push("vocative plural");
         }
 
         return names;
@@ -193,7 +193,31 @@ const tests = {
             names.push("third-person plural pluperfect passive subjunctive");
         }
 
-        return names;
+        // Infinitives
+        names.push("present active infinitive");
+
+        if (verb.transitive == 2) {
+            names.push("present passive infinitive");
+        }
+
+        if (verb.perfect != "---" && verb.perfect != "") {
+            names.push("perfect active infinitive");
+        }
+
+        if (verb.supine != "---" || verb.perfect.endsWith("fu")) {
+            names.push("future active infinitive");
+        }
+
+        if (verb.transitive == 2 && verb.supine != "---") {
+            names.push("perfect passive infinitive");
+            names.push("future passive infinitive");
+        }
+
+        return names.filter(
+            e => settings.verbs & BigInt(Object.keys(verbforms).filter(
+                f => verbforms[f].includes(e)
+            )[0])
+        );
     }
 };
 
@@ -2090,48 +2114,42 @@ const machines = {
                 name: "first-person singular imperfect active subjunctive",
                 task: "Give the first-person singular imperfect active subjunctive.",
                 answer: verb => {
-                    let infinitive = verb.identity.split(", ")[1];
-                    return infinitive + "m";
+                    return verb.identity.split(", ")[1] + "m";
                 },
                 level: [2.5, 5]
             }, {
                 name: "second-person singular imperfect active subjunctive",
                 task: "Give the second-person singular imperfect active subjunctive.",
                 answer: verb => {
-                    let infinitive = verb.identity.split(", ")[1];
-                    return infinitive + "s";
+                    return verb.identity.split(", ")[1] + "s";
                 },
                 level: [2.5, 5]
             }, {
                 name: "third-person singular imperfect active subjunctive",
                 task: "Give the third-person singular imperfect active subjunctive.",
                 answer: verb => {
-                    let infinitive = verb.identity.split(", ")[1];
-                    return infinitive + "t";
+                    return verb.identity.split(", ")[1] + "t";
                 },
                 level: [2.5, 5]
             }, {
                 name: "first-person plural imperfect active subjunctive",
                 task: "Give the first-person plural imperfect active subjunctive.",
                 answer: verb => {
-                    let infinitive = verb.identity.split(", ")[1];
-                    return infinitive + "mus";
+                    return verb.identity.split(", ")[1] + "mus";
                 },
                 level: [2.5, 5]
             }, {
                 name: "second-person plural imperfect active subjunctive",
                 task: "Give the second-person plural imperfect active subjunctive.",
                 answer: verb => {
-                    let infinitive = verb.identity.split(", ")[1];
-                    return infinitive + "tis";
+                    return verb.identity.split(", ")[1] + "tis";
                 },
                 level: [2.5, 5]
             }, {
                 name: "third-person plural imperfect active subjunctive",
                 task: "Give the third-person plural imperfect active subjunctive.",
                 answer: verb => {
-                    let infinitive = verb.identity.split(", ")[1];
-                    return infinitive + "nt";
+                    return verb.identity.split(", ")[1] + "nt";
                 },
                 level: [2.5, 5]
             }, {
@@ -3081,48 +3099,42 @@ const machines = {
                 name: "first-person singular imperfect passive subjunctive",
                 task: "Give the first-person singular imperfect passive subjunctive.",
                 answer: verb => {
-                    let infinitive = verb.identity.split(", ")[1];
-                    return infinitive + "r";
+                    return verb.identity.split(", ")[1] + "r";
                 },
                 level: [3, 5]
             }, {
                 name: "second-person singular imperfect passive subjunctive",
                 task: "Give the second-person singular imperfect passive subjunctive.",
                 answer: verb => {
-                    let infinitive = verb.identity.split(", ")[1];
-                    return infinitive + "ris";
+                    return verb.identity.split(", ")[1] + "ris";
                 },
                 level: [3, 5]
             }, {
                 name: "third-person singular imperfect passive subjunctive",
                 task: "Give the third-person singular imperfect passive subjunctive.",
                 answer: verb => {
-                    let infinitive = verb.identity.split(", ")[1];
-                    return infinitive + "tur";
+                    return verb.identity.split(", ")[1] + "tur";
                 },
                 level: [3, 5]
             }, {
                 name: "first-person plural imperfect passive subjunctive",
                 task: "Give the first-person plural imperfect passive subjunctive.",
                 answer: verb => {
-                    let infinitive = verb.identity.split(", ")[1];
-                    return infinitive + "mur";
+                    return verb.identity.split(", ")[1] + "mur";
                 },
                 level: [3, 5]
             }, {
                 name: "second-person plural imperfect passive subjunctive",
                 task: "Give the second-person plural imperfect passive subjunctive.",
                 answer: verb => {
-                    let infinitive = verb.identity.split(", ")[1];
-                    return infinitive + "mini";
+                    return verb.identity.split(", ")[1] + "mini";
                 },
                 level: [3, 5]
             }, {
                 name: "third-person plural imperfect passive subjunctive",
                 task: "Give the third-person plural imperfect passive subjunctive.",
                 answer: verb => {
-                    let infinitive = verb.identity.split(", ")[1];
-                    return infinitive + "ntur";
+                    return verb.identity.split(", ")[1] + "ntur";
                 },
                 level: [3, 5]
             }, {
@@ -3370,6 +3382,59 @@ const machines = {
                     return ppp + " essent";
                 },
                 level: [3.5, 5]
+            }, {
+                // PRESENT ACTIVE INFINITIVE
+                name: "present active infinitive",
+                task: "Give the present active infinitive.",
+                answer: verb => {
+                    return verb.identity.split(", ")[1];
+                },
+                level: [0, 5]
+            }, {
+                // PRESENT PASSIVE INFINITIVE
+                name: "present passive infinitive",
+                task: "Give the present passive infinitive.",
+                answer: verb => {
+                    let inf = verb.identity.split(", ")[1];
+                    if (inf.endsWith("ere")) return inf.substring(0, inf.length - 3) + "i";
+                    return inf.substring(0, inf.length - 1) + "i";
+                },
+                level: [3.5, 5]
+            }, {
+                // PERFECT ACTIVE INFINITIVE
+                name: "perfect active infinitive",
+                task: "Give the perfect active infinitive.",
+                answer: verb => {
+                    return verb.perfect + "isse";
+                },
+                level: [2.5, 5]
+            }, {
+                // PERFECT PASSIVE INFINITIVE
+                name: "perfect passive infinitive",
+                task: "Give the perfect passive infinitive.",
+                answer: verb => {
+                    return verb.supine + "us esse";
+                },
+                level: [3, 5]
+            }, {
+                // FUTURE ACTIVE INFINITIVE
+                name: "future active infinitive",
+                task: "Give the future active infinitive.",
+                answer: verb => {
+                    if (verb.identity.startsWith("fio")) return "fore";
+                    if (verb.supine !== "---") return verb.supine + "urus esse";
+                    if (verb.perfect.endsWith("fu")) return verb.perfect.slice(0, -2) + "futurus esse";
+                    return "";
+                },
+                level: [4, 5]
+            }, {
+                // FUTURE PASSIVE INFINITIVE
+                name: "future passive infinitive",
+                task: "Give the future passive infinitive.",
+                answer: verb => {
+                    return verb.supine + "um iri";
+                },
+                level: [4, 5]
             }
         ]
     }
@@ -3620,8 +3685,8 @@ let verbforms = {};
     verbforms[1n << BigInt(index + 26)] = [ending];
 });
 
-['second-person singular present active imperative', 'second-person plural present active imperative', 'second-person singular future active imperative', 'third-person singular future active imperative', 'second-person plural future active imperative', 'third-person plural future active imperative', 'second-person singular present passive imperative', 'second-person plural present passive imperative', 'second-person singular future passive imperative', 'third-person singular future passive imperative', 'third-person plural future passive imperative'].forEach((ending, index) => {
-    verbforms[1n << BigInt(index + 30)] = [ending];
+['second-person singular present active', 'second-person plural present active', 'second-person singular future active', 'third-person singular future active', 'second-person plural future active', 'third-person plural future active', 'second-person singular present passive', 'second-person plural present passive', 'second-person singular future passive', 'third-person singular future passive', 'third-person plural future passive'].forEach((ending, index) => {
+    verbforms[1n << BigInt(index + 30)] = ["imperative " + ending];
 });
 
 ['gerunds', 'supines'].forEach((ending, index) => {
@@ -3648,7 +3713,8 @@ for (let index = 0; index < 43; index++) {
 let nounforms = {};
 
 ['nominative', 'genitive', 'dative', 'accusative', 'ablative', 'vocative', 'locative'].forEach((ending, index) => {
-    nounforms[1n << BigInt(index)] = ["singular", "plural"].map(number => number + " " + ending);
+    nounforms[1n << BigInt(2 * index)] = ending + " singular";
+    nounforms[1n << BigInt(2 * index + 1)] = ending + " plural";
 });
 
 let nounboxes = document.querySelectorAll(".nounbox");
@@ -3671,7 +3737,8 @@ for (let index = 0; index < 14; index++) {
 let adjectiveforms = {};
 
 ['nominative', 'genitive', 'dative', 'accusative', 'ablative', 'vocative', 'locative'].forEach((ending, index) => {
-    adjectiveforms[1n << BigInt(index)] = ["singular", "plural"].map(number => number + " " + ending);
+    adjectiveforms[1n << BigInt(2 * index)] = ending + " singular";
+    adjectiveforms[1n << BigInt(2 * index + 1)] = ending + " plural";
 });
 
 let adjectiveboxes = document.querySelectorAll(".adjectivebox");
@@ -3693,8 +3760,9 @@ for (let index = 0; index < 14; index++) {
 
 let pronounforms = {};
 
-['nominative', 'genitive', 'dative', 'accusative', 'ablative', 'vocative'].forEach((ending, index) => {
-    pronounforms[1n << BigInt(index)] = ["singular", "plural"].map(number => number + " " + ending);
+['nominative', 'genitive', 'dative', 'accusative', 'ablative', 'vocative', 'locative'].forEach((ending, index) => {
+    pronounforms[1n << BigInt(2 * index)] = ending + " singular";
+    pronounforms[1n << BigInt(2 * index + 1)] = ending + " plural";
 });
 
 let pronounboxes = document.querySelectorAll(".pronounbox");
