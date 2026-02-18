@@ -4032,19 +4032,27 @@ if (response) {
 
 // Function to strip macrons from Latin text for answer comparison
 function stripMacrons(text) {
-    return text
-        .replace(/ā/g, 'a')
-        .replace(/ē/g, 'e')
-        .replace(/ī/g, 'i')
-        .replace(/ō/g, 'o')
-        .replace(/ū/g, 'u')
-        .replace(/ȳ/g, 'y')
-        .replace(/Ā/g, 'A')
-        .replace(/Ē/g, 'E')
-        .replace(/Ī/g, 'I')
-        .replace(/Ō/g, 'O')
-        .replace(/Ū/g, 'U')
-        .replace(/Ȳ/g, 'Y');
+    // Maps the replacement letter to a regex matching the macron and its HTML entities
+    const macronMap = {
+        'a': /ā|&#257;|&#[xX]0*101;|&amacr;/g,
+        'e': /ē|&#275;|&#[xX]0*113;|&emacr;/g,
+        'i': /ī|&#299;|&#[xX]0*12[bB];|&imacr;/g,
+        'o': /ō|&#333;|&#[xX]0*14[dD];|&omacr;/g,
+        'u': /ū|&#363;|&#[xX]0*16[bB];|&umacr;/g,
+        'y': /ȳ|&#563;|&#[xX]0*233;/g,
+        'A': /Ā|&#256;|&#[xX]0*100;|&Amacr;/g,
+        'E': /Ē|&#274;|&#[xX]0*112;|&Emacr;/g,
+        'I': /Ī|&#298;|&#[xX]0*12[aA];|&Imacr;/g,
+        'O': /Ō|&#332;|&#[xX]0*14[cC];|&Omacr;/g,
+        'U': /Ū|&#362;|&#[xX]0*16[aA];|&Umacr;/g,
+        'Y': /Ȳ|&#562;|&#[xX]0*232;/g
+    };
+
+    let result = text;
+    for (const [replacement, regex] of Object.entries(macronMap)) {
+        result = result.replace(regex, replacement);
+    }
+    return result;
 }
 
 function stop(forceReveal = false) {
