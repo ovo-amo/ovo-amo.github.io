@@ -17,7 +17,6 @@ const tests = {
             if (settings.nouns & 16n) names.push("dative singular");
             if (settings.nouns & 64n) names.push("accusative singular");
             if (settings.nouns & 256n) names.push("ablative singular");
-            if (settings.nouns & 1024n) names.push("vocative singular");
         }
 
         if (!(noun.first in ["Iesus", "pontus", "sitis", "fames"])) { // singularia tantum
@@ -26,8 +25,10 @@ const tests = {
             if (settings.nouns & 32n) names.push("dative plural");
             if (settings.nouns & 128n) names.push("accusative plural");
             if (settings.nouns & 512n) names.push("ablative plural");
-            if (settings.nouns & 2048n) names.push("vocative plural");
         }
+
+        if ((settings.nouns & 1024n) && noun.first.endswith("us")) names.push("vocative singular");
+        if ((settings.nouns & 2048n) && noun.first.endswith("us")) names.push("vocative plural");
 
         return names;
     }, verbs: verb => {
@@ -3432,43 +3433,116 @@ let presets = [{}, {
         verbs: 3423600725n,
         nouns: 14327n,
         adjectives: 0n,
-        pronouns: 0n
+        pronouns: 0n,
+        code: () => {
+            firstdeclension.checked = false;
+            seconddeclension.checked = false;
+            thirddeclension.checked = false;
+            fourthdeclension.checked = false;
+            fifthdeclension.checked = false;
+        }
+    }, 10: {
+        verbs: 3694137343n,
+        nouns: 13311n,
+        adjectives: 0n,
+        pronouns: 0n,
+        code: () => {
+            firstdeclension.checked = false;
+            seconddeclension.checked = false;
+            thirddeclension.checked = false;
+            fourthdeclension.checked = false;
+            fifthdeclension.checked = false;
+        }
     }
 }, {
     4: {
         verbs: 4229234943n,
         nouns: 13311n,
         adjectives: 0n,
-        pronouns: 0n
+        pronouns: 0n,
+        code: () => {
+            firstdeclension.checked = false;
+            seconddeclension.checked = false;
+            thirddeclension.checked = false;
+            fourthdeclension.checked = false;
+            fifthdeclension.checked = false;
+        }
     }, 8: {
         verbs: 4235550719n,
         nouns: 13311n,
         adjectives: 0n,
-        pronouns: 0n
+        pronouns: 0n,
+        code: () => {
+            firstdeclension.checked = false;
+            seconddeclension.checked = false;
+            thirddeclension.checked = false;
+            fourthdeclension.checked = false;
+            fifthdeclension.checked = false;
+        }
+    }, 10: {
+        verbs: 2202747797418n,
+        nouns: 13311n,
+        adjectives: 0n,
+        pronouns: 0n,
+        code: () => {
+            firstdeclension.checked = false;
+            seconddeclension.checked = false;
+            thirddeclension.checked = false;
+            fourthdeclension.checked = false;
+            fifthdeclension.checked = false;
+        }
     }
 }, {
     4: {
         verbs: 8796093022207n,
         nouns: 13311n,
         adjectives: 16383n,
-        pronouns: 4095n
+        pronouns: 4095n,
+        code: () => {
+            firstdeclension.checked = false;
+            seconddeclension.checked = false;
+            thirddeclension.checked = false;
+            fourthdeclension.checked = false;
+            fifthdeclension.checked = false;
+        }
     }, 8: {
         verbs: 8796093022207n,
         nouns: 13311n,
         adjectives: 16383n,
-        pronouns: 4095n
+        pronouns: 4095n,
+        code: () => {
+            firstdeclension.checked = false;
+            seconddeclension.checked = false;
+            thirddeclension.checked = false;
+            fourthdeclension.checked = false;
+            fifthdeclension.checked = false;
+        }
     }
 }, {
     4: {
         verbs: 8796093022207n,
         nouns: 13311n,
         adjectives: 16383n,
-        pronouns: 4095n
+        pronouns: 4095n,
+        code: () => {
+            firstdeclension.checked = false;
+            seconddeclension.checked = false;
+            thirddeclension.checked = false;
+            fourthdeclension.checked = false;
+            fifthdeclension.checked = false;
+        }
     }, 8: {
         verbs: 8796093022207n,
         nouns: 13311n,
         adjectives: 16383n,
-        pronouns: 4095n
+        pronouns: 4095n,
+        code: () => {
+            firstdeclension.checked = false;
+            seconddeclension.checked = false;
+            thirddeclension.checked = false;
+            fourthdeclension.checked = false;
+            fifthdeclension.checked = false;
+        }
     }
 }
 ];
@@ -3509,6 +3583,7 @@ function updatesets() {
     settings.nouns = BigInt(presets[settings.level][settings.month].nouns);
     settings.adjectives = BigInt(presets[settings.level][settings.month].adjectives);
     settings.pronouns = BigInt(presets[settings.level][settings.month].pronouns);
+    presets[settings.level][settings.month].code && presets[settings.level][settings.month].code();
 }
 
 let verbforms = {};
