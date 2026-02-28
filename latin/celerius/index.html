@@ -40,14 +40,14 @@
     <dialog id="dialog-settings">
         <h2>Settings!</h2>
         <br>
-        <label for="level">I am a... <small>(selecting <i>Certamener</i> gives you more buttons to press but is not
+        <label for="level">I am... <small>(selecting <i>a Certamener</i> gives you more buttons to press but is not
                 recommended)</small></label>
         <select name="level" id="level">
-            <option value="1">Latin 1</option>
-            <option value="2">Latin 2</option>
-            <option value="3">Latin 3</option>
-            <option value="4">AP Latin/Latin 4</option>
-            <option value="5" selected>Certamener</option>
+            <option value="1">a Latin 1</option>
+            <option value="2">a Latin 2</option>
+            <option value="3">a Latin 3</option>
+            <option value="4">an AP Latin/Latin 4</option>
+            <option value="5" selected>a Certamener</option>
         </select>
         <br>
         <br>
@@ -65,11 +65,13 @@
                         <th>7</th>
                         <th>8</th>
                         <th>9</th>
+                        <th>NLE</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td><input type="radio" name="months" checked></td>
+                        <td><input type="radio" name="months"></td>
                         <td><input type="radio" name="months"></td>
                         <td><input type="radio" name="months"></td>
                         <td><input type="radio" name="months"></td>
@@ -340,30 +342,30 @@
                         <tr>
                             <th class="sideways" rowspan="5">Noun Declensions</th>
                             <th><label for="firstdeclension">1<sup>st</sup></label></th>
-                            <td><input type="radio" name="firstdeclension" id="firstdeclension" checked></td>
-                            <td><input type="radio" name="firstdeclension"></td>
+                            <td><input type="radio" name="firstdeclension" id="firstdeclension"></td>
+                            <td><input type="radio" name="firstdeclension" checked></td>
                         </tr>
                         <tr>
                             <th><label for="seconddeclension">2<sup>nd</sup></label></th>
-                            <td><input type="radio" name="seconddeclension" id="seconddeclension" checked></td>
-                            <td><input type="radio" name="seconddeclension"></td>
+                            <td><input type="radio" name="seconddeclension" id="seconddeclension"></td>
+                            <td><input type="radio" name="seconddeclension" checked></td>
                         </tr>
                         <tr>
                             <th><label for="thirddeclension">3<sup>rd</sup></label></th>
-                            <td><input type="radio" name="thirddeclension" id="thirddeclension" checked></td>
-                            <td><input type="radio" name="thirddeclension"></td>
+                            <td><input type="radio" name="thirddeclension" id="thirddeclension"></td>
+                            <td><input type="radio" name="thirddeclension" checked></td>
                         </tr>
                         <tr>
                             <th><label for="fourthdeclension">4<sup>th</sup></label></th>
-                            <td><input type="radio" name="fourthdeclension"></td>
                             <td><input type="radio" name="fourthdeclension" id="fourthdeclension" checked></td>
+                            <td><input type="radio" name="fourthdeclension"></td>
                         </tr>
                         <tr>
                             <th><label for="fifthdeclension">5<sup>th</sup></label></th>
-                            <td><input type="radio" name="fifthdeclension"></td>
                             <td><input type="radio" name="fifthdeclension" id="fifthdeclension" checked></td>
+                            <td><input type="radio" name="fifthdeclension"></td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <th class="sideways empty" rowspan="2">
                                 <button class="extra" onclick="openDialog('extra-istems')">
                                     <b><i>i</i>-stems</b>
@@ -377,6 +379,15 @@
                             <th><label for="mixedistems">Mixed</label></th>
                             <td><input type="radio" name="mixedistems" id="mixedistems" checked></td>
                             <td><input type="radio" name="mixedistems" disabled></td>
+                        </tr> -->
+                        <tr>
+                            <th class="empty" colspan="2">
+                                <button class="extra" onclick="openDialog('extra-istems')">
+                                    <label for="istems"><b><i>i</i>-stems</b></label>
+                                </button>
+                            </th>
+                            <td><input type="radio" name="istems" id="istems" checked></td>
+                            <td><input type="radio" name="istems"></td>
                         </tr>
                         <tr>
                             <th class="empty" colspan="2">
@@ -574,9 +585,9 @@
             </div>
         </div>
         <div class="options">
-            <h3>
-                <input type="radio" id="pronouns" name="POS" value="pronouns">
-                <label for="pronouns">Pronouns</label>
+            <h3 style="cursor: not-allowed;">
+                <input type="radio" id="pronouns" name="POS" value="pronouns" disabled>
+                <label for="pronouns">Pronouns <i>(coming soon)</i></label>
             </h3>
             <div class="sub-options" id="subpronouns">
                 <hr>

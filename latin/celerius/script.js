@@ -239,7 +239,6 @@ const machines = {
                 name: "nominative singular",
                 task: "Give the nominative singular.",
                 answer: noun => noun.first,
-                level: [0, 0.5]
             }, {
                 name: "nominative plural",
                 task: "Give the nominative plural.",
@@ -275,7 +274,6 @@ const machines = {
                             return noun.stem + "es";
                     }
                 },
-                level: [1, 5]
             }, {
                 name: "genitive singular",
                 task: "Give the genitive singular.",
@@ -299,7 +297,6 @@ const machines = {
                             return noun.stem + "ei";
                     }
                 },
-                level: [0, 0.5]
             }, {
                 name: "genitive plural",
                 task: "Give the genitive plural.",
@@ -323,7 +320,6 @@ const machines = {
                             return noun.stem + "erum";
                     }
                 },
-                level: [0.75, 5]
             }, {
                 name: "dative singular",
                 task: "Give the dative singular.",
@@ -351,7 +347,6 @@ const machines = {
                             return noun.stem + "ei";
                     }
                 },
-                level: [0.5, 5]
             }, {
                 name: "dative plural",
                 task: "Give the dative plural.",
@@ -387,7 +382,6 @@ const machines = {
                             return noun.stem + "ebus";
                     }
                 },
-                level: [0.75, 5]
             }, {
                 name: "accusative singular",
                 task: "Give the accusative singular.",
@@ -427,7 +421,6 @@ const machines = {
                             return noun.stem + "em";
                     }
                 },
-                level: [1, 5]
             }, {
                 name: "accusative plural",
                 task: "Give the accusative plural.",
@@ -463,7 +456,6 @@ const machines = {
                             return noun.stem + "es";
                     }
                 },
-                level: [0.5, 5]
             }, {
                 name: "ablative singular",
                 task: "Give the ablative singular.",
@@ -487,7 +479,6 @@ const machines = {
                             return noun.stem + "e";
                     }
                 },
-                level: [1, 5]
             }, {
                 name: "ablative plural",
                 task: "Give the ablative plural.",
@@ -519,7 +510,6 @@ const machines = {
                             return noun.stem + "ebus";
                     }
                 },
-                level: [0.5, 5]
             }, {
                 name: "vocative singular",
                 task: "Give the vocative singular.",
@@ -540,7 +530,6 @@ const machines = {
                         return noun.first;
                     }
                 },
-                level: [0.25, 0.25]
             }, {
                 name: "vocative plural",
                 task: "Give the vocative plural.",
@@ -576,7 +565,6 @@ const machines = {
                             return noun.stem + "es";
                     }
                 },
-                level: [0.25, 0.25]
             }
         ]
     }, verbs: {
@@ -598,7 +586,6 @@ const machines = {
                 name: "imperative second-person singular present active",
                 task: "Give the second-person singular present active imperative.",
                 answer: verb => {
-                    // Irregulars
                     if (verb.identity.startsWith("dico")) return "dic";
                     if (verb.identity.startsWith("duco")) return "duc";
                     if (verb.identity.startsWith("facio")) return "fac";
@@ -608,7 +595,6 @@ const machines = {
                     if (verb.identity.startsWith("nolo")) return "noli";
                     if (verb.identity.startsWith("memini")) return "memento";
 
-                    // Regulars
                     switch (verb.conjugation) {
                         case 1: return verb.present + "a";
                         case 2: return verb.present + "e";
@@ -617,19 +603,16 @@ const machines = {
                         case 4: return verb.present + "i";
                     }
                 },
-                level: [0, 5]
             }, {
                 name: "imperative second-person plural present active",
                 task: "Give the second-person plural present active imperative.",
                 answer: verb => {
-                    // Irregulars
                     if (verb.identity.startsWith("fero")) return "ferte";
                     if (verb.identity.startsWith("sum")) return "este";
                     if (verb.identity.startsWith("eo")) return "ite";
                     if (verb.identity.startsWith("nolo")) return "nolite";
                     if (verb.identity.startsWith("memini")) return "mementote";
 
-                    // Regulars
                     switch (verb.conjugation) {
                         case 1: return verb.present + "ate";
                         case 2: return verb.present + "ete";
@@ -638,7 +621,6 @@ const machines = {
                         case 4: return verb.present + "ite";
                     }
                 },
-                level: [0, 5]
             }, {
                 name: "first-person singular present active indicative",
                 task: "Give the first-person singular present active indicative.",
@@ -647,7 +629,6 @@ const machines = {
                     if (verb.identity.startsWith("odi")) return "odi";
                     return verb.identity.split(", ")[0];
                 },
-                level: [0, 0.5]
             }, {
                 name: "second-person singular present active indicative",
                 task: "Give the second-person singular present active indicative.",
@@ -687,7 +668,6 @@ const machines = {
                             }
                     }
                 },
-                level: [0, 0.5]
             }, {
                 name: "third-person singular present active indicative",
                 task: "Give the third-person singular present active indicative.",
@@ -727,7 +707,6 @@ const machines = {
                             }
                     }
                 },
-                level: [0, 0.5]
             }, {
                 name: "first-person plural present active indicative",
                 task: "Give the first-person plural present active indicative.",
@@ -767,7 +746,6 @@ const machines = {
                             }
                     }
                 },
-                level: [0.125, 5]
             }, {
                 name: "second-person plural present active indicative",
                 task: "Give the second-person plural present active indicative.",
@@ -807,7 +785,6 @@ const machines = {
                             }
                     }
                 },
-                level: [0.125, 5]
             }, {
                 name: "third-person plural present active indicative",
                 task: "Give the third-person plural present active indicative.",
@@ -847,7 +824,6 @@ const machines = {
                             }
                     }
                 },
-                level: [0.125, 5]
             }, {
                 name: "first-person singular imperfect active indicative",
                 task: "Give the first-person singular imperfect active indicative.",
@@ -887,7 +863,6 @@ const machines = {
                             }
                     }
                 },
-                level: [1, 5]
             }, {
                 name: "second-person singular imperfect active indicative",
                 task: "Give the second-person singular imperfect active indicative.",
@@ -927,7 +902,6 @@ const machines = {
                             }
                     }
                 },
-                level: [1, 5]
             }, {
                 name: "third-person singular imperfect active indicative",
                 task: "Give the third-person singular imperfect active indicative.",
@@ -967,7 +941,6 @@ const machines = {
                             }
                     }
                 },
-                level: [1, 5]
             }, {
                 name: "first-person plural imperfect active indicative",
                 task: "Give the first-person plural imperfect active indicative.",
@@ -1007,7 +980,6 @@ const machines = {
                             }
                     }
                 },
-                level: [1, 5]
             }, {
                 name: "second-person plural imperfect active indicative",
                 task: "Give the second-person plural imperfect active indicative.",
@@ -1047,7 +1019,6 @@ const machines = {
                             }
                     }
                 },
-                level: [1, 5]
             }, {
                 name: "third-person plural imperfect active indicative",
                 task: "Give the third-person plural imperfect active indicative.",
@@ -1087,7 +1058,6 @@ const machines = {
                             }
                     }
                 },
-                level: [1, 5]
             }, {
                 name: "first-person singular future active indicative",
                 task: "Give the first-person singular future active indicative.",
@@ -1127,7 +1097,6 @@ const machines = {
                             }
                     }
                 },
-                level: [1, 5]
             }, {
                 name: "second-person singular future active indicative",
                 task: "Give the second-person singular future active indicative.",
@@ -1167,7 +1136,6 @@ const machines = {
                             }
                     }
                 },
-                level: [1, 5]
             }, {
                 name: "third-person singular future active indicative",
                 task: "Give the third-person singular future active indicative.",
@@ -1207,7 +1175,6 @@ const machines = {
                             }
                     }
                 },
-                level: [1, 5]
             }, {
                 name: "first-person plural future active indicative",
                 task: "Give the first-person plural future active indicative.",
@@ -1247,7 +1214,6 @@ const machines = {
                             }
                     }
                 },
-                level: [1, 5]
             }, {
                 name: "second-person plural future active indicative",
                 task: "Give the second-person plural future active indicative.",
@@ -1287,7 +1253,6 @@ const machines = {
                             }
                     }
                 },
-                level: [1, 5]
             }, {
                 name: "third-person plural future active indicative",
                 task: "Give the third-person plural future active indicative.",
@@ -1327,7 +1292,6 @@ const machines = {
                             }
                     }
                 },
-                level: [1, 5]
             }, {
                 name: "first-person singular perfect active indicative",
                 task: "Give the first-person singular perfect active indicative.",
@@ -1357,7 +1321,6 @@ const machines = {
                         return verb.perfect + "i";
                     }
                 },
-                level: [0.5, 5]
             }, {
                 name: "second-person singular perfect active indicative",
                 task: "Give the second-person singular perfect active indicative.",
@@ -1387,7 +1350,6 @@ const machines = {
                         return verb.perfect + "isti";
                     }
                 },
-                level: [0.5, 5]
             }, {
                 name: "third-person singular perfect active indicative",
                 task: "Give the third-person singular perfect active indicative.",
@@ -1417,7 +1379,6 @@ const machines = {
                         return verb.perfect + "it";
                     }
                 },
-                level: [0.5, 5]
             }, {
                 name: "first-person plural perfect active indicative",
                 task: "Give the first-person plural perfect active indicative.",
@@ -1447,7 +1408,6 @@ const machines = {
                         return verb.perfect + "imus";
                     }
                 },
-                level: [0.5, 5]
             }, {
                 name: "second-person plural perfect active indicative",
                 task: "Give the second-person plural perfect active indicative.",
@@ -1477,7 +1437,6 @@ const machines = {
                         return verb.perfect + "istis";
                     }
                 },
-                level: [0.5, 5]
             }, {
                 name: "third-person plural perfect active indicative",
                 task: "Give the third-person plural perfect active indicative.",
@@ -1507,7 +1466,6 @@ const machines = {
                         return verb.perfect + "erunt";
                     }
                 },
-                level: [0.5, 5]
             }, {
                 name: "first-person singular pluperfect active indicative",
                 task: "Give the first-person singular pluperfect active indicative.",
@@ -1537,7 +1495,6 @@ const machines = {
                         return verb.perfect + "eram";
                     }
                 },
-                level: [1.25, 5]
             }, {
                 name: "second-person singular pluperfect active indicative",
                 task: "Give the second-person singular pluperfect active indicative.",
@@ -1567,7 +1524,6 @@ const machines = {
                         return verb.perfect + "eras";
                     }
                 },
-                level: [1.25, 5]
             }, {
                 name: "third-person singular pluperfect active indicative",
                 task: "Give the third-person singular pluperfect active indicative.",
@@ -1597,7 +1553,6 @@ const machines = {
                         return verb.perfect + "erat";
                     }
                 },
-                level: [1.25, 5]
             }, {
                 name: "first-person plural pluperfect active indicative",
                 task: "Give the first-person plural pluperfect active indicative.",
@@ -1627,7 +1582,6 @@ const machines = {
                         return verb.perfect + "eramus";
                     }
                 },
-                level: [1.25, 5]
             }, {
                 name: "second-person plural pluperfect active indicative",
                 task: "Give the second-person plural pluperfect active indicative.",
@@ -1657,7 +1611,6 @@ const machines = {
                         return verb.perfect + "eratis";
                     }
                 },
-                level: [1.25, 5]
             }, {
                 name: "third-person plural pluperfect active indicative",
                 task: "Give the third-person plural pluperfect active indicative.",
@@ -1687,7 +1640,6 @@ const machines = {
                         return verb.perfect + "erant";
                     }
                 },
-                level: [1.25, 5]
             }, {
                 name: "first-person singular future perfect active indicative",
                 task: "Give the first-person singular future perfect active indicative.",
@@ -1717,7 +1669,6 @@ const machines = {
                         return verb.perfect + "ero";
                     }
                 },
-                level: [1.75, 5]
             }, {
                 name: "second-person singular future perfect active indicative",
                 task: "Give the second-person singular future perfect active indicative.",
@@ -1747,7 +1698,6 @@ const machines = {
                         return verb.perfect + "eris";
                     }
                 },
-                level: [1.75, 5]
             }, {
                 name: "third-person singular future perfect active indicative",
                 task: "Give the third-person singular future perfect active indicative.",
@@ -1777,7 +1727,6 @@ const machines = {
                         return verb.perfect + "erit";
                     }
                 },
-                level: [1.75, 5]
             }, {
                 name: "first-person plural future perfect active indicative",
                 task: "Give the first-person plural future perfect active indicative.",
@@ -1807,7 +1756,6 @@ const machines = {
                         return verb.perfect + "erimus";
                     }
                 },
-                level: [1.75, 5]
             }, {
                 name: "second-person plural future perfect active indicative",
                 task: "Give the second-person plural future perfect active indicative.",
@@ -1837,7 +1785,6 @@ const machines = {
                         return verb.perfect + "eritis";
                     }
                 },
-                level: [1.75, 5]
             }, {
                 name: "third-person plural future perfect active indicative",
                 task: "Give the third-person plural future perfect active indicative.",
@@ -1867,9 +1814,7 @@ const machines = {
                         return verb.perfect + "erint";
                     }
                 },
-                level: [1.75, 5]
             }, {
-                // PRESENT ACTIVE SUBJUNCTIVE
                 name: "first-person singular present active subjunctive",
                 task: "Give the first-person singular present active subjunctive.",
                 answer: verb => {
@@ -1908,7 +1853,6 @@ const machines = {
                             }
                     }
                 },
-                level: [2, 5]
             }, {
                 name: "second-person singular present active subjunctive",
                 task: "Give the second-person singular present active subjunctive.",
@@ -1948,7 +1892,6 @@ const machines = {
                             }
                     }
                 },
-                level: [2, 5]
             }, {
                 name: "third-person singular present active subjunctive",
                 task: "Give the third-person singular present active subjunctive.",
@@ -1988,7 +1931,6 @@ const machines = {
                             }
                     }
                 },
-                level: [2, 5]
             }, {
                 name: "first-person plural present active subjunctive",
                 task: "Give the first-person plural present active subjunctive.",
@@ -2028,7 +1970,6 @@ const machines = {
                             }
                     }
                 },
-                level: [2, 5]
             }, {
                 name: "second-person plural present active subjunctive",
                 task: "Give the second-person plural present active subjunctive.",
@@ -2068,7 +2009,6 @@ const machines = {
                             }
                     }
                 },
-                level: [2, 5]
             }, {
                 name: "third-person plural present active subjunctive",
                 task: "Give the third-person plural present active subjunctive.",
@@ -2108,52 +2048,43 @@ const machines = {
                             }
                     }
                 },
-                level: [2, 5]
             }, {
-                // IMPERFECT ACTIVE SUBJUNCTIVE
                 name: "first-person singular imperfect active subjunctive",
                 task: "Give the first-person singular imperfect active subjunctive.",
                 answer: verb => {
                     return verb.identity.split(", ")[1] + "m";
                 },
-                level: [2.5, 5]
             }, {
                 name: "second-person singular imperfect active subjunctive",
                 task: "Give the second-person singular imperfect active subjunctive.",
                 answer: verb => {
                     return verb.identity.split(", ")[1] + "s";
                 },
-                level: [2.5, 5]
             }, {
                 name: "third-person singular imperfect active subjunctive",
                 task: "Give the third-person singular imperfect active subjunctive.",
                 answer: verb => {
                     return verb.identity.split(", ")[1] + "t";
                 },
-                level: [2.5, 5]
             }, {
                 name: "first-person plural imperfect active subjunctive",
                 task: "Give the first-person plural imperfect active subjunctive.",
                 answer: verb => {
                     return verb.identity.split(", ")[1] + "mus";
                 },
-                level: [2.5, 5]
             }, {
                 name: "second-person plural imperfect active subjunctive",
                 task: "Give the second-person plural imperfect active subjunctive.",
                 answer: verb => {
                     return verb.identity.split(", ")[1] + "tis";
                 },
-                level: [2.5, 5]
             }, {
                 name: "third-person plural imperfect active subjunctive",
                 task: "Give the third-person plural imperfect active subjunctive.",
                 answer: verb => {
                     return verb.identity.split(", ")[1] + "nt";
                 },
-                level: [2.5, 5]
             }, {
-                // PERFECT ACTIVE SUBJUNCTIVE
                 name: "first-person singular perfect active subjunctive",
                 task: "Give the first-person singular perfect active subjunctive.",
                 answer: verb => {
@@ -2182,7 +2113,6 @@ const machines = {
                         return verb.perfect + "erim";
                     }
                 },
-                level: [2.5, 5]
             }, {
                 name: "second-person singular perfect active subjunctive",
                 task: "Give the second-person singular perfect active subjunctive.",
@@ -2212,7 +2142,6 @@ const machines = {
                         return verb.perfect + "eris";
                     }
                 },
-                level: [2.5, 5]
             }, {
                 name: "third-person singular perfect active subjunctive",
                 task: "Give the third-person singular perfect active subjunctive.",
@@ -2242,7 +2171,6 @@ const machines = {
                         return verb.perfect + "erit";
                     }
                 },
-                level: [2.5, 5]
             }, {
                 name: "first-person plural perfect active subjunctive",
                 task: "Give the first-person plural perfect active subjunctive.",
@@ -2272,7 +2200,6 @@ const machines = {
                         return verb.perfect + "erimus";
                     }
                 },
-                level: [2.5, 5]
             }, {
                 name: "second-person plural perfect active subjunctive",
                 task: "Give the second-person plural perfect active subjunctive.",
@@ -2302,7 +2229,6 @@ const machines = {
                         return verb.perfect + "eritis";
                     }
                 },
-                level: [2.5, 5]
             }, {
                 name: "third-person plural perfect active subjunctive",
                 task: "Give the third-person plural perfect active subjunctive.",
@@ -2332,9 +2258,7 @@ const machines = {
                         return verb.perfect + "erint";
                     }
                 },
-                level: [2.5, 5]
             }, {
-                // PLUPERFECT ACTIVE SUBJUNCTIVE
                 name: "first-person singular pluperfect active subjunctive",
                 task: "Give the first-person singular pluperfect active subjunctive.",
                 answer: verb => {
@@ -2363,7 +2287,6 @@ const machines = {
                         return verb.perfect + "issem";
                     }
                 },
-                level: [3, 5]
             }, {
                 name: "second-person singular pluperfect active subjunctive",
                 task: "Give the second-person singular pluperfect active subjunctive.",
@@ -2393,7 +2316,6 @@ const machines = {
                         return verb.perfect + "isses";
                     }
                 },
-                level: [3, 5]
             }, {
                 name: "third-person singular pluperfect active subjunctive",
                 task: "Give the third-person singular pluperfect active subjunctive.",
@@ -2423,7 +2345,6 @@ const machines = {
                         return verb.perfect + "isset";
                     }
                 },
-                level: [3, 5]
             }, {
                 name: "first-person plural pluperfect active subjunctive",
                 task: "Give the first-person plural pluperfect active subjunctive.",
@@ -2453,7 +2374,6 @@ const machines = {
                         return verb.perfect + "issemus";
                     }
                 },
-                level: [3, 5]
             }, {
                 name: "second-person plural pluperfect active subjunctive",
                 task: "Give the second-person plural pluperfect active subjunctive.",
@@ -2483,7 +2403,6 @@ const machines = {
                         return verb.perfect + "issetis";
                     }
                 },
-                level: [3, 5]
             }, {
                 name: "third-person plural pluperfect active subjunctive",
                 task: "Give the third-person plural pluperfect active subjunctive.",
@@ -2513,9 +2432,7 @@ const machines = {
                         return verb.perfect + "issent";
                     }
                 },
-                level: [3, 5]
             }, {
-                // PRESENT PASSIVE INDICATIVE
                 name: "first-person singular present passive indicative",
                 task: "Give the first-person singular present passive indicative.",
                 answer: verb => {
@@ -2538,7 +2455,6 @@ const machines = {
                             }
                     }
                 },
-                level: [2, 5]
             }, {
                 name: "second-person singular present passive indicative",
                 task: "Give the second-person singular present passive indicative.",
@@ -2562,7 +2478,6 @@ const machines = {
                             }
                     }
                 },
-                level: [2, 5]
             }, {
                 name: "third-person singular present passive indicative",
                 task: "Give the third-person singular present passive indicative.",
@@ -2586,7 +2501,6 @@ const machines = {
                             }
                     }
                 },
-                level: [2, 5]
             }, {
                 name: "first-person plural present passive indicative",
                 task: "Give the first-person plural present passive indicative.",
@@ -2610,7 +2524,6 @@ const machines = {
                             }
                     }
                 },
-                level: [2, 5]
             }, {
                 name: "second-person plural present passive indicative",
                 task: "Give the second-person plural present passive indicative.",
@@ -2634,7 +2547,6 @@ const machines = {
                             }
                     }
                 },
-                level: [2, 5]
             }, {
                 name: "third-person plural present passive indicative",
                 task: "Give the third-person plural present passive indicative.",
@@ -2658,9 +2570,7 @@ const machines = {
                             }
                     }
                 },
-                level: [2, 5]
             }, {
-                // IMPERFECT PASSIVE INDICATIVE
                 name: "first-person singular imperfect passive indicative",
                 task: "Give the first-person singular imperfect passive indicative.",
                 answer: verb => {
@@ -2683,7 +2593,6 @@ const machines = {
                             }
                     }
                 },
-                level: [2, 5]
             }, {
                 name: "second-person singular imperfect passive indicative",
                 task: "Give the second-person singular imperfect passive indicative.",
@@ -2707,7 +2616,6 @@ const machines = {
                             }
                     }
                 },
-                level: [2, 5]
             }, {
                 name: "third-person singular imperfect passive indicative",
                 task: "Give the third-person singular imperfect passive indicative.",
@@ -2731,7 +2639,6 @@ const machines = {
                             }
                     }
                 },
-                level: [2, 5]
             }, {
                 name: "first-person plural imperfect passive indicative",
                 task: "Give the first-person plural imperfect passive indicative.",
@@ -2755,7 +2662,6 @@ const machines = {
                             }
                     }
                 },
-                level: [2, 5]
             }, {
                 name: "second-person plural imperfect passive indicative",
                 task: "Give the second-person plural imperfect passive indicative.",
@@ -2779,7 +2685,6 @@ const machines = {
                             }
                     }
                 },
-                level: [2, 5]
             }, {
                 name: "third-person plural imperfect passive indicative",
                 task: "Give the third-person plural imperfect passive indicative.",
@@ -2803,9 +2708,7 @@ const machines = {
                             }
                     }
                 },
-                level: [2, 5]
             }, {
-                // FUTURE PASSIVE INDICATIVE
                 name: "first-person singular future passive indicative",
                 task: "Give the first-person singular future passive indicative.",
                 answer: verb => {
@@ -2828,7 +2731,6 @@ const machines = {
                             }
                     }
                 },
-                level: [2, 5]
             }, {
                 name: "second-person singular future passive indicative",
                 task: "Give the second-person singular future passive indicative.",
@@ -2852,7 +2754,6 @@ const machines = {
                             }
                     }
                 },
-                level: [2, 5]
             }, {
                 name: "third-person singular future passive indicative",
                 task: "Give the third-person singular future passive indicative.",
@@ -2876,7 +2777,6 @@ const machines = {
                             }
                     }
                 },
-                level: [2, 5]
             }, {
                 name: "first-person plural future passive indicative",
                 task: "Give the first-person plural future passive indicative.",
@@ -2900,7 +2800,6 @@ const machines = {
                             }
                     }
                 },
-                level: [2, 5]
             }, {
                 name: "second-person plural future passive indicative",
                 task: "Give the second-person plural future passive indicative.",
@@ -2924,7 +2823,6 @@ const machines = {
                             }
                     }
                 },
-                level: [2, 5]
             }, {
                 name: "third-person plural future passive indicative",
                 task: "Give the third-person plural future passive indicative.",
@@ -2948,9 +2846,7 @@ const machines = {
                             }
                     }
                 },
-                level: [2, 5]
             }, {
-                // PRESENT PASSIVE SUBJUNCTIVE
                 name: "first-person singular present passive subjunctive",
                 task: "Give the first-person singular present passive subjunctive.",
                 answer: verb => {
@@ -2973,7 +2869,6 @@ const machines = {
                             }
                     }
                 },
-                level: [2.5, 5]
             }, {
                 name: "second-person singular present passive subjunctive",
                 task: "Give the second-person singular present passive subjunctive.",
@@ -2997,7 +2892,6 @@ const machines = {
                             }
                     }
                 },
-                level: [2.5, 5]
             }, {
                 name: "third-person singular present passive subjunctive",
                 task: "Give the third-person singular present passive subjunctive.",
@@ -3021,7 +2915,6 @@ const machines = {
                             }
                     }
                 },
-                level: [2.5, 5]
             }, {
                 name: "first-person plural present passive subjunctive",
                 task: "Give the first-person plural present passive subjunctive.",
@@ -3045,7 +2938,6 @@ const machines = {
                             }
                     }
                 },
-                level: [2.5, 5]
             }, {
                 name: "second-person plural present passive subjunctive",
                 task: "Give the second-person plural present passive subjunctive.",
@@ -3069,7 +2961,6 @@ const machines = {
                             }
                     }
                 },
-                level: [2.5, 5]
             }, {
                 name: "third-person plural present passive subjunctive",
                 task: "Give the third-person plural present passive subjunctive.",
@@ -3093,59 +2984,49 @@ const machines = {
                             }
                     }
                 },
-                level: [2.5, 5]
             }, {
-                // IMPERFECT PASSIVE SUBJUNCTIVE
                 name: "first-person singular imperfect passive subjunctive",
                 task: "Give the first-person singular imperfect passive subjunctive.",
                 answer: verb => {
                     return verb.identity.split(", ")[1] + "r";
                 },
-                level: [3, 5]
             }, {
                 name: "second-person singular imperfect passive subjunctive",
                 task: "Give the second-person singular imperfect passive subjunctive.",
                 answer: verb => {
                     return verb.identity.split(", ")[1] + "ris";
                 },
-                level: [3, 5]
             }, {
                 name: "third-person singular imperfect passive subjunctive",
                 task: "Give the third-person singular imperfect passive subjunctive.",
                 answer: verb => {
                     return verb.identity.split(", ")[1] + "tur";
                 },
-                level: [3, 5]
             }, {
                 name: "first-person plural imperfect passive subjunctive",
                 task: "Give the first-person plural imperfect passive subjunctive.",
                 answer: verb => {
                     return verb.identity.split(", ")[1] + "mur";
                 },
-                level: [3, 5]
             }, {
                 name: "second-person plural imperfect passive subjunctive",
                 task: "Give the second-person plural imperfect passive subjunctive.",
                 answer: verb => {
                     return verb.identity.split(", ")[1] + "mini";
                 },
-                level: [3, 5]
             }, {
                 name: "third-person plural imperfect passive subjunctive",
                 task: "Give the third-person plural imperfect passive subjunctive.",
                 answer: verb => {
                     return verb.identity.split(", ")[1] + "ntur";
                 },
-                level: [3, 5]
             }, {
-                // PERFECT PASSIVE INDICATIVE
                 name: "first-person singular perfect passive indicative",
                 task: "Give the first-person singular perfect passive indicative.",
                 answer: verb => {
                     let ppp = verb.supine + "us";
                     return ppp + " sum";
                 },
-                level: [2, 5]
             }, {
                 name: "second-person singular perfect passive indicative",
                 task: "Give the second-person singular perfect passive indicative.",
@@ -3153,7 +3034,6 @@ const machines = {
                     let ppp = verb.supine + "us";
                     return ppp + " es";
                 },
-                level: [2, 5]
             }, {
                 name: "third-person singular perfect passive indicative",
                 task: "Give the third-person singular perfect passive indicative.",
@@ -3161,7 +3041,6 @@ const machines = {
                     let ppp = verb.supine + "us";
                     return ppp + " est";
                 },
-                level: [2, 5]
             }, {
                 name: "first-person plural perfect passive indicative",
                 task: "Give the first-person plural perfect passive indicative.",
@@ -3169,7 +3048,6 @@ const machines = {
                     let ppp = verb.supine + "i";
                     return ppp + " sumus";
                 },
-                level: [2, 5]
             }, {
                 name: "second-person plural perfect passive indicative",
                 task: "Give the second-person plural perfect passive indicative.",
@@ -3177,7 +3055,6 @@ const machines = {
                     let ppp = verb.supine + "i";
                     return ppp + " estis";
                 },
-                level: [2, 5]
             }, {
                 name: "third-person plural perfect passive indicative",
                 task: "Give the third-person plural perfect passive indicative.",
@@ -3185,16 +3062,13 @@ const machines = {
                     let ppp = verb.supine + "i";
                     return ppp + " sunt";
                 },
-                level: [2, 5]
             }, {
-                // PLUPERFECT PASSIVE INDICATIVE
                 name: "first-person singular pluperfect passive indicative",
                 task: "Give the first-person singular pluperfect passive indicative.",
                 answer: verb => {
                     let ppp = verb.supine + "us";
                     return ppp + " eram";
                 },
-                level: [2.5, 5]
             }, {
                 name: "second-person singular pluperfect passive indicative",
                 task: "Give the second-person singular pluperfect passive indicative.",
@@ -3202,7 +3076,6 @@ const machines = {
                     let ppp = verb.supine + "us";
                     return ppp + " eras";
                 },
-                level: [2.5, 5]
             }, {
                 name: "third-person singular pluperfect passive indicative",
                 task: "Give the third-person singular pluperfect passive indicative.",
@@ -3210,7 +3083,6 @@ const machines = {
                     let ppp = verb.supine + "us";
                     return ppp + " erat";
                 },
-                level: [2.5, 5]
             }, {
                 name: "first-person plural pluperfect passive indicative",
                 task: "Give the first-person plural pluperfect passive indicative.",
@@ -3218,7 +3090,6 @@ const machines = {
                     let ppp = verb.supine + "i";
                     return ppp + " eramus";
                 },
-                level: [2.5, 5]
             }, {
                 name: "second-person plural pluperfect passive indicative",
                 task: "Give the second-person plural pluperfect passive indicative.",
@@ -3226,7 +3097,6 @@ const machines = {
                     let ppp = verb.supine + "i";
                     return ppp + " eratis";
                 },
-                level: [2.5, 5]
             }, {
                 name: "third-person plural pluperfect passive indicative",
                 task: "Give the third-person plural pluperfect passive indicative.",
@@ -3234,16 +3104,13 @@ const machines = {
                     let ppp = verb.supine + "i";
                     return ppp + " erant";
                 },
-                level: [2.5, 5]
             }, {
-                // FUTURE PERFECT PASSIVE INDICATIVE
                 name: "first-person singular future perfect passive indicative",
                 task: "Give the first-person singular future perfect passive indicative.",
                 answer: verb => {
                     let ppp = verb.supine + "us";
                     return ppp + " ero";
                 },
-                level: [2.5, 5]
             }, {
                 name: "second-person singular future perfect passive indicative",
                 task: "Give the second-person singular future perfect passive indicative.",
@@ -3251,7 +3118,6 @@ const machines = {
                     let ppp = verb.supine + "us";
                     return ppp + " eris";
                 },
-                level: [2.5, 5]
             }, {
                 name: "third-person singular future perfect passive indicative",
                 task: "Give the third-person singular future perfect passive indicative.",
@@ -3259,7 +3125,6 @@ const machines = {
                     let ppp = verb.supine + "us";
                     return ppp + " erit";
                 },
-                level: [2.5, 5]
             }, {
                 name: "first-person plural future perfect passive indicative",
                 task: "Give the first-person plural future perfect passive indicative.",
@@ -3267,7 +3132,6 @@ const machines = {
                     let ppp = verb.supine + "i";
                     return ppp + " erimus";
                 },
-                level: [2.5, 5]
             }, {
                 name: "second-person plural future perfect passive indicative",
                 task: "Give the second-person plural future perfect passive indicative.",
@@ -3275,7 +3139,6 @@ const machines = {
                     let ppp = verb.supine + "i";
                     return ppp + " eritis";
                 },
-                level: [2.5, 5]
             }, {
                 name: "third-person plural future perfect passive indicative",
                 task: "Give the third-person plural future perfect passive indicative.",
@@ -3283,16 +3146,13 @@ const machines = {
                     let ppp = verb.supine + "i";
                     return ppp + " erunt";
                 },
-                level: [2.5, 5]
             }, {
-                // PERFECT PASSIVE SUBJUNCTIVE
                 name: "first-person singular perfect passive subjunctive",
                 task: "Give the first-person singular perfect passive subjunctive.",
                 answer: verb => {
                     let ppp = verb.supine + "us";
                     return ppp + " sim";
                 },
-                level: [3, 5]
             }, {
                 name: "second-person singular perfect passive subjunctive",
                 task: "Give the second-person singular perfect passive subjunctive.",
@@ -3300,7 +3160,6 @@ const machines = {
                     let ppp = verb.supine + "us";
                     return ppp + " sis";
                 },
-                level: [3, 5]
             }, {
                 name: "third-person singular perfect passive subjunctive",
                 task: "Give the third-person singular perfect passive subjunctive.",
@@ -3308,7 +3167,6 @@ const machines = {
                     let ppp = verb.supine + "us";
                     return ppp + " sit";
                 },
-                level: [3, 5]
             }, {
                 name: "first-person plural perfect passive subjunctive",
                 task: "Give the first-person plural perfect passive subjunctive.",
@@ -3316,7 +3174,6 @@ const machines = {
                     let ppp = verb.supine + "i";
                     return ppp + " simus";
                 },
-                level: [3, 5]
             }, {
                 name: "second-person plural perfect passive subjunctive",
                 task: "Give the second-person plural perfect passive subjunctive.",
@@ -3324,7 +3181,6 @@ const machines = {
                     let ppp = verb.supine + "i";
                     return ppp + " sitis";
                 },
-                level: [3, 5]
             }, {
                 name: "third-person plural perfect passive subjunctive",
                 task: "Give the third-person plural perfect passive subjunctive.",
@@ -3332,16 +3188,13 @@ const machines = {
                     let ppp = verb.supine + "i";
                     return ppp + " sint";
                 },
-                level: [3, 5]
             }, {
-                // PLUPERFECT PASSIVE SUBJUNCTIVE
                 name: "first-person singular pluperfect passive subjunctive",
                 task: "Give the first-person singular pluperfect passive subjunctive.",
                 answer: verb => {
                     let ppp = verb.supine + "us";
                     return ppp + " essem";
                 },
-                level: [3.5, 5]
             }, {
                 name: "second-person singular pluperfect passive subjunctive",
                 task: "Give the second-person singular pluperfect passive subjunctive.",
@@ -3349,7 +3202,6 @@ const machines = {
                     let ppp = verb.supine + "us";
                     return ppp + " esses";
                 },
-                level: [3.5, 5]
             }, {
                 name: "third-person singular pluperfect passive subjunctive",
                 task: "Give the third-person singular pluperfect passive subjunctive.",
@@ -3357,7 +3209,6 @@ const machines = {
                     let ppp = verb.supine + "us";
                     return ppp + " esset";
                 },
-                level: [3.5, 5]
             }, {
                 name: "first-person plural pluperfect passive subjunctive",
                 task: "Give the first-person plural pluperfect passive subjunctive.",
@@ -3365,7 +3216,6 @@ const machines = {
                     let ppp = verb.supine + "i";
                     return ppp + " essemus";
                 },
-                level: [3.5, 5]
             }, {
                 name: "second-person plural pluperfect passive subjunctive",
                 task: "Give the second-person plural pluperfect passive subjunctive.",
@@ -3373,7 +3223,6 @@ const machines = {
                     let ppp = verb.supine + "i";
                     return ppp + " essetis";
                 },
-                level: [3.5, 5]
             }, {
                 name: "third-person plural pluperfect passive subjunctive",
                 task: "Give the third-person plural pluperfect passive subjunctive.",
@@ -3381,17 +3230,13 @@ const machines = {
                     let ppp = verb.supine + "i";
                     return ppp + " essent";
                 },
-                level: [3.5, 5]
             }, {
-                // PRESENT ACTIVE INFINITIVE
                 name: "present active infinitive",
                 task: "Give the present active infinitive.",
                 answer: verb => {
                     return verb.identity.split(", ")[1];
                 },
-                level: [0, 5]
             }, {
-                // PRESENT PASSIVE INFINITIVE
                 name: "present passive infinitive",
                 task: "Give the present passive infinitive.",
                 answer: verb => {
@@ -3399,25 +3244,19 @@ const machines = {
                     if (inf.endsWith("ere")) return inf.substring(0, inf.length - 3) + "i";
                     return inf.substring(0, inf.length - 1) + "i";
                 },
-                level: [3.5, 5]
             }, {
-                // PERFECT ACTIVE INFINITIVE
                 name: "perfect active infinitive",
                 task: "Give the perfect active infinitive.",
                 answer: verb => {
                     return verb.perfect + "isse";
                 },
-                level: [2.5, 5]
             }, {
-                // PERFECT PASSIVE INFINITIVE
                 name: "perfect passive infinitive",
                 task: "Give the perfect passive infinitive.",
                 answer: verb => {
                     return verb.supine + "us esse";
                 },
-                level: [3, 5]
             }, {
-                // FUTURE ACTIVE INFINITIVE
                 name: "future active infinitive",
                 task: "Give the future active infinitive.",
                 answer: verb => {
@@ -3426,19 +3265,17 @@ const machines = {
                     if (verb.perfect.endsWith("fu")) return verb.perfect.slice(0, -2) + "futurus esse";
                     return "";
                 },
-                level: [4, 5]
             }, {
-                // FUTURE PASSIVE INFINITIVE
                 name: "future passive infinitive",
                 task: "Give the future passive infinitive.",
                 answer: verb => {
                     return verb.supine + "um iri";
                 },
-                level: [4, 5]
             }
         ]
     }
 };
+
 
 let settings = {};
 
@@ -3533,7 +3370,6 @@ function loadSettings() {
     settings.adjectives = BigInt(settings.adjectives);
     settings.pronouns = BigInt(settings.pronouns);
 
-    // Convert darkMode to boolean
     settings.darkMode = settings.darkMode === true || settings.darkMode === 'true';
 }
 
@@ -3554,7 +3390,6 @@ function saveSettings() {
     }
 }
 
-// Function to apply theme
 function applyTheme() {
     if (settings.darkMode) {
         document.documentElement.setAttribute('data-theme', 'dark');
@@ -3563,70 +3398,75 @@ function applyTheme() {
     }
 }
 
-// Load settings on page load
 loadSettings();
 applyTheme();
 
 
 // presets[level][month] need not always exist for a given month (leading to a disabled checkbox),
 // but when it does exist, it is an object of BigInts
+// month 10 means NLE
 let presets = [{}, {
     4: {
         verbs: 1073741825n,
-        nouns: 0n,
+        nouns: 13633n,
         adjectives: 0n,
         pronouns: 0n
     }, 8: {
         verbs: 3221225493n,
-        nouns: 0n,
+        nouns: 13779n,
+        adjectives: 0n,
+        pronouns: 0n
+    }, 10: {
+        verbs: 3221225493n,
+        nouns: 16383n,
         adjectives: 0n,
         pronouns: 0n
     }
 }, {
     4: {
         verbs: 3222274133n,
-        nouns: 0n,
+        nouns: 13783n,
         adjectives: 0n,
         pronouns: 0n
     }, 8: {
         verbs: 3423600725n,
-        nouns: 0n,
+        nouns: 14327n,
         adjectives: 0n,
         pronouns: 0n
     }
 }, {
     4: {
         verbs: 4229234943n,
-        nouns: 0n,
+        nouns: 13311n,
         adjectives: 0n,
         pronouns: 0n
     }, 8: {
         verbs: 4235550719n,
-        nouns: 0n,
+        nouns: 13311n,
         adjectives: 0n,
         pronouns: 0n
     }
 }, {
     4: {
         verbs: 8796093022207n,
-        nouns: 16383n,
+        nouns: 13311n,
         adjectives: 16383n,
         pronouns: 4095n
     }, 8: {
         verbs: 8796093022207n,
-        nouns: 16383n,
+        nouns: 13311n,
         adjectives: 16383n,
         pronouns: 4095n
     }
 }, {
     4: {
         verbs: 8796093022207n,
-        nouns: 16383n,
+        nouns: 13311n,
         adjectives: 16383n,
         pronouns: 4095n
     }, 8: {
         verbs: 8796093022207n,
-        nouns: 16383n,
+        nouns: 13311n,
         adjectives: 16383n,
         pronouns: 4095n
     }
@@ -3656,7 +3496,7 @@ function updateboxes() {
 }
 
 function updatemonths() {
-    for (let j = 1; j < 10; j++) {
+    for (let j = 1; j < 11; j++) {
         months[j - 1].checked = false;
         months[j - 1].disabled = !Object.keys(presets[settings.level]).includes(j.toString());
     }
@@ -3903,6 +3743,7 @@ if (darkModeToggle) {
         saveSettings();
     });
 }
+
 // update the list of words instead of just using randomness?
 // in particular, change the vocabulary difficulty, as well
 
@@ -3955,17 +3796,34 @@ function play() {
     response.disabled = true;
 
     let word, machine;
+    let playable = words[settings.POS].filter(word => word.level <= settings.level);
+
+    if (settings.POS == "nouns") {
+        let declensions = {
+            1: firstdeclension,
+            2: seconddeclension,
+            3: thirddeclension,
+            3.5: istems,
+            4: fourthdeclension,
+            5: fifthdeclension
+        };
+
+        for (let declension of Object.keys(declensions)) {
+            if (declensions[declension].checked) {
+                playable = playable.filter(word => word.declension != declension);
+            }
+        }
+    }
 
     while (true) {
-        word = words[settings.POS][Math.floor(Math.random() * words[settings.POS].length)];
+        word = playable[Math.floor(Math.random() * playable.length)];
         let names = tests[settings.POS](word);
         let testable = machines[settings.POS].tests.filter(test => names.includes(test.name));
 
         if (!testable.length) continue;
 
         machine = testable[Math.floor(Math.random() * testable.length)];
-
-        if ((word.level <= settings.level) && (machine.level[0] <= settings.level && settings.level <= machine.level[1])) break;
+        break;
     }
 
     main.innerHTML = "";
