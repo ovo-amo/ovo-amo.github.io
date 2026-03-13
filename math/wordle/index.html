@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/png" href="../../images/logo.png">
+    <title>Math Club Pi Day Wordle</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <button class="mode" id="mode">
+                <span class="material-icons-outlined">light_mode</span>
+            </button>
+            <h1>&#960; WORDLE</h1>
+            <button class="replay-header" id="replay-header">
+                <span class="material-icons-outlined">replay</span>
+            </button>
+        </header>
+        <div class="board" id="board"></div>
+        <div class="keyboard" id="keyboard" style="padding-bottom:30px"></div>
+        <div class="modal" id="modal">
+            <div class="modal-content">
+                <button id="close" class="close">
+                    <span class="material-icons-outlined">close</span>
+                </button>
+                <header class="win">
+                    <h2>You won!</h2>
+                    <p id="win-desc"></p>
+                </header>
+                <header class="lose">
+                    <h2>Unlucky!</h2>
+                    <p id="lose-desc"></p>
+                </header>
+                <button class="replay-modal" id="replay-modal">
+                    <span>Play again</span>
+                    <span class="material-icons-outlined">replay</span>
+                </button>
+            </div>
+        </div>
+        <footer style="bottom:10px;position:absolute">UHS Math Club 2026</footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
