@@ -389,7 +389,7 @@
     async function fetchWords() {
         await fetch(wordListSource)
             .then((res) => res.text())
-            .then((data) => (targetWordList = data.trim().split("\n")));
+            .then((data) => (targetWordList = data.trim().split("\n").concat(wordBank)));
     }
 
     // Initial setup
