@@ -1,0 +1,305 @@
+:root {
+    --bg-color: #f4f4f9;
+    --text-color: #333;
+    --container-bg: #fff;
+    --primary-color: #8B5CF6;
+    --secondary-color: #3B82F6;
+    --border-color: #ddd;
+    --coin-gradient: linear-gradient(135deg, #8B5CF6, #3B82F6);
+    --coin-hover: rgba(255, 68, 68, 0.7);
+    --col-hover-line: rgba(255, 68, 68, 0.3);
+}
+
+body.dark-mode {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --container-bg: #1e1e1e;
+    --primary-color: #8B5CF6;
+    --secondary-color: #3B82F6;
+    --border-color: #333;
+    --coin-hover: rgba(255, 68, 68, 0.9);
+    --col-hover-line: rgba(255, 68, 68, 0.5);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.wrapper {
+    max-width: 800px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    margin: 0;
+    letter-spacing: 2px;
+    color: var(--primary-color);
+    font-size: 2rem;
+}
+
+header button {
+    background: none;
+    color: var(--text-color);
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+header button:hover {
+    color: var(--primary-color);
+}
+
+#dark-mode-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--container-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+#dark-mode-toggle:hover {
+    background-color: var(--border-color);
+}
+
+.settings {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    background-color: var(--container-bg);
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+.setting-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+}
+
+select,
+input[type="number"] {
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 1rem;
+    font-family: inherit;
+    outline: none;
+}
+
+select:focus,
+input[type="number"]:focus {
+    border-color: var(--primary-color);
+}
+
+.status-container {
+    margin-bottom: 25px;
+    background-color: var(--container-bg);
+    padding: 10px 30px;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+    margin: 0;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.game-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 10px 20px 20px;
+}
+
+.board,
+.col-buttons {
+    display: grid;
+    gap: 10px;
+    justify-content: center;
+}
+
+.board {
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.col-buttons {
+    grid-template-rows: 1fr;
+}
+
+.tile {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.coin {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--coin-gradient);
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.coin::after {
+    content: "×";
+    margin-bottom: 5px;
+    color: var(--coin-hover);
+    font-size: 34px;
+    font-weight: 800;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    pointer-events: none;
+}
+
+.coin:hover::after {
+    opacity: 1;
+}
+
+.coin.empty {
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.col-btn {
+    width: 55px;
+    height: 35px;
+    background-color: var(--container-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--text-color);
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s;
+    font-size: 1.7rem;
+    padding: 0;
+    outline: none;
+}
+
+.col-btn:hover:not(:disabled) {
+    background-color: var(--border-color);
+    border-color: var(--coin-hover);
+    color: var(--coin-hover);
+}
+
+.col-btn:disabled {
+    cursor: default;
+    opacity: 0.3;
+    background-color: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+
+/* Transparent red line cutting across column */
+.tile.col-highlight::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    background-color: var(--col-hover-line);
+    z-index: 10;
+    pointer-events: none;
+    /* border-radius: 3px; */
+}
+
+/* Modifier for top and bottom of the line to make it look clean */
+.tile[data-row="0"].col-highlight::before {
+    top: -6px;
+}
+
+.tile[data-row="2"].col-highlight::before {
+    bottom: -6px;
+}
+
+footer {
+    margin-top: auto;
+    padding-top: 30px;
+    color: var(--text-color);
+    opacity: 0.6;
+    font-size: 0.85rem;
+}
+
+/* Custom Scrollbar */
+.game-area::-webkit-scrollbar {
+    height: 8px;
+}
+
+.game-area::-webkit-scrollbar-track {
+    background: var(--bg-color);
+    border-radius: 4px;
+}
+
+.game-area::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+.game-area::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}
