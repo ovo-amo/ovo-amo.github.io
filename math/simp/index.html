@@ -2,14 +2,12 @@
 <html>
 
 <head>
-    <title>MIT PRIMES-USA 2025</title>
+    <title>MIT PRIMES-USA</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="../../assets/css/main.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bitmaks/cm-web-fonts@latest/fonts.css">
     <link rel="icon" type="image/png" href="../../images/logo.png">
-
-
 
     <noscript>
         <link rel="stylesheet" href="../../assets/css/noscript.css" />
@@ -34,22 +32,13 @@
 </head>
 
 <body class="is-preload">
-
-    <!-- Information: Hamburger Menu -->
-    <!-- Information: Hamburger Menu -->
-    <script src="../../assets/js/menubar.js" data-base="../.."></script>
-
-
-
     <!-- Wrapper -->
     <div id="wrapper">
 
         <!-- Header -->
         <header id="header">
-            <h1>MIT PRIMES-USA 2026</h1>
-            <p>with Shengtao (Alex) Ding and Max Levin (Mentored by <a href="https://lugroup.yale.edu">Dr. Lu Lu</a> and
-                <a href="https://yixiangd.github.io/">Dr. Yixiang Deng</a>)
-            </p>
+            <h1>SIMP 2026</h1>
+            <p><i>UHS Math Club</i></p>
         </header>
 
 
@@ -58,8 +47,12 @@
 
             <!-- Content -->
             <section id="content" class="main">
-                <h2>Research Focus</h2>
-                <p>We study clinical applications of machine learning.</p>
+                <h1 id="instructions">enter your access code</h1>
+                <input type="password" id="code" autocomplete="off" style="margin-bottom: 1em">
+                <ul class="actions">
+                    <li><a onclick="code.remove();let d = new Date();d.setTime(d.getTime() + (2 * 60 * 60 * 1000));this.parentElement.parentElement.outerHTML=`<p>Click <a href='https://youtu.be/dQw4w9WgXcQ'>here</a> to access your SIMP. You must submit your solutions by <b>${d.toLocaleDateString()}</b> at <b>${d.toLocaleTimeString()}</b>, which is in 120 minutes (a grace period of 40 minutes because there are also instructions in the SIMP). Starting now, though, there is to be no Googling or AIing or any other shenanigans.</p>`;instructions.textContent=`good luck!`"
+                            class="button">Submit</a></li>
+                </ul>
             </section>
 
         </div>

@@ -4342,3 +4342,7 @@ body:not(.dark-mode) .dark-logo {
 body.dark-mode .dark-logo {
 	display: inline-block !important;
 }
+
+body.dark-mode input[type="password"] {
+	color: #ffffff !important;
+}
