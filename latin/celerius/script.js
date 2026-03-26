@@ -1,4 +1,4 @@
-﻿let words = {
+let words = {
     nouns: RAW_NOUNS_DATA,
     verbs: RAW_VERBS_DATA,
     adjectives: [],
@@ -212,6 +212,30 @@ const tests = {
         if (verb.transitive == 2 && verb.supine != "---") {
             names.push("perfect passive infinitive");
             names.push("future passive infinitive");
+        }
+
+        let firstPart = verb.identity.split(", ")[0];
+        let isSum = firstPart.endsWith("sum") || firstPart.endsWith("fio");
+
+        if (verb.present != "---" && !isSum) {
+            names.push("present active participle");
+            names.push("gerunds");
+        }
+
+        if (verb.transitive == 2 && verb.supine != "---") {
+            names.push("perfect passive participle");
+        }
+
+        if (verb.supine != "---" || verb.perfect.endsWith("fu")) {
+            names.push("future active participle");
+        }
+
+        if (verb.transitive == 2 && verb.present != "---") {
+            names.push("gerundive");
+        }
+
+        if (verb.supine != "---") {
+            names.push("supines");
         }
 
         return names.filter(
@@ -3271,6 +3295,213 @@ const machines = {
                 task: "Give the future passive infinitive.",
                 answer: verb => {
                     return verb.supine + "um iri";
+                },
+            }, {
+                name: "present active participle",
+                task: "Give the present active participle.",
+                answer: verb => {
+                    switch (verb.conjugation) {
+                        case 1:
+                            return verb.present + "ans";
+                        case 2:
+                        case 3:
+                            return verb.present + "ens";
+                        case 3.5:
+                        case 4:
+                            return verb.present + "iens";
+                        case 0:
+                            if (verb.identity.split(", ")[0].endsWith("fero")) {
+                                return verb.present + "ferens";
+                            } else if (verb.identity.split(", ")[0].endsWith("eo")) {
+                                return verb.present + "iens";
+                            } else if (verb.identity.split(", ")[0].endsWith("volo")) {
+                                return verb.present + "volens";
+                            } else if (verb.identity.split(", ")[0].endsWith("nolo")) {
+                                return verb.present + "nolens";
+                            } else if (verb.identity.split(", ")[0].endsWith("malo")) {
+                                return verb.present + "malens";
+                            } else if (verb.identity.split(", ")[0].endsWith("sum")) {
+                                if (verb.identity.split(", ")[0].endsWith("possum")) return "potens";
+                                if (verb.identity.split(", ")[0].endsWith("absum")) return "absens";
+                                if (verb.identity.split(", ")[0].endsWith("praesum")) return "praesens";
+                                return "ens";
+                            } else if (verb.identity == "edo, edere, edi, esus") {
+                                return "edens";
+                            }
+                            return verb.present + "ens";
+                    }
+                },
+            }, {
+                name: "perfect passive participle",
+                task: "Give the perfect passive participle.",
+                answer: verb => {
+                    if (verb.identity.split(", ")[0].endsWith("fio")) {
+                        return verb.present + "factus";
+                    }
+                    return verb.supine + "us";
+                },
+            }, {
+                name: "future active participle",
+                task: "Give the future active participle.",
+                answer: verb => {
+                    if (verb.identity.split(", ")[0].endsWith("fio")) return verb.present + "futurus";
+                    if (verb.supine !== "---") return verb.supine + "urus";
+                    if (verb.perfect.endsWith("fu")) return verb.perfect.slice(0, -2) + "futurus";
+                    return "";
+                },
+            }, {
+                name: "gerundive",
+                task: "Give the gerundive.",
+                answer: verb => {
+                    switch (verb.conjugation) {
+                        case 1:
+                            return verb.present + "andus";
+                        case 2:
+                        case 3:
+                            return verb.present + "endus";
+                        case 3.5:
+                        case 4:
+                            return verb.present + "iendus";
+                        case 0:
+                            if (verb.identity.split(", ")[0].endsWith("fero")) {
+                                return verb.present + "ferendus";
+                            } else if (verb.identity.split(", ")[0].endsWith("eo")) {
+                                return verb.present + "eundus";
+                            } else if (verb.identity == "edo, edere, edi, esus") {
+                                return "edendus";
+                            }
+                            return verb.present + "endus";
+                    }
+                },
+            }, {
+                name: "gerunds",
+                task: "Give the genitive gerund.",
+                answer: verb => {
+                    switch (verb.conjugation) {
+                        case 1:
+                            return verb.present + "andi";
+                        case 2:
+                        case 3:
+                            return verb.present + "endi";
+                        case 3.5:
+                        case 4:
+                            return verb.present + "iendi";
+                        case 0:
+                            if (verb.identity.split(", ")[0].endsWith("fero")) {
+                                return verb.present + "ferendi";
+                            } else if (verb.identity.split(", ")[0].endsWith("eo")) {
+                                return verb.present + "eundi";
+                            } else if (verb.identity == "edo, edere, edi, esus") {
+                                return "edendi";
+                            } else if (verb.identity.split(", ")[0].endsWith("volo")) {
+                                return verb.present + "volendi";
+                            } else if (verb.identity.split(", ")[0].endsWith("nolo")) {
+                                return verb.present + "nolendi";
+                            }
+                            return verb.present + "endi";
+                    }
+                },
+            }, {
+                name: "gerunds",
+                task: "Give the dative gerund.",
+                answer: verb => {
+                    switch (verb.conjugation) {
+                        case 1:
+                            return verb.present + "ando";
+                        case 2:
+                        case 3:
+                            return verb.present + "endo";
+                        case 3.5:
+                        case 4:
+                            return verb.present + "iendo";
+                        case 0:
+                            if (verb.identity.split(", ")[0].endsWith("fero")) {
+                                return verb.present + "ferendo";
+                            } else if (verb.identity.split(", ")[0].endsWith("eo")) {
+                                return verb.present + "eundo";
+                            } else if (verb.identity == "edo, edere, edi, esus") {
+                                return "edendo";
+                            } else if (verb.identity.split(", ")[0].endsWith("volo")) {
+                                return verb.present + "volendo";
+                            } else if (verb.identity.split(", ")[0].endsWith("nolo")) {
+                                return verb.present + "nolendo";
+                            }
+                            return verb.present + "endo";
+                    }
+                },
+            }, {
+                name: "gerunds",
+                task: "Give the accusative gerund.",
+                answer: verb => {
+                    switch (verb.conjugation) {
+                        case 1:
+                            return verb.present + "andum";
+                        case 2:
+                        case 3:
+                            return verb.present + "endum";
+                        case 3.5:
+                        case 4:
+                            return verb.present + "iendum";
+                        case 0:
+                            if (verb.identity.split(", ")[0].endsWith("fero")) {
+                                return verb.present + "ferendum";
+                            } else if (verb.identity.split(", ")[0].endsWith("eo")) {
+                                return verb.present + "eundum";
+                            } else if (verb.identity == "edo, edere, edi, esus") {
+                                return "edendum";
+                            } else if (verb.identity.split(", ")[0].endsWith("volo")) {
+                                return verb.present + "volendum";
+                            } else if (verb.identity.split(", ")[0].endsWith("nolo")) {
+                                return verb.present + "nolendum";
+                            }
+                            return verb.present + "endum";
+                    }
+                },
+            }, {
+                name: "gerunds",
+                task: "Give the ablative gerund.",
+                answer: verb => {
+                    switch (verb.conjugation) {
+                        case 1:
+                            return verb.present + "ando";
+                        case 2:
+                        case 3:
+                            return verb.present + "endo";
+                        case 3.5:
+                        case 4:
+                            return verb.present + "iendo";
+                        case 0:
+                            if (verb.identity.split(", ")[0].endsWith("fero")) {
+                                return verb.present + "ferendo";
+                            } else if (verb.identity.split(", ")[0].endsWith("eo")) {
+                                return verb.present + "eundo";
+                            } else if (verb.identity == "edo, edere, edi, esus") {
+                                return "edendo";
+                            } else if (verb.identity.split(", ")[0].endsWith("volo")) {
+                                return verb.present + "volendo";
+                            } else if (verb.identity.split(", ")[0].endsWith("nolo")) {
+                                return verb.present + "nolendo";
+                            }
+                            return verb.present + "endo";
+                    }
+                },
+            }, {
+                name: "supines",
+                task: "Give the accusative supine.",
+                answer: verb => {
+                    if (verb.identity.split(", ")[0].endsWith("fio")) {
+                        return verb.present + "factum";
+                    }
+                    return verb.supine + "um";
+                },
+            }, {
+                name: "supines",
+                task: "Give the ablative supine.",
+                answer: verb => {
+                    if (verb.identity.split(", ")[0].endsWith("fio")) {
+                        return verb.present + "factu";
+                    }
+                    return verb.supine + "u";
                 },
             }
         ]
