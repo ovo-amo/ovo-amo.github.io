@@ -90,9 +90,10 @@
                 <label for="verbs">Verbs</label>
             </h3>
             <div class="sub-options" id="subverbs">
-                <button onclick="settings.verbs=0n;updateboxes()"><b>Toggle None</b></button>
-                <button onclick="settings.verbs=8796093022207n;updateboxes()" style="margin-left:3vh"><b>Toggle
-                        All</b></button>
+                <button onclick="settings.verbs=0n;updateboxes()" style="margin-right:3vh">
+                    <b>Toggle None</b>
+                </button>
+                <button onclick="settings.verbs=8796093022207n;updateboxes()"><b>Toggle All</b></button>
                 <hr>
                 <table>
                     <thead>
@@ -677,6 +678,8 @@
         <img src="https://upload.wikimedia.org/wikipedia/en/0/09/Skibidi_toilet_screenshot.webp"
             alt="Skibidi toilet!"><br>
         <a href="celerius.zip" download="celerius.zip"><button><i>Download Celerius for offline access</i></button></a>
+        <br><br>
+        <i>Make sure to unzip the file and press <b>Extract All</b> before using it!</i>
         <br><br>
         <button onclick="closeDialog(this.parentElement.id)">Close</button><button class="scroll"
             onclick="this.parentElement.children[0].scrollIntoView();">Scroll to top</button>
