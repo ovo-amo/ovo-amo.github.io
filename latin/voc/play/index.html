@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="../../../images/logo.png">
+    <title>Latin Vocabulary Practice</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Latin Vocabulary Practice</h1>
+        <p class="subtitle">Currently with <tt id="alot">a lot of</tt> AI-generated questions. Created by students of
+            University High School.</p>
+        <div class="controls">
+            <div class="controls-group"><strong style="font-size:.9rem">Mode:</strong><label class="mode-label"><input
+                        type="radio" name="mode" value="show" checked="checked"> Show immediately</label><label
+                    class="mode-label"><input type="radio" name="mode" value="typewriter"> Typewriter</label></div>
+            <div class="controls-group"><strong style="font-size:.9rem">Level:</strong>
+                <select id="levelSelect">
+                    <option value="1" selected>Level 1</option>
+                    <option value="2">Level 2</option>
+                    <option value="3">Level 3</option>
+                </select>
+            </div>
+            <div class="controls-group"><button id="nextBtn">Next Question</button></div>
+        </div>
+        <div class="controls" style="margin-top: -10px;">
+            <div class="controls-group categories-group">
+                <strong style="font-size:.9rem">Categories:</strong>
+                <label class="mode-label"><input type="checkbox" class="cat-checkbox" value="Latin to English" checked> Lat-Eng</label>
+                <label class="mode-label"><input type="checkbox" class="cat-checkbox" value="English to Latin" checked> Eng-Lat</label>
+                <label class="mode-label"><input type="checkbox" class="cat-checkbox" value="Synonyms" checked> Synonyms</label>
+                <label class="mode-label"><input type="checkbox" class="cat-checkbox" value="Antonyms" checked> Antonyms</label>
+                <label class="mode-label"><input type="checkbox" class="cat-checkbox" value="Odd One Out" checked> Odd One Out</label>
+                <label class="mode-label"><input type="checkbox" class="cat-checkbox" value="Analogies" checked> Analogies</label>
+                <label class="mode-label"><input type="checkbox" class="cat-checkbox" value="Fill-in-the-Blank" checked> Fill-in</label>
+                <label class="mode-label"><input type="checkbox" class="cat-checkbox" value="Circumlocution" checked> Circumlocution</label>
+            </div>
+        </div>
+        <div class="question-card">
+            <div id="questionMeta" class="question-meta"></div>
+            <div id="questionStem"></div>
+            <ul class="options" id="optionsList"></ul>
+            <div id="feedback" class="feedback"></div>
+            <div class="note">In show mode, the full question and options appear immediately. In typewriter mode, the stem and then the choices type out in place.</div>
+        </div>
+    </div>
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
