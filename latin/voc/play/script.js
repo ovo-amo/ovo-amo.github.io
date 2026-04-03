@@ -46,14 +46,14 @@ document.querySelectorAll('input[name="mode"]').forEach(radio => {
 function updateQuestions() {
     const selectedCats = Array.from(document.querySelectorAll('.cat-checkbox:checked')).map(cb => cb.value);
     questions = currentLevelQuestions.filter(q => selectedCats.includes(q.meta));
-    
+
     resetQuestionOrder();
     stopPresentation();
     hasAnswered = false;
     feedbackEl.innerHTML = "";
     feedbackEl.className = "feedback";
     questionMetaEl.innerHTML = "";
-    
+
     if (questions.length === 0) {
         questionStemEl.innerHTML = "<em>No questions available for the selected categories in this level.</em>";
     } else {
@@ -130,7 +130,7 @@ function renderQuestion() {
         const mapping = {
             letter: letters[pos],
             text: q.options[optIdx],
-            isCorrect: optIdx === q.correctIndex,
+            isCorrect: optIdx === q.i,
             originalIndex: optIdx
         };
         currentOptionMapping.push(mapping);
