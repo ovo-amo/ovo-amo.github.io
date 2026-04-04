@@ -163,9 +163,9 @@ function renderQuestion() {
 // --- Reveal full question + options instantly (after answering) ---
 function revealFullQuestion() {
     const q = questions[currentQuestionIndex];
-    questionStemEl.innerHTML = q.stem;
+    questionStemEl.innerHTML = sanitizeHTML(q.stem);
     for (let i = 0; i < currentOptionMapping.length; i++) {
-        optionTextSpans[i].innerHTML = currentOptionMapping[i].text;
+        optionTextSpans[i].innerHTML = sanitizeHTML(currentOptionMapping[i].text);
     }
 }
 
