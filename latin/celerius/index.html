@@ -7,9 +7,34 @@
     <title>Celerius</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="../../images/logo.png">
+    <script>
+        // Check for saved dark mode preference immediately to prevent flash
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.documentElement.classList.add('dark-mode');
+            document.addEventListener('DOMContentLoaded', function () {
+                document.body.classList.add('dark-mode');
+                document.getElementById('dark-mode-toggle').textContent = '\u00AC';
+            });
+        }
+    </script>
 </head>
 
 <body>
+    <div id="dark-mode-toggle" onclick="toggleDarkMode()">&#x00AC;</div>
+    <script>
+        function toggleDarkMode() {
+            var body = document.body;
+            var html = document.documentElement;
+            body.classList.toggle('dark-mode');
+            html.classList.toggle('dark-mode'); // Sync with html for full coverage if needed
+
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        }
+    </script>
     <div class="main-container">
         <p id="main">
             <i>Celerius</i> helps you practice your endings, Certamen-style.
@@ -660,10 +685,6 @@
         <label for="voice">Voice</label>
         <select name="voice" id="voice"></select>
         <br><br>
-        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
-            <input type="checkbox" id="darkModeToggle" style="width: auto; margin: 0;">
-            <label for="darkModeToggle" style="cursor: pointer;">Dark Mode</label>
-        </div>
         <button onclick="closeDialog(this.parentElement.id)">Close</button><button class="scroll"
             onclick="this.parentElement.children[0].scrollIntoView();">Scroll to top</button>
     </dialog>

@@ -18,7 +18,7 @@
     --table-header: #f0f0f0;
 }
 
-[data-theme="dark"] {
+html.dark-mode {
     --bg-primary: #1a1a1a;
     --bg-secondary: #2a2a2a;
     --bg-tertiary: #333333;
@@ -385,4 +385,29 @@ hr {
 .correction {
     font-weight: bold;
     margin-left: 10px;
+}
+
+/* Dark mode toggle button - Fixed position */
+#dark-mode-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px var(--shadow-color);
+    font-size: 1.2rem;
+    user-select: none;
+    z-index: 1000;
+}
+
+#dark-mode-toggle:hover {
+    background-color: var(--border-color);
 }

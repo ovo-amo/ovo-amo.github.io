@@ -3601,8 +3601,6 @@ function loadSettings() {
     settings.nouns = BigInt(settings.nouns);
     settings.adjectives = BigInt(settings.adjectives);
     settings.pronouns = BigInt(settings.pronouns);
-
-    settings.darkMode = settings.darkMode === true || settings.darkMode === 'true';
 }
 
 // Function to save settings to localStorage
@@ -3622,16 +3620,7 @@ function saveSettings() {
     }
 }
 
-function applyTheme() {
-    if (settings.darkMode) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-    } else {
-        document.documentElement.removeAttribute('data-theme');
-    }
-}
-
 loadSettings();
-applyTheme();
 
 
 // presets[level][month] need not always exist for a given month (leading to a disabled checkbox),
@@ -4035,20 +4024,6 @@ voice.addEventListener("input", event => {
     settings.voice = speechSynthesis.getVoices()[voice.value];
     saveSettings();
 });
-
-// Dark mode toggle handler
-const darkModeToggle = document.getElementById('darkModeToggle');
-if (darkModeToggle) {
-    // Set initial state
-    darkModeToggle.checked = settings.darkMode;
-
-    // Add event listener
-    darkModeToggle.addEventListener('change', () => {
-        settings.darkMode = darkModeToggle.checked;
-        applyTheme();
-        saveSettings();
-    });
-}
 
 // update the list of words instead of just using randomness?
 // in particular, change the vocabulary difficulty, as well

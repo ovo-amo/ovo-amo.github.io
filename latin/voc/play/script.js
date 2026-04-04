@@ -103,7 +103,7 @@ function stopPresentation() {
  */
 function sanitizeHTML(htmlString) {
     const parser = new DOMParser();
-    const doc = parser.parseFromString(htmlString, 'text/html');
+    const doc = parser.parseFromString(htmlString.replaceAll("<br>", " ").replaceAll("<br/>", " ").replaceAll("<br />", " "), 'text/html');
     return doc.body.textContent || "";
 }
 

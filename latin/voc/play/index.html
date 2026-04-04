@@ -6,9 +6,34 @@
     <link rel="icon" type="image/png" href="../../../images/logo.png">
     <title>Latin Vocabulary Practice</title>
     <link rel="stylesheet" href="style.css">
+    <script>
+        // Check for saved dark mode preference immediately to prevent flash
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.documentElement.classList.add('dark-mode');
+            document.addEventListener('DOMContentLoaded', function () {
+                document.body.classList.add('dark-mode');
+                document.getElementById('dark-mode-toggle').textContent = '\u00AC';
+            });
+        }
+    </script>
 </head>
 
 <body>
+    <div id="dark-mode-toggle" onclick="toggleDarkMode()">&#x00AC;</div>
+    <script>
+        function toggleDarkMode() {
+            var body = document.body;
+            var html = document.documentElement;
+            body.classList.toggle('dark-mode');
+            html.classList.toggle('dark-mode'); // Sync with html for full coverage if needed
+
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        }
+    </script>
     <div class="container">
         <h1>Latin Vocabulary Practice</h1>
         <p class="subtitle">Currently with <u id="alot">a lot of</u> AI-generated questions. Contact
