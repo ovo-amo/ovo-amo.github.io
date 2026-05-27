@@ -1,140 +1,86 @@
 <!DOCTYPE HTML>
-<html>
-
+<html lang="en">
 <head>
     <title>JMM 2026</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="../../assets/css/main.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bitmaks/cm-web-fonts@latest/fonts.css">
     <link rel="icon" type="image/png" href="../../images/logo.png">
 
-
-
-    <noscript>
-        <link rel="stylesheet" href="../../assets/css/noscript.css" />
-    </noscript>
-    <script>
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']]
-            }
-        };
-    </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>
-        // Apply dark mode immediately to prevent flash
-        if (localStorage.getItem('darkMode') === 'enabled') {
-            document.documentElement.classList.add('dark-mode');
-            document.addEventListener('DOMContentLoaded', function () {
-                document.body.classList.add('dark-mode');
-            });
-        }
-    </script>
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, { delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true}] });"></script>
 </head>
-
-<body class="is-preload">
-
-    <!-- Information: Hamburger Menu -->
-    <!-- Information: Hamburger Menu -->
+<body>
     <script src="../../assets/js/menubar.js" data-base="../.."></script>
 
-
-
-    <!-- Wrapper -->
-    <div id="wrapper">
-
-        <!-- Header -->
-        <header id="header">
-            <h1>JMM 2026</h1>
-            <p>AMS-PME Undergraduate Research Poster Session</p>
+    <div class="layout-container">
+        <!-- Sidebar Header -->
+        <header class="site-header">
+            <div class="brand">
+                <h1>JMM 2026</h1>
+                <p>AMS-PME Undergraduate Research Poster Session</p>
+            </div>
+            <nav class="site-nav">
+                <ul id="dynamic-nav"></ul>
+            </nav>
         </header>
 
-
-        <!-- Main -->
-        <div id="main">
-
-            <!-- Content -->
-            <section id="content" class="main">
-                <h2>The Additive Structure of Algebraic Valuations of Polynomial Semirings</h2>
-                <p><i>Timothy Chen, Guanjie (Tony) Lu, and Alan Yao (Mentored by <a href="https://felixgotti.com">Dr.
-                            Felix Gotti</a>)</i></p>
-            </section>
-
-            <section id="paper" class="main">
-                <h2>Paper</h2>
-                <p>Our poster centers around two key factorization properties — atomicity and the ascending chain
-                    condition on principal ideals (ACCP). It is part of our broader study of the factorization and
-                    divisibility landscape of <b>the additive structure of simple semiring extensions</b>.</p>
-                <a href="https://math.mit.edu/research/highschool/primes/materials/2025/Chen-Lu-Yao.pdf" target="_blank"
-                    class="button">View Full Paper</a>
-            </section>
-
-            <section id="poster" class="main">
-                <h2>Poster</h2>
-                <div style="text-align: center; margin-bottom: 2em;">
-                    <embed id="pdf-poster" src="../../images/JMM2026_Poster.pdf" width="100%" height="800px"
-                        type="application/pdf" />
-                    <br /><br />
-                    <a href="../../images/JMM2026_Poster.pdf" target="_blank" class="button">Open External View</a>
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <section id="content" class="section-block" data-nav="Research">
+                <h2 class="section-title">The Additive Structure of Algebraic Valuations of Polynomial Semirings</h2>
+                <div class="card">
+                    <p><i>Timothy Chen, Guanjie (Tony) Lu, and Alan Yao (Mentored by <a href="https://felixgotti.com">Dr. Felix Gotti</a>)</i></p>
                 </div>
             </section>
 
-            <script>
-                function adjustPdfHeight() {
-                    var pdfEmbed = document.getElementById('pdf-poster');
-                    if (pdfEmbed) {
-                        var width = pdfEmbed.offsetWidth;
-                        // Aspect ratio: Height / Width. 
-                        // Defaulting to 3:4 (Portrait) -> 1.33. 
-                        // If Landscape 4:3 -> 0.75. 
-                        // User likely wants landscape if "gap at bottom" with 800px means it was too tall for the width?
-                        // Or maybe it is landscape and 800px is too tall.
-                        // Let's assume Landscape 4:3 (Height = 0.75 * Width) for a safer default for "gap at bottom".
-                        var aspectRatio = 0.75;
-                        pdfEmbed.style.height = (width * aspectRatio) + 'px';
-                    }
-                }
-
-                window.addEventListener('load', adjustPdfHeight);
-                window.addEventListener('resize', adjustPdfHeight);
-                // Also call immediately in case load already happened
-                adjustPdfHeight();
-            </script>
-
-
-            <!-- <section id="abstract" class="main">
-                <h2>Abstract</h2>
-                <p></p>
-            </section> -->
-
-            <section id="acknowledgments" class="main">
-                <h2>Acknowledgments</h2>
-                <p>We humbly appreciate our mentor <a href="https://felixgotti.com">Dr. Felix Gotti</a> for his
-                    dedicated guidance, encouragement, and wisdom throughout our research and are incredibly grateful to
-                    the <a href="https://math.mit.edu/research/highschool/primes/conference/">MIT PRIMES-USA program</a>
-                    and its organizers for facilitating this rewarding collaboration.</p>
+            <section id="paper" class="section-block">
+                <h2 class="section-title">Paper</h2>
+                <div class="card">
+                    <p>Our poster centers around two key factorization properties — atomicity and the ascending chain condition on principal ideals (ACCP). It is part of our broader study of the factorization and divisibility landscape of <b>the additive structure of simple semiring extensions</b>.</p>
+                    <div class="card-actions">
+                        <a href="https://math.mit.edu/research/highschool/primes/materials/2025/Chen-Lu-Yao.pdf" target="_blank" class="btn btn-primary">View Full Paper</a>
+                    </div>
+                </div>
             </section>
-        </div>
 
-        <!-- Footer -->
-        <footer id="footer">
-        </footer>
+            <section id="poster" class="section-block">
+                <h2 class="section-title">Poster</h2>
+                <div class="card">
+                    <div style="text-align: center; margin-bottom: 2em;">
+                        <embed id="pdf-poster" src="../../images/JMM2026_Poster.pdf" width="100%" height="800px" type="application/pdf" />
+                    </div>
+                    <div class="card-actions" style="justify-content: center;">
+                        <a href="../../images/JMM2026_Poster.pdf" target="_blank" class="btn">Open External View</a>
+                    </div>
+                </div>
+            </section>
 
+            <section id="acknowledgments" class="section-block">
+                <h2 class="section-title">Acknowledgments</h2>
+                <div class="card">
+                    <p>We humbly appreciate our mentor <a href="https://felixgotti.com">Dr. Felix Gotti</a> for his dedicated guidance, encouragement, and wisdom throughout our research and are incredibly grateful to the <a href="https://math.mit.edu/research/highschool/primes/conference/">MIT PRIMES-USA program</a> and its organizers for facilitating this rewarding collaboration.</p>
+                </div>
+            </section>
+        </main>
     </div>
 
-    <!-- Dark Mode Toggle -->
-    <div id="dark-mode-toggle" onclick="toggleDarkMode()">&#x00AC;</div>
-
-    <!-- Scripts -->
-    <script src="../../assets/js/jquery.min.js"></script>
-    <script src="../../assets/js/jquery.scrollex.min.js"></script>
-    <script src="../../assets/js/jquery.scrolly.min.js"></script>
-    <script src="../../assets/js/browser.min.js"></script>
-    <script src="../../assets/js/breakpoints.min.js"></script>
-    <script src="../../assets/js/util.js"></script>
-    <script src="../../assets/js/main.js"></script>
-
+    <script>
+        function adjustPdfHeight() {
+            var pdfEmbed = document.getElementById('pdf-poster');
+            if (pdfEmbed) {
+                var width = pdfEmbed.offsetWidth;
+                var aspectRatio = 0.75;
+                pdfEmbed.style.height = (width * aspectRatio) + 'px';
+            }
+        }
+        window.addEventListener('load', adjustPdfHeight);
+        window.addEventListener('resize', adjustPdfHeight);
+        adjustPdfHeight();
+    </script>
+    <script src="../../assets/js/nav.js"></script>
 </body>
-
 </html>

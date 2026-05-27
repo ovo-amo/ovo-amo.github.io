@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>UHS Math Club SIMP 2026</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <link rel="icon" type="image/png" href="../../images/logo.png">
+
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, { delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true}] });"></script>
+
+    <style>
+        /* Custom styles for the input form */
+        #code {
+            background: rgba(0,0,0,0.2);
+            border: 1px solid var(--color-border-subtle);
+            color: var(--color-text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 1.2rem;
+            outline: none;
+            transition: var(--transition-smooth);
+            width: 100%;
+            max-width: 300px;
+        }
+        #code:focus {
+            border-color: var(--color-accent-violet);
+            box-shadow: 0 0 10px var(--color-accent-violet-glow);
+        }
+    </style>
+</head>
+<body>
+    <script src="../../assets/js/menubar.js" data-base="../.."></script>
+
+    <div class="layout-container">
+        <!-- Sidebar Header -->
+        <header class="site-header">
+            <div class="brand">
+                <h1>SIMP 2026</h1>
+                <p>UHS Math Club</p>
+            </div>
+            <nav class="site-nav">
+                <ul id="dynamic-nav"></ul>
+            </nav>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <section id="content" class="section-block" data-nav="Access Portal">
+                <h2 id="instructions" class="section-title">enter your access code</h2>
+                <div class="card">
+                    <input type="password" id="code" autocomplete="off" style="margin-bottom: 2em">
+                    <div class="card-actions">
+                        <a onclick="let d = new Date();d.setTime(d.getTime() + (2 * 60 * 60 * 1000));this.parentElement.parentElement.outerHTML=`<p>Click <a href='https://drive.google.com/file/d/1` + code.value[0] + `K4nrwP0hIeRD2rfELbifTEClBODGbY4/view?usp=sharing'>here</a> to access your SIMP, or <a href='https://drive.google.com/file/d/1GWLNXmkPKUA0DKJr2ZLoay1Nu6PNLZI` + code.value[0] + `/view?usp=sharing'>here</a> if you require an IUSD-shareable link. You must submit your solutions by <b>${d.toLocaleDateString()}</b> at <b>${d.toLocaleTimeString()}</b>, which is in 120 minutes (a grace period of 40 minutes because there are also instructions in the SIMP). Starting now, though, there is to be no Googling or AIing or any other shenanigans.</p><br><p><b>YOU ARE RESPONSIBLE FOR TIMING YOURSELF. BE HONEST ABOUT WHEN YOU START AND WHEN YOU END. ONCE YOU OPEN THE FILE, THERE ARE THREE PAGES OF INSTRUCTIONS. YOU START THE TIME ONCE YOU READ THOSE INSTRUCTIONS.</b></p>`;document.getElementById('instructions').textContent=`good luck!`;code.remove()" class="btn btn-primary">Submit</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <!-- Scripts -->
+    <script src="../../../assets/js/nav.js"></script>
+</body>
+</html>

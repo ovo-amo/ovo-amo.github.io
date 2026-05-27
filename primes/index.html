@@ -1,99 +1,60 @@
 <!DOCTYPE HTML>
-<html>
-
+<html lang="en">
 <head>
     <title>MIT PRIMES-USA</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="../assets/css/main.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bitmaks/cm-web-fonts@latest/fonts.css">
     <link rel="icon" type="image/png" href="../images/logo.png">
 
-    <noscript>
-        <link rel="stylesheet" href="../assets/css/noscript.css" />
-    </noscript>
-    <script>
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']]
-            }
-        };
-    </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>
-        // Apply dark mode immediately to prevent flash
-        if (localStorage.getItem('darkMode') === 'enabled') {
-            document.documentElement.classList.add('dark-mode');
-            document.addEventListener('DOMContentLoaded', function () {
-                document.body.classList.add('dark-mode');
-            });
-        }
-    </script>
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, { delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true}] });"></script>
 </head>
-
-<body class="is-preload">
-
+<body>
     <!-- Information: Hamburger Menu -->
     <script src="../assets/js/menubar.js" data-base=".."></script>
 
-
-
-    <!-- Wrapper -->
-    <div id="wrapper">
-
-        <!-- Header -->
-        <header id="header">
-            <h1>MIT PRIMES-USA</h1>
-            <p><i>year-long distance mentoring math research section</i></p>
+    <div class="layout-container">
+        <!-- Sidebar Header -->
+        <header class="site-header">
+            <div class="brand">
+                <h1>MIT PRIMES-USA</h1>
+                <p>Year-long distance mentoring math research section</p>
+            </div>
+            <nav class="site-nav">
+                <ul id="dynamic-nav"></ul>
+            </nav>
         </header>
 
-
-        <!-- Main -->
-        <div id="main">
-
-            <!-- Content -->
-            <section id="content" class="main">
-                <h2>2026</h2>
-                <p>I research applications of machine learning to differential equation discovery, mentored by <a
-                        href="https://lugroup.yale.edu">Dr. Lu Lu</a> (Yale) and <a
-                        href="https://yixiangd.github.io/">Dr. Yixiang Deng</a> (Yale) and with Shengtao (Alex) Ding and
-                    Max Levin.</p>
-                <ul class="actions">
-                    <li><a href="2026/" class="button">Learn More</a></li>
-                </ul>
+        <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <section id="2026" class="section-block">
+                <h2 class="section-title">2026</h2>
+                <div class="card">
+                    <p>I research applications of machine learning to differential equation discovery, mentored by <a href="https://lugroup.yale.edu">Dr. Lu Lu</a> (Yale) and <a href="https://yixiangd.github.io/">Dr. Yixiang Deng</a> (Yale) and with Shengtao (Alex) Ding and Max Levin.</p>
+                    <div class="card-actions">
+                        <a href="2026/" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
             </section>
 
-            <!-- Content -->
-            <section id="content" class="main">
-                <h2>2025</h2>
-                <p>I researched additive monoids of cyclic semirings, mentored by <a href="https://felixgotti.com">Dr.
-                        Felix Gotti</a> (MIT) and with Guanjie
-                    (Tony) Lu and Alan Yao.</p>
-                <ul class="actions">
-                    <li><a href="2025/" class="button">Learn More</a></li>
-                </ul>
+            <section id="2025" class="section-block">
+                <h2 class="section-title">2025</h2>
+                <div class="card">
+                    <p>I researched additive monoids of cyclic semirings, mentored by <a href="https://felixgotti.com">Dr. Felix Gotti</a> (MIT) and with Guanjie (Tony) Lu and Alan Yao.</p>
+                    <div class="card-actions">
+                        <a href="2025/" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
             </section>
 
-        </div>
-
-        <!-- Footer -->
-        <footer id="footer">
-        </footer>
-
+        </main>
     </div>
-
-    <!-- Dark Mode Toggle -->
-    <div id="dark-mode-toggle" onclick="toggleDarkMode()">&#x00AC;</div>
-
     <!-- Scripts -->
-    <script src="../assets/js/jquery.min.js"></script>
-    <script src="../assets/js/jquery.scrollex.min.js"></script>
-    <script src="../assets/js/jquery.scrolly.min.js"></script>
-    <script src="../assets/js/browser.min.js"></script>
-    <script src="../assets/js/breakpoints.min.js"></script>
-    <script src="../assets/js/util.js"></script>
-    <script src="../assets/js/main.js"></script>
-
+    <script src="../assets/js/nav.js"></script>
 </body>
-
 </html>

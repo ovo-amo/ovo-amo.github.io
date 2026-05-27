@@ -1,0 +1,326 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><link rel="icon" type="image/png" href="../../images/Jelly.png"><title>Science Bowl AI Multiple Choice</title><style>*{box-sizing:border-box;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}body{margin:0;padding:24px 0;min-height:100vh;display:flex;justify-content:center;align-items:flex-start;background:radial-gradient(circle at top,#edf2ff,#e0f7fa)}.container{background:#fff;max-width:880px;width:100%;margin:0 16px;border-radius:18px;box-shadow:0 18px 40px rgba(0,0,0,.08);padding:24px 28px 28px}h1{margin-top:0;font-size:1.6rem;margin-bottom:4px}.subtitle{margin-top:0;margin-bottom:18px;font-size:.9rem;color:#555}.controls{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;padding:10px 12px;border-radius:12px;background:#f7f9fc;margin-bottom:16px}.controls-group{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:.85rem}.controls-group label.mode-label{display:flex;align-items:center;gap:6px;cursor:pointer;font-size:.9rem}.slider-label{display:flex;align-items:center;gap:6px}.slider-label span.value{min-width:3ch;text-align:right;font-variant-numeric:tabular-nums}select{padding:4px 6px;border-radius:8px;border:1px solid #cbd5e1;font-size:.85rem;max-width:220px;background-color:#fff;appearance:none;-webkit-appearance:none;-moz-appearance:none;background-image:linear-gradient(45deg,#9ca3af 50%,transparent 50%),linear-gradient(135deg,#9ca3af 50%,transparent 50%);background-position:calc(100% - 12px) calc(50% - 3px),calc(100% - 8px) calc(50% + 3px);background-size:6px 6px,6px 6px;background-repeat:no-repeat}select:focus{outline:0;border-color:#60a5fa;box-shadow:0 0 0 2px #bfdbfe}button{border:none;border-radius:999px;padding:8px 18px;font-size:.9rem;cursor:pointer;background:#2563eb;color:#fff;font-weight:500;transition:transform 50ms ease,box-shadow 50ms ease,background .15s ease,opacity .15s ease;box-shadow:0 5px 14px rgba(37,99,235,.35)}button:disabled{opacity:.45;cursor:default;box-shadow:none;transform:none}button:not(:disabled):active{transform:translateY(1px);box-shadow:0 2px 8px rgba(15,23,42,.25)}.question-card{border-radius:14px;border:1px solid #e2e8f0;padding:16px 18px 18px;margin-top:10px;background:#fff}.question-meta{font-size:.82rem;text-transform:uppercase;letter-spacing:.08em;color:#64748b;margin-bottom:6px}#questionStem{font-size:1rem;line-height:1.5;min-height:3em;white-space:pre-wrap;text-align:left}.options{margin-top:10px;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:6px}.options.tts-inline{flex-direction:row;flex-wrap:wrap;gap:6px}.option-btn{background:#f8fafc;color:#111827;border-radius:10px;padding:8px 12px;border:1px solid transparent;display:inline-flex;gap:6px;align-items:center;white-space:normal;line-height:1.3;font-size:.9rem;width:auto}.options.typewriter-layout .option-btn{width:100%;align-items:flex-start}.option-label{font-weight:600;min-width:1.4em}.option-text{text-align:left;display:inline-block}.option-btn.correct{background:#ecfdf3;border-color:#16a34a}.option-btn.incorrect{background:#fef2f2;border-color:#dc2626}.feedback{margin-top:10px;min-height:1.5em;font-weight:500;font-size:.95rem}.feedback.correct{color:#15803d}.feedback.incorrect{color:#b91c1c}.note{margin-top:12px;font-size:.8rem;color:#6b7280}@media (max-width:700px){.container{padding:18px 16px 20px}h1{font-size:1.3rem}}</style></head><body><div class="container"><h1>Science Bowl AI Multiple Choice Practice</h1><p class="subtitle">Currently with <tt id="alot">a lot of</tt> AI-generated questions. Created by students of University High School.</p><div class="controls"><div class="controls-group"><strong style="font-size:.9rem">Mode:</strong><label class="mode-label"><input type="radio" name="mode" value="tts" checked="checked"> Read aloud</label><label class="mode-label"><input type="radio" name="mode" value="typewriter"> Typewriter</label></div><div class="controls-group"><span><strong>TTS controls:</strong></span><label class="slider-label">Rate<input type="range" id="rateSlider" min="0.5" max="3" step="0.05" value="1"><span id="rateValue" class="value">1.00</span></label><label>Voice<select id="voiceSelect"></select></label></div><div class="controls-group"><button id="nextBtn">Next Question</button></div></div><div class="question-card"><div id="questionMeta" class="question-meta"></div><div id="questionStem"></div><ul class="options" id="optionsList"></ul><div id="feedback" class="feedback"></div><div class="note">In read-aloud mode, only buttons are visible during the question; all text appears after you answer. In typewriter mode, the stem and then the choices type out in place.</div></div></div><script src="questions.js"></script><script>document.getElementById("alot").textContent = questions.length;
+
+    // --- Shuffle helper ---
+    function shuffleArray(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    // --- DOM elements ---
+    const questionMetaEl = document.getElementById("questionMeta");
+    const questionStemEl = document.getElementById("questionStem");
+    const optionsListEl = document.getElementById("optionsList");
+    const feedbackEl = document.getElementById("feedback");
+    const nextBtn = document.getElementById("nextBtn");
+
+    const rateSlider = document.getElementById("rateSlider");
+    const rateValueEl = document.getElementById("rateValue");
+    const voiceSelect = document.getElementById("voiceSelect");
+
+    // --- State ---
+    let mode = "tts";                  // "tts" or "typewriter"
+    let typingIntervalId = null;
+    let typingSegmentIndex = 0;
+    let typingCharIndex = 0;
+    let typewriterSegments = [];
+    let isPresenting = false;
+    let hasAnswered = false;
+
+    let questionOrder = [];
+    let questionOrderPos = -1;
+    let currentQuestionIndex = null;
+
+    let currentOptionMapping = [];     // {letter, text, isCorrect, originalIndex}
+    let optionTextSpans = [];
+
+    // --- TTS: voices management ---
+    let voices = [];
+    function populateVoices() {
+      if (!("speechSynthesis" in window)) {
+        voiceSelect.innerHTML = "<option>Not supported</option>";
+        voiceSelect.disabled = true;
+        return;
+      }
+      voices = window.speechSynthesis.getVoices();
+      voiceSelect.innerHTML = "";
+      if (!voices.length) {
+        const opt = document.createElement("option");
+        opt.textContent = "Loading voices...";
+        voiceSelect.appendChild(opt);
+        return;
+      }
+      voices.forEach((v, idx) => {
+        const opt = document.createElement("option");
+        opt.value = idx;
+        opt.textContent = `${v.name} (${v.lang})${v.default ? " [default]" : ""}`;
+        voiceSelect.appendChild(opt);
+      });
+    }
+
+    if ("speechSynthesis" in window) {
+      populateVoices();
+      window.speechSynthesis.onvoiceschanged = populateVoices;
+    } else {
+      populateVoices();
+    }
+
+    // --- Mode selection ---
+    document.querySelectorAll('input[name="mode"]').forEach(radio => {
+      radio.addEventListener("change", (e) => {
+        mode = e.target.value;
+        applyOptionsLayout();
+      });
+    });
+
+    function applyOptionsLayout() {
+      optionsListEl.classList.remove("tts-inline", "typewriter-layout");
+      if (mode === "tts") {
+        optionsListEl.classList.add("tts-inline");
+      } else {
+        optionsListEl.classList.add("typewriter-layout");
+      }
+    }
+
+    // --- Slider UI updates ---
+    rateSlider.addEventListener("input", () => {
+      rateValueEl.textContent = Number(rateSlider.value).toFixed(2);
+    });
+
+    // --- Stop any ongoing presentation ---
+    function stopPresentation() {
+      if (typingIntervalId !== null) {
+        clearInterval(typingIntervalId);
+        typingIntervalId = null;
+      }
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+      }
+      isPresenting = false;
+    }
+
+    // --- Render question shell: no text yet, options W./X./Y./Z. with blank text spans ---
+    function renderQuestion() {
+      stopPresentation();
+      hasAnswered = false;
+      feedbackEl.textContent = "";
+      feedbackEl.className = "feedback";
+
+      const q = questions[currentQuestionIndex];
+      questionMetaEl.textContent = q.meta;
+      questionStemEl.textContent = "";
+      optionsListEl.innerHTML = "";
+      optionTextSpans = [];
+      applyOptionsLayout();
+
+      // Randomize options, assign to W/X/Y/Z
+      const optionIndices = shuffleArray([0, 1, 2, 3]);
+      const letters = ["W", "X", "Y", "Z"];
+      currentOptionMapping = [];
+
+      optionIndices.forEach((optIdx, pos) => {
+        const mapping = {
+          letter: letters[pos],
+          text: q.options[optIdx],
+          isCorrect: optIdx === q.correctIndex,
+          originalIndex: optIdx
+        };
+        currentOptionMapping.push(mapping);
+
+        const li = document.createElement("li");
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+        btn.dataset.index = String(pos);
+
+        const labelSpan = document.createElement("span");
+        labelSpan.className = "option-label";
+        labelSpan.textContent = mapping.letter + "."; // add period after letter
+
+        const textSpan = document.createElement("span");
+        textSpan.className = "option-text";
+        textSpan.textContent = ""; // filled by typewriter or on reveal
+
+        optionTextSpans.push(textSpan);
+
+        btn.appendChild(labelSpan);
+        btn.appendChild(textSpan);
+
+        btn.addEventListener("click", () => handleAnswerClick(pos));
+
+        li.appendChild(btn);
+        optionsListEl.appendChild(li);
+      });
+    }
+
+    // --- Reveal full question + options instantly (after answering) ---
+    function revealFullQuestion() {
+      const q = questions[currentQuestionIndex];
+      questionStemEl.textContent = q.stem;
+      for (let i = 0; i < currentOptionMapping.length; i++) {
+        optionTextSpans[i].textContent = currentOptionMapping[i].text;
+      }
+    }
+
+    // --- Handle answer selection ---
+    function handleAnswerClick(pos) {
+      if (hasAnswered) return;
+      hasAnswered = true;
+      stopPresentation();
+      revealFullQuestion();
+
+      const q = questions[currentQuestionIndex];
+      const buttons = optionsListEl.querySelectorAll(".option-btn");
+      const chosen = currentOptionMapping[pos];
+
+      buttons.forEach((btn, idx) => {
+        const m = currentOptionMapping[idx];
+        if (m.isCorrect) {
+          btn.classList.add("correct");
+        }
+        if (idx === pos && !m.isCorrect) {
+          btn.classList.add("incorrect");
+        }
+        btn.disabled = true;
+      });
+
+      const correctMapping = currentOptionMapping.find(m => m.isCorrect);
+      const correctLetter = correctMapping ? correctMapping.letter : "?";
+
+      if (chosen.isCorrect) {
+        feedbackEl.textContent = "Correct. " + q.explanation;
+        feedbackEl.classList.add("correct");
+      } else {
+        feedbackEl.textContent =
+          `Incorrect. The correct answer is ${correctLetter}. ` + q.explanation;
+        feedbackEl.classList.add("incorrect");
+      }
+    }
+
+    // --- Typewriter presentation: stem then option texts ---
+    function startTypewriterPresentation() {
+      const q = questions[currentQuestionIndex];
+      typewriterSegments = [];
+      typingSegmentIndex = 0;
+      typingCharIndex = 0;
+
+      questionStemEl.textContent = "";
+      optionTextSpans.forEach(span => {
+        span.textContent = "";
+      });
+
+      typewriterSegments.push({ el: questionStemEl, text: q.stem });
+      for (let i = 0; i < currentOptionMapping.length; i++) {
+        typewriterSegments.push({
+          el: optionTextSpans[i],
+          text: currentOptionMapping[i].text
+        });
+      }
+
+      typingIntervalId = setInterval(() => {
+        if (typingSegmentIndex >= typewriterSegments.length) {
+          clearInterval(typingIntervalId);
+          typingIntervalId = null;
+          isPresenting = false;
+          return;
+        }
+        const seg = typewriterSegments[typingSegmentIndex];
+        if (typingCharIndex < seg.text.length) {
+          seg.el.textContent += seg.text.charAt(typingCharIndex);
+          typingCharIndex++;
+        } else {
+          typingSegmentIndex++;
+          typingCharIndex = 0;
+        }
+      }, 30);
+    }
+
+    // --- TTS presentation: read stem + W/X/Y/Z, no visible text until answer ---
+    function startTTSPresentation() {
+      const q = questions[currentQuestionIndex];
+
+      questionStemEl.textContent = "";
+      optionTextSpans.forEach(span => {
+        span.textContent = "";
+      });
+
+      if (!("speechSynthesis" in window)) {
+        feedbackEl.textContent = "Text-to-speech not supported in this browser.";
+        feedbackEl.classList.add("incorrect");
+        isPresenting = false;
+        return;
+      }
+
+      let spoken = q.stem + " ";
+      for (let i = 0; i < currentOptionMapping.length; i++) {
+        const m = currentOptionMapping[i];
+        spoken += `${m.letter}: ${m.text}. `;
+      }
+
+      const utterance = new SpeechSynthesisUtterance(spoken);
+      const rate = parseFloat(rateSlider.value) || 1.0;
+      utterance.rate = rate;
+
+      const selectedIndex = parseInt(voiceSelect.value, 10);
+      if (voices && voices.length && !Number.isNaN(selectedIndex) && voices[selectedIndex]) {
+        utterance.voice = voices[selectedIndex];
+      }
+
+      utterance.onend = () => {
+        isPresenting = false;
+      };
+
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // --- Start the current question in the current mode ---
+    function startCurrentQuestion() {
+      renderQuestion();
+      isPresenting = true;
+
+      if (mode === "tts") {
+        startTTSPresentation();
+      } else {
+        startTypewriterPresentation();
+      }
+    }
+
+    // --- Build randomized question order ---
+    function resetQuestionOrder() {
+      questionOrder = [];
+      for (let i = 0; i < questions.length; i++) {
+        questionOrder.push(i);
+      }
+      shuffleArray(questionOrder);
+      questionOrderPos = -1;
+    }
+
+    // --- Advance to next question and auto-start ---
+    function advanceQuestion() {
+      stopPresentation();
+      hasAnswered = false;
+      feedbackEl.textContent = "";
+      feedbackEl.className = "feedback";
+
+      questionOrderPos++;
+      if (questionOrderPos >= questionOrder.length) {
+        resetQuestionOrder();
+        questionOrderPos = 0;
+      }
+      currentQuestionIndex = questionOrder[questionOrderPos];
+      startCurrentQuestion();
+    }
+
+    // Next Question button
+    nextBtn.addEventListener("click", () => {
+      if (!questionOrder.length) {
+        resetQuestionOrder();
+      }
+      advanceQuestion();
+    });
+
+    // Initial setup (no question until Next Question)
+    applyOptionsLayout();
+    resetQuestionOrder();</script></body></html>

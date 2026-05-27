@@ -6,43 +6,65 @@
 
     // HTML Structure
     const menuHTML = `
-    <div id="menu-toggle" onclick="toggleMenu()">&#9776;</div>
-    <div id="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="toggleMenu()">&times;</a>
-        <a href="${basePath}/">Home</a>
-        <span class="dropdown-btn" onclick="toggleDropdown()">PRIMES &#9662;</span>
-        <div id="primes-dropdown" class="dropdown-container">
-            <a href="${basePath}/primes/">Home</a>
-            <a href="${basePath}/primes/2026/">2026</a>
-            <a href="${basePath}/primes/2025/">2025</a>
-            <a href="${basePath}/primes/2025/jmm2026/">JMM 2026</a>
+    <div id="global-menu-toggle" onclick="toggleGlobalMenu()" aria-label="Toggle Menu">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </div>
+    <div id="global-sidebar-overlay" onclick="toggleGlobalMenu()"></div>
+    <div id="global-sidebar">
+        <div class="sidebar-header">
+            <span class="sidebar-title">Menu</span>
+            <button class="closebtn" onclick="toggleGlobalMenu()" aria-label="Close Menu">&times;</button>
+        </div>
+        <div class="sidebar-content">
+            <a href="${basePath}/" class="sidebar-link">Home</a>
+            <div class="dropdown-wrapper">
+                <button class="dropdown-btn" onclick="toggleGlobalDropdown(this)">PRIMES <span class="caret">&#9662;</span></button>
+                <div class="dropdown-container">
+                    <a href="${basePath}/primes/" class="sidebar-link sub-link">Home</a>
+                    <a href="${basePath}/primes/2026/" class="sidebar-link sub-link">2026</a>
+                    <a href="${basePath}/primes/2025/" class="sidebar-link sub-link">2025</a>
+                    <a href="${basePath}/primes/2025/jmm2026/" class="sidebar-link sub-link">JMM 2026</a>
+                </div>
+            </div>
+            <a href="${basePath}/ross/" class="sidebar-link">Ross</a>
+            <a href="${basePath}/timotree/" class="sidebar-link">Timotree</a>
+            <div class="dropdown-wrapper">
+                <button class="dropdown-btn" onclick="toggleGlobalDropdown(this)">Apps <span class="caret">&#9662;</span></button>
+                <div class="dropdown-container">
+                    <a href="${basePath}/scibowl/ai/" class="sidebar-link sub-link"><b>[SciBowl]</b> AI</a>
+                    <a href="${basePath}/scibowl/chemphys/" class="sidebar-link sub-link"><b>[SciBowl]</b> ChemPhys</a>
+                    <a href="${basePath}/scibowl/order/" class="sidebar-link sub-link"><b>[SciBowl]</b> Ordering</a>
+                    <a href="${basePath}/latin/celerius/" class="sidebar-link sub-link"><b>[Latin]</b> Celerius</a>
+                    <a href="${basePath}/latin/ety/" class="sidebar-link sub-link"><b>[Latin]</b> Etymology</a>
+                    <a href="${basePath}/latin/voc/" class="sidebar-link sub-link"><b>[Latin]</b> Vocab</a>
+                    <a href="${basePath}/latin/voc/learn/" class="sidebar-link sub-link"><b>[Latin]</b> Vocab (Learn)</a>
+                    <a href="${basePath}/latin/voc/play/" class="sidebar-link sub-link"><b>[Latin]</b> Vocab (Play)</a>
+                </div>
+            </div>
         </div>
     </div>
     `;
-
-    // Inject styles if they aren't already part of main.css, 
-    // but assuming main.css handles it. If strictly making it a plugin:
-    // We rely on the existing main.css for styling these IDs and classes.
 
     // Inject HTML into body
     document.body.insertAdjacentHTML('afterbegin', menuHTML);
 
     // Global Functions for Interaction
-    window.toggleMenu = function () {
-        var sidebar = document.getElementById("sidebar");
-        if (sidebar.style.width === "250px") {
-            sidebar.style.width = "0";
-        } else {
-            sidebar.style.width = "250px";
-        }
+    window.toggleGlobalMenu = function () {
+        document.getElementById("global-sidebar").classList.toggle("open");
+        document.getElementById("global-sidebar-overlay").classList.toggle("open");
     };
 
-    window.toggleDropdown = function () {
-        var dropdownContent = document.getElementById("primes-dropdown");
-        if (dropdownContent.style.display === "block") {
-            dropdownContent.style.display = "none";
+    window.toggleGlobalDropdown = function (btn) {
+        const container = btn.nextElementSibling;
+        btn.classList.toggle("open");
+        if (container.style.maxHeight) {
+            container.style.maxHeight = null;
         } else {
-            dropdownContent.style.display = "block";
+            container.style.maxHeight = container.scrollHeight + "px";
         }
     };
 })();

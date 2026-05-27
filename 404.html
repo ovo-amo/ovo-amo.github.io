@@ -1,92 +1,48 @@
 <!DOCTYPE HTML>
-<html>
-
+<html lang="en">
 <head>
     <title>404 | Page Not Found</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/assets/css/main.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bitmaks/cm-web-fonts@latest/fonts.css">
     <link rel="icon" type="image/png" href="/images/logo.png">
 
-    <noscript>
-        <link rel="stylesheet" href="/assets/css/noscript.css" />
-    </noscript>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>
-        // Apply dark mode immediately to prevent flash
-        if (localStorage.getItem('darkMode') === 'enabled') {
-            document.documentElement.classList.add('dark-mode');
-            document.addEventListener('DOMContentLoaded', function () {
-                document.body.classList.add('dark-mode');
-            });
-        }
-
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']]
-            }
-        };
-    </script>
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, { delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true}] });"></script>
 </head>
-
-<body class="is-preload">
-
-    <!-- Information: Hamburger Menu -->
+<body>
     <!-- Information: Hamburger Menu -->
     <script src="/assets/js/menubar.js" data-base=""></script>
 
-
-
-    <!-- Nav (Hidden/Removed in favor of Hamburger) -->
-    <!-- <nav id="nav">...</nav> -->
-
-    <!-- Wrapper -->
-    <div id="wrapper">
-
-
-        <!-- Header -->
-        <header id="header">
-            <h1>404</h1>
-            <p>Error: Proof Not Found</p>
+    <div class="layout-container">
+        <!-- Sidebar Header -->
+        <header class="site-header">
+            <div class="brand">
+                <h1>404</h1>
+                <p>Error: Proof Not Found</p>
+            </div>
+            <nav class="site-nav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                </ul>
+            </nav>
         </header>
 
-        <!-- Main -->
-        <div id="main">
-
-            <!-- Content -->
-            <section class="main special">
-                <header class="major">
-                    <h2>Page Not Found</h2>
-                </header>
-                <p>You received a redo because your proof could not be found.</p>
-                <ul class="actions special">
-                    <li><a href="/" class="button primary">Return to Axioms (Home)</a></li>
-                </ul>
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <section class="section-block">
+                <h2 class="section-title">Page Not Found</h2>
+                <div class="card">
+                    <p>You received a redo because your proof could not be found.</p>
+                    <div class="card-actions">
+                        <a href="/" class="btn btn-primary">Return to Axioms (Home)</a>
+                    </div>
+                </div>
             </section>
-
-        </div>
-
-        <!-- Footer -->
-        <footer id="footer">
-            <p class="copyright"></p>
-        </footer>
-
-
+        </main>
     </div>
-
-    <!-- Dark Mode Toggle -->
-    <div id="dark-mode-toggle" onclick="toggleDarkMode()">&#x00AC;</div>
-
-    <!-- Scripts -->
-    <script src="/assets/js/jquery.min.js"></script>
-    <script src="/assets/js/jquery.scrollex.min.js"></script>
-    <script src="/assets/js/jquery.scrolly.min.js"></script>
-    <script src="/assets/js/browser.min.js"></script>
-    <script src="/assets/js/breakpoints.min.js"></script>
-    <script src="/assets/js/util.js"></script>
-    <script src="/assets/js/main.js"></script>
-
 </body>
-
 </html>

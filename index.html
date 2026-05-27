@@ -1,205 +1,114 @@
 <!DOCTYPE HTML>
-<!--
-	Stellar by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
+<html lang="en">
 
 <head>
 	<title>Timothy Chen</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bitmaks/cm-web-fonts@latest/fonts.css">
 	<link rel="icon" type="image/png" href="images/logo.png">
 
-
-
-
-	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" />
-	</noscript>
-	<script>
-		MathJax = {
-			tex: {
-				inlineMath: [['$', '$'], ['\\(', '\\)']]
-			}
-		};
-	</script>
-	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-	<script>
-		// Apply dark mode immediately to prevent flash
-		if (localStorage.getItem('darkMode') === 'enabled') {
-			document.documentElement.classList.add('dark-mode');
-			document.addEventListener('DOMContentLoaded', function () {
-				document.body.classList.add('dark-mode');
-			});
-		}
-	</script>
+	<!-- KaTeX -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+	<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+	<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+		onload="renderMathInElement(document.body, { delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true}] });"></script>
 </head>
 
-<body class="is-preload">
-
-	<!-- Information: Hamburger Menu -->
+<body>
 	<!-- Information: Hamburger Menu -->
 	<script src="assets/js/menubar.js" data-base="."></script>
+	<div class="layout-container">
 
-	<!-- Wrapper -->
-	<div id="wrapper">
+		<!-- Sidebar Header -->
+		<header class="site-header">
+			<div class="brand">
+				<img src="images/logo.png" alt="Timothy Chen" class="brand-logo" />
+				<h1>Timothy Chen</h1>
+				<p>High school junior from California, USA.</p>
+			</div>
 
-
-		<!-- Header -->
-		<header id="header" class="alt">
-			<span class="logo"><img src="images/logo.png" alt="" width="100" height="100" /></span>
-			<h1>Timothy Chen</h1>
-			<p>High school junior from California, USA.</p>
+			<nav class="site-nav">
+				<ul id="dynamic-nav"></ul>
+			</nav>
 		</header>
 
-		<!-- Nav -->
-		<nav id="nav">
-			<ul>
-				<li><a href="#intro" class="active">PRIMES</a></li>
-				<li><a href="#first">Ross</a></li>
-				<li><a href="#second">UHS Math Club</a></li>
-				<li><a href="#cta">Contact</a></li>
-			</ul>
-		</nav>
-
-
-
-		<!-- Main -->
-		<div id="main">
+		<!-- Main Content Area -->
+		<main class="main-content">
 
 			<!-- Introduction -->
-			<section id="intro" class="main">
-				<div class="spotlight">
-					<div class="content">
-						<header class="major">
-							<h2>MIT PRIMES-USA</h2>
-						</header>
-						<p>I currently research additive monoids of cyclic semirings with <a
-								href="https://www.felixgotti.com/">Dr. Felix Gotti</a> through the MIT PRIMES-USA
-							program.</p>
-						<ul class="actions">
-							<li><a href="primes/" class="button">Learn More</a></li>
-						</ul>
+			<section id="intro" class="section-block" data-nav="PRIMES">
+				<h2 class="section-title">MIT PRIMES-USA</h2>
+				<div class="card">
+					<img src="images/PRIMES White.svg" width="120" alt="PRIMES-USA Logo" class="image dark-logo" />
+					<h3>Research</h3>
+					<p>I currently research automated frameworks for ordinary differential equation discovery via neural networks
+						with <a href="https://lugroup.yale.edu">Dr. Lu Lu</a> and <a href="https://yixiangd.github.io/">Dr. Yixiang
+							Deng</a> through the MIT PRIMES-USA program.
+					</p>
+					<p>Last year, I studied additive monoids of cyclic semirings with <a href="https://www.felixgotti.com/">Dr.
+							Felix Gotti</a> through the MIT PRIMES-USA program.
+					</p>
+					<div class="card-actions">
+						<a href="primes/" class="btn btn-primary">Learn More</a>
 					</div>
-					<span class="image">
-						<img src="images/PRIMES.svg" width="100" alt="" class="light-logo" />
-						<img src="images/PRIMES White.svg" width="100" alt="" class="dark-logo" />
-					</span>
 				</div>
 			</section>
 
-			<!-- First Section -->
-			<section id="first" class="main special">
-				<header class="major">
-					<h2>Ross Mathematics Program</h2>
-				</header>
-				I attended the <a href="https://rossprogram.org/">Ross Mathematics Program</a> in 2024 (first-year) and
-				2025 (junior counselor).
-				<!-- <ul class="features">
-					<li>
-						<span class="icon solid major style1 fa-code"></span>
-						<h3>First-Year (2024)</h3>
-						<p>Sed lorem amet ipsum dolor et amet nullam consequat a feugiat consequat tempus veroeros sed
-							consequat.</p>
-					</li>
-					<li>
-						<span class="icon major style3 fa-copy"></span>
-						<h3>Junior Counselor (2025)</h3>
-						<p>Sed lorem amet ipsum dolor et amet nullam consequat a feugiat consequat tempus veroeros sed
-							consequat.</p>
-					</li>
-					<li>
-						<span class="icon major style5 fa-gem"></span>
-						<h3>$\LaTeX$ Notes</h3>
-						<p>Sed lorem amet ipsum dolor et amet nullam consequat a feugiat consequat tempus veroeros sed
-							consequat.</p>
-					</li>
-				</ul>
-				<footer class="major">
-					<ul class="actions special">
-						<li><a href="generic.html" class="button">Learn More</a></li>
-					</ul>
-				</footer> -->
+			<section id="first" class="section-block" data-nav="Ross">
+				<h2 class="section-title">Ross Mathematics Program</h2>
+				<div class="card">
+					<h3>Alumni & Junior Counselor</h3>
+					<p>I attended the <a href="https://rossprogram.org/">Ross Mathematics Program</a> in 2024
+						(first-year) and 2025 (junior counselor).</p>
+					<div class="card-actions">
+						<a href="ross/" class="btn btn-primary">Learn More</a>
+					</div>
+				</div>
 			</section>
 
 			<!-- Second Section -->
-			<section id="second" class="main special">
-				<header class="major">
-					<h2>UHS Math Club</h2>
+			<section id="second" class="section-block" data-nav="UHS Math Club">
+				<h2 class="section-title">UHS Math Club</h2>
+				<div class="card">
+					<h3>Leadership</h3>
 					<p>I currently serve as the co-president of the UHS Math Club.</p>
-				</header>
-				<!-- <ul class="statistics">
-					<li class="style1">
-						<span class="icon solid fa-code-branch"></span>
-						<strong>50+</strong> Attendance
-					</li>
-					<li class="style2">
-						<span class="icon fa-calendar"></span>
-						<strong>Weekly</strong> Meetings
-					</li>
-				</ul> -->
-				<!-- <p class="content"></p> -->
-				<footer class="major">
-					<ul class="actions special">
-						<li><a href="https://uhsmathclub.weebly.com/" class="button">Website</a></li>
-					</ul>
-				</footer>
+					<div class="card-actions">
+						<a href="https://uhsmathclub.weebly.com/" class="btn">Website</a>
+					</div>
+				</div>
 			</section>
 
 			<!-- Get Started -->
-			<section id="cta" class="main special">
-				<header class="major">
-					<h2>Email me anytime for $\LaTeX$ help!</h2>
-					<p>I have extensive experience wrestling with the most obscure corners of the $\LaTeX$ ecosystem. I
-						am offering free, unrestricted $\LaTeX$ services—from basic document setup to the creation of
+			<section id="cta" class="section-block" data-nav="Contact">
+				<h2 class="section-title">$\LaTeX$ Consulting</h2>
+				<div class="card">
+					<h3>Email me anytime for $\LaTeX$ help!</h3>
+					<div class="indented-block">
+						I have extensive experience wrestling with the most obscure corners of the $\LaTeX$ ecosystem.
+					</div>
+					<p>I am offering free, unrestricted $\LaTeX$ services—from basic document setup to the creation of
 						complex, automated macros and Ti<i>k</i>Z graphics. Send your code or need, and I will do my
 						best to help.</p>
-				</header>
-				<footer class="major">
-					<ul class="actions special">
-						<li><a href="mailto:tmthychn527@gmail.com" class="button primary">Send Request</a></li>
-						<!-- <li><a href="notes/" class="button">View Samples</a></li> -->
-					</ul>
-				</footer>
+					<div class="card-actions">
+						<a href="mailto:tmthychn527@gmail.com" class="btn btn-primary">Send Request</a>
+					</div>
+				</div>
 			</section>
 
-		</div>
-
-		<!-- Footer -->
-		<footer id="footer">
-			<section>
-				<h2>Contact Information</h2>
+			<!-- Footer -->
+			<footer class="site-footer">
 				<p>
 					<b>Email.</b> <a href="mailto:tmthychn527@gmail.com">tmthychn527@gmail.com</a><br />
 					<b>Discord.</b> timothyc.
 				</p>
-				<!-- <ul class="actions">
-					<li><a href="generic.html" class="button">Learn More</a></li>
-				</ul> -->
-			</section>
-			<p class="copyright"></p>
-		</footer>
+			</footer>
 
-
+		</main>
 	</div>
 
-	<!-- Dark Mode Toggle -->
-	<div id="dark-mode-toggle" onclick="toggleDarkMode()">&#x00AC;</div>
-
 	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-
-	<script src="assets/js/jquery.scrollex.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
-
+	<script src="assets/js/nav.js"></script>
 </body>
 
 </html>

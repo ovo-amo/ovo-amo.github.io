@@ -1,113 +1,77 @@
 <!DOCTYPE HTML>
-<html>
-
+<html lang="en">
 <head>
     <title>MIT PRIMES-USA 2025</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="../../assets/css/main.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bitmaks/cm-web-fonts@latest/fonts.css">
     <link rel="icon" type="image/png" href="../../images/logo.png">
 
-    <noscript>
-        <link rel="stylesheet" href="../../assets/css/noscript.css" />
-    </noscript>
-    <script>
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']]
-            }
-        };
-    </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>
-        // Apply dark mode immediately to prevent flash
-        if (localStorage.getItem('darkMode') === 'enabled') {
-            document.documentElement.classList.add('dark-mode');
-            document.addEventListener('DOMContentLoaded', function () {
-                document.body.classList.add('dark-mode');
-            });
-        }
-    </script>
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, { delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true}] });"></script>
 </head>
-
-<body class="is-preload">
-    <!-- Information: Hamburger Menu -->
+<body>
     <script src="../../assets/js/menubar.js" data-base="../.."></script>
 
-    <!-- Wrapper -->
-    <div id="wrapper">
-
-        <!-- Header -->
-        <header id="header">
-            <h1>MIT PRIMES-USA 2025</h1>
-            <p>with Guanjie (Tony) Lu and Alan Yao (Mentored by <a href="https://felixgotti.com">Dr. Felix Gotti</a>)
-            </p>
+    <div class="layout-container">
+        <!-- Sidebar Header -->
+        <header class="site-header">
+            <div class="brand">
+                <h1>MIT PRIMES-USA 2025</h1>
+                <p>with Guanjie (Tony) Lu and Alan Yao (Mentored by <a href="https://felixgotti.com">Dr. Felix Gotti</a>)</p>
+            </div>
+            <nav class="site-nav">
+                <ul id="dynamic-nav"></ul>
+            </nav>
         </header>
 
-
-        <!-- Main -->
-        <div id="main">
-
-            <!-- Content -->
-            <section id="content" class="main">
-                <h2>Research Focus</h2>
-                <p>We characterize the factorization and divisibility properties of additive monoids of cyclic
-                    semirings, as well as in the broader class of monoids.</p>
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <section id="content" class="section-block">
+                <h2 class="section-title">Research Focus</h2>
+                <div class="card">
+                    <p>We characterize the factorization and divisibility properties of additive monoids of cyclic semirings, as well as in the broader class of monoids.</p>
+                </div>
             </section>
 
-            <section id="paper" class="main">
-                <h2>Paper</h2>
-                <p>A draft of our paper is available below, awaiting submission to the arXiv.</p>
-                <a href="https://math.mit.edu/research/highschool/primes/materials/2025/Chen-Lu-Yao.pdf" target="_blank"
-                    class="button">Open Paper</a>
+            <section id="paper" class="section-block">
+                <h2 class="section-title">Paper</h2>
+                <div class="card">
+                    <p>A draft of our paper is available below, awaiting submission to the arXiv.</p>
+                    <div class="card-actions">
+                        <a href="https://math.mit.edu/research/highschool/primes/materials/2025/Chen-Lu-Yao.pdf" target="_blank" class="btn btn-primary">Open Paper</a>
+                    </div>
+                </div>
             </section>
 
-            <section id="poster" class="main">
-                <h2>Poster</h2>
-                <p>We presented our research at the AMS-PME Undergraduate Research Poster Session at the <a target="_blank"
-                        href="https://www.ams.org/meetings/national/jmm2026">Joint Mathematics Meeting (JMM) 2026</a>
-                    in Washington, D.C.</p>
-                <a href="../../images/JMM2026_Poster.pdf" target="_blank" class="button">Open Poster</a>
-                <a target="_blank" href="../jmm2026/" class="button">View Details</a>
+            <section id="poster" class="section-block">
+                <h2 class="section-title">Poster</h2>
+                <div class="card">
+                    <p>We presented our research at the AMS-PME Undergraduate Research Poster Session at the <a target="_blank" href="https://www.ams.org/meetings/national/jmm2026">Joint Mathematics Meeting (JMM) 2026</a> in Washington, D.C.</p>
+                    <div class="card-actions">
+                        <a href="../../images/JMM2026_Poster.pdf" target="_blank" class="btn btn-primary">Open Poster</a>
+                        <a target="_blank" href="../jmm2026/" class="btn">View Details</a>
+                    </div>
+                </div>
             </section>
 
-            <section id="presentation" class="main">
-                <h2>Talk</h2>
-                <p>We have so far presented our research at the <a
-                        href="https://imsc.uni-graz.at/AlgNTh/seminar.html">Ring Theory Seminar of Graz University</a>
-                    (April 2026, virtual), the <a
-                        href="https://math.mit.edu/research/highschool/primes/conference/">October PRIMES Conference</a>
-                    (October 2025, MIT), and the <a
-                        href="https://intrepid-math.com/workshops/2025/">Summer Workshop for Intrepid Mathematicians</a>
-                    (August 2025, virtual).</p>
-                <a href="../../images/Graz_Presentation.pdf" target="_blank" class="button">Graz</a>
-                <a href="https://math.mit.edu/research/highschool/primes/materials/2025/October/7-3-Chen.pdf"
-                    target="_blank" class="button">PRIMES</a>
-                <a href="https://intrepid-math.com/workshops/2025/Slides/Slides%20-%20TimothyTonyAlan.pdf"
-                    target="_blank" class="button">SWIM</a>
+            <section id="presentation" class="section-block">
+                <h2 class="section-title">Talk</h2>
+                <div class="card">
+                    <p>We have so far presented our research at the <a href="https://imsc.uni-graz.at/AlgNTh/seminar.html">Ring Theory Seminar of Graz University</a> (April 2026, virtual), the <a href="https://math.mit.edu/research/highschool/primes/conference/">October PRIMES Conference</a> (October 2025, MIT), and the <a href="https://intrepid-math.com/workshops/2025/">Summer Workshop for Intrepid Mathematicians</a> (August 2025, virtual).</p>
+                    <div class="card-actions">
+                        <a href="../../images/Graz_Presentation.pdf" target="_blank" class="btn btn-primary">Graz</a>
+                        <a href="https://math.mit.edu/research/highschool/primes/materials/2025/October/7-3-Chen.pdf" target="_blank" class="btn btn-primary">PRIMES</a>
+                        <a href="https://intrepid-math.com/workshops/2025/Slides/Slides%20-%20TimothyTonyAlan.pdf" target="_blank" class="btn btn-primary">SWIM</a>
+                    </div>
+                </div>
             </section>
-
-        </div>
-
-        <!-- Footer -->
-        <footer id="footer">
-        </footer>
-
+        </main>
     </div>
-
-    <!-- Dark Mode Toggle -->
-    <div id="dark-mode-toggle" onclick="toggleDarkMode()">&#x00AC;</div>
-
     <!-- Scripts -->
-    <script src="../../assets/js/jquery.min.js"></script>
-    <script src="../../assets/js/jquery.scrollex.min.js"></script>
-    <script src="../../assets/js/jquery.scrolly.min.js"></script>
-    <script src="../../assets/js/browser.min.js"></script>
-    <script src="../../assets/js/breakpoints.min.js"></script>
-    <script src="../../assets/js/util.js"></script>
-    <script src="../../assets/js/main.js"></script>
-
+    <script src="../../assets/js/nav.js"></script>
 </body>
-
 </html>
