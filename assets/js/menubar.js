@@ -32,19 +32,8 @@
             </div>
             <a href="${basePath}/ross/" class="sidebar-link">Ross</a>
             <a href="${basePath}/timotree/" class="sidebar-link">Timotree</a>
-            <div class="dropdown-wrapper">
-                <button class="dropdown-btn" onclick="toggleGlobalDropdown(this)">Apps <span class="caret">&#9662;</span></button>
-                <div class="dropdown-container">
-                    <a href="${basePath}/scibowl/ai/" class="sidebar-link sub-link"><b>[SciBowl]</b> AI</a>
-                    <a href="${basePath}/scibowl/chemphys/" class="sidebar-link sub-link"><b>[SciBowl]</b> ChemPhys</a>
-                    <a href="${basePath}/scibowl/order/" class="sidebar-link sub-link"><b>[SciBowl]</b> Ordering</a>
-                    <a href="${basePath}/latin/celerius/" class="sidebar-link sub-link"><b>[Latin]</b> Celerius</a>
-                    <a href="${basePath}/latin/ety/" class="sidebar-link sub-link"><b>[Latin]</b> Etymology</a>
-                    <a href="${basePath}/latin/voc/" class="sidebar-link sub-link"><b>[Latin]</b> Vocab</a>
-                    <a href="${basePath}/latin/voc/learn/" class="sidebar-link sub-link"><b>[Latin]</b> Vocab (Learn)</a>
-                    <a href="${basePath}/latin/voc/play/" class="sidebar-link sub-link"><b>[Latin]</b> Vocab (Play)</a>
-                </div>
-            </div>
+            <a href="${basePath}/scibowl/" class="sidebar-link">Science Bowl</a>
+            <a href="${basePath}/latin/" class="sidebar-link">Latin</a>
         </div>
     </div>
     `;
