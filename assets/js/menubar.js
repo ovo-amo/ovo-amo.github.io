@@ -6,6 +6,11 @@
 
     // HTML Structure
     const menuHTML = `
+    <div id="dark-mode-toggle" onclick="toggleGlobalDarkMode()" aria-label="Toggle Dark Mode">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+    </div>
     <div id="global-menu-toggle" onclick="toggleGlobalMenu()" aria-label="Toggle Menu">
         <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -46,6 +51,17 @@
         document.getElementById("global-sidebar").classList.toggle("open");
         document.getElementById("global-sidebar-overlay").classList.toggle("open");
     };
+
+    window.toggleGlobalDarkMode = function () {
+        document.documentElement.classList.toggle("light-mode");
+        const isLight = document.documentElement.classList.contains("light-mode");
+        localStorage.setItem("globalDarkMode", isLight ? "light" : "dark");
+    };
+
+    // Initialize dark mode from localStorage
+    if (localStorage.getItem("globalDarkMode") === "light") {
+        document.documentElement.classList.add("light-mode");
+    }
 
     window.toggleGlobalDropdown = function (btn) {
         const container = btn.nextElementSibling;

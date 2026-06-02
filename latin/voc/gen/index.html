@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Vocab Generator</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../../assets/css/main.css" />
+    <link rel="icon" type="image/png" href="../../../images/logo.png">
+    
+    <!-- KaTeX for math if needed by menubar/global scripts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, { delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true}] });"></script>
+
+    <!-- Load Vocab Data -->
+    <script src="../../celerius/words.js"></script>
+    
+    <style>
+        .selection-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .grid-header {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            text-align: center;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--color-border-subtle);
+            margin-bottom: 0.5rem;
+        }
+        .select-btn {
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--color-border-subtle);
+            background: var(--color-bg-slate);
+            color: var(--color-text-primary);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .select-btn:hover {
+            border-color: var(--color-accent-violet);
+            background: var(--color-bg-slate-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.15);
+        }
+        .select-btn.active {
+            border-color: var(--color-accent-violet);
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--color-accent-violet);
+            box-shadow: 0 0 0 2px var(--color-accent-violet);
+        }
+        .result-card {
+            padding: 2rem;
+            background: var(--color-bg-slate-hover);
+            border-radius: var(--border-radius);
+            display: none;
+            flex-direction: column;
+            gap: 1rem;
+            text-align: center;
+            animation: fadeIn 0.4s ease-out;
+        }
+        .result-card.visible {
+            display: flex;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .word-identity {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-accent-violet);
+        }
+        .word-meaning {
+            font-size: 1.5rem;
+            color: var(--color-text-primary);
+            font-style: italic;
+        }
+        .word-meta {
+            font-size: 1.1rem;
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        .action-container {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Menubar integration for regular page feel -->
+    <script src="../../../assets/js/menubar.js" data-base="../../.."></script>
+
+    <div class="layout-container">
+        <!-- Sidebar Header (optional based on your other pages, but usually included if menubar.js is present. Actually menubar.js creates the sidebar dynamically, but standard pages also have a header if they aren't using the dynamic nav. Wait, menubar.js handles the overlay and toggle. Let's just include the standard header structure) -->
+        <header class="site-header">
+            <div class="brand">
+                <h1>Vocab Generator</h1>
+                <p>Generate random Latin nouns and verbs by their declensions and conjugations to test your knowledge.</p>
+            </div>
+            <nav class="site-nav">
+                <ul id="dynamic-nav"></ul>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <section class="section-block">
+                <h2 class="section-title">Select Category</h2>
+                <div class="card">
+                    <div class="selection-grid">
+                        <div class="grid-header">Nouns</div>
+                        <div class="grid-header">Verbs</div>
+
+                        <button class="select-btn" onclick="generateWord(this, 'noun', 1)">1st Declension</button>
+                        <button class="select-btn" onclick="generateWord(this, 'verb', 1)">1st Conjugation</button>
+
+                        <button class="select-btn" onclick="generateWord(this, 'noun', 2)">2nd Declension</button>
+                        <button class="select-btn" onclick="generateWord(this, 'verb', 2)">2nd Conjugation</button>
+
+                        <button class="select-btn" onclick="generateWord(this, 'noun', 3)">3rd Declension</button>
+                        <button class="select-btn" onclick="generateWord(this, 'verb', 3)">3rd Conjugation</button>
+
+                        <button class="select-btn" onclick="generateWord(this, 'noun', 3.5)">3rd Declension (i-stem)</button>
+                        <button class="select-btn" onclick="generateWord(this, 'verb', 3.5)">3rd Conjugation (-io)</button>
+
+                        <button class="select-btn" onclick="generateWord(this, 'noun', 4)">4th Declension</button>
+                        <button class="select-btn" onclick="generateWord(this, 'verb', 4)">4th Conjugation</button>
+
+                        <button class="select-btn" onclick="generateWord(this, 'noun', 5)">5th Declension</button>
+                        <button class="select-btn" onclick="generateWord(this, 'verb', 0)">Irregular</button>
+                    </div>
+
+                    <div id="result" class="result-card">
+                        <div class="word-meta" id="word-meta"></div>
+                        <div class="word-identity" id="word-identity"></div>
+                        <div class="word-meaning" id="word-meaning"></div>
+                        
+                        <div class="action-container">
+                            <a id="wiktionary-link" class="btn btn-primary" target="_blank" href="#">View on Wiktionary</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Required standard nav script for standard pages -->
+    <script src="../../../assets/js/nav.js"></script>
+
+    <script>
+        function generateWord(btnElement, pos, typeVal) {
+            // Update active state on buttons
+            document.querySelectorAll('.select-btn').forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+
+            let dataset = [];
+            let typeName = "";
+            if (pos === 'noun') {
+                dataset = RAW_NOUNS_DATA.filter(n => n.declension === typeVal);
+                typeName = "Noun";
+            } else {
+                dataset = RAW_VERBS_DATA.filter(v => v.conjugation === typeVal);
+                typeName = "Verb";
+            }
+
+            if (dataset.length === 0) {
+                alert("No words found for this selection!");
+                return;
+            }
+
+            const randomWord = dataset[Math.floor(Math.random() * dataset.length)];
+            
+            document.getElementById('word-identity').innerHTML = randomWord.identity;
+            document.getElementById('word-meaning').innerHTML = randomWord.meaning;
+            
+            if (pos === 'noun') {
+                document.getElementById('word-meta').textContent = typeName + " • " + randomWord.gender;
+            } else {
+                document.getElementById('word-meta').textContent = typeName;
+            }
+
+            // Decode HTML entities (like &#275;) into actual characters for the URL
+            const txt = document.createElement("textarea");
+            txt.innerHTML = randomWord.identity;
+            const decodedIdentity = txt.value;
+
+            // Construct wiktionary link
+            const firstWord = decodedIdentity.split(',')[0].trim();
+            document.getElementById('wiktionary-link').href = "https://en.wiktionary.org/wiki/" + encodeURIComponent(firstWord) + "#Latin";
+
+            // Show result block
+            document.getElementById('result').classList.add('visible');
+        }
+    </script>
+</body>
+</html>

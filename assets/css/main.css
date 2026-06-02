@@ -197,7 +197,7 @@ a:hover {
 
 .section-title {
     font-size: 1.8rem;
-    color: #fff;
+    color: var(--color-text-primary);
     margin-bottom: 2.5rem;
     display: flex;
     align-items: center;
@@ -501,12 +501,12 @@ a:hover {
 /* Dark Mode Toggle */
 #dark-mode-toggle {
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
+    top: 1.5rem;
+    right: 5rem;
     z-index: 1000;
     background: var(--color-bg-slate);
     border: 1px solid var(--color-border-subtle);
-    color: var(--color-text-secondary);
+    color: var(--color-text-primary);
     width: 48px;
     height: 48px;
     border-radius: 50%;
@@ -524,4 +524,41 @@ a:hover {
     color: var(--color-accent-violet);
     background: var(--color-bg-slate-hover);
     box-shadow: 0 0 15px var(--color-accent-violet-glow);
+}
+
+/* Light Mode Variables & Overrides */
+html.light-mode {
+    --color-bg-obsidian: #f8fafc;
+    --color-bg-slate: #ffffff;
+    --color-bg-slate-hover: #f1f5f9;
+    --color-text-primary: #0f172a;
+    --color-text-secondary: #475569;
+    --color-border-subtle: rgba(0, 0, 0, 0.1);
+}
+
+html.light-mode h1,
+html.light-mode h2,
+html.light-mode h3,
+html.light-mode h4,
+html.light-mode h5,
+html.light-mode h6 {
+    color: #0f172a;
+}
+
+html.light-mode .btn-primary {
+    color: var(--color-accent-violet);
+    background: rgba(139, 92, 246, 0.1);
+}
+
+html.light-mode .btn:hover {
+    color: #0f172a;
+}
+
+html.light-mode .btn-primary:hover {
+    color: #fff;
+    background: var(--color-accent-violet);
+}
+
+html.light-mode #global-sidebar-overlay {
+    background: rgba(255, 255, 255, 0.8);
 }
