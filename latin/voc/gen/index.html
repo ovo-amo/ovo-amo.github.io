@@ -61,6 +61,7 @@
         }
         .result-card {
             padding: 2rem;
+            margin-bottom: 2rem;
             background: var(--color-bg-slate-hover);
             border-radius: var(--border-radius);
             display: none;
@@ -98,6 +99,27 @@
             display: flex;
             justify-content: center;
         }
+        .vocab-stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        .vocab-stats-table th, .vocab-stats-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--color-border-subtle);
+            color: var(--color-text-primary);
+        }
+        .vocab-stats-table th {
+            background-color: var(--color-bg-slate);
+            font-weight: 600;
+        }
+        .vocab-stats-table tr:last-child td {
+            border-bottom: none;
+        }
+        .vocab-stats-table tr.total-row {
+            font-weight: 700;
+            background-color: rgba(139, 92, 246, 0.05);
+        }
     </style>
 </head>
 <body>
@@ -109,7 +131,7 @@
         <header class="site-header">
             <div class="brand">
                 <h1>Vocab Generator</h1>
-                <p>Generate random Latin nouns and verbs by their declensions and conjugations to test your knowledge.</p>
+                <p>Generate random Latin nouns and verbs by their declensions and conjugations.</p>
             </div>
             <nav class="site-nav">
                 <ul id="dynamic-nav"></ul>
@@ -152,6 +174,25 @@
                             <a id="wiktionary-link" class="btn btn-primary" target="_blank" href="#">View on Wiktionary</a>
                         </div>
                     </div>
+                </div>
+            </section>
+            
+            <section class="section-block">
+                <h2 class="section-title">Vocab Statistics</h2>
+                <div class="card" style="padding: 0; overflow: hidden;">
+                    <table class="vocab-stats-table">
+                        <thead>
+                            <tr>
+                                <th>Nouns</th>
+                                <th>Count</th>
+                                <th>Verbs</th>
+                                <th>Count</th>
+                            </tr>
+                        </thead>
+                        <tbody id="stats-tbody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
                 </div>
             </section>
         </main>
@@ -204,6 +245,62 @@
             // Show result block
             document.getElementById('result').classList.add('visible');
         }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const nounTypes = [
+                { label: '1st Declension', val: 1 },
+                { label: '2nd Declension', val: 2 },
+                { label: '3rd Declension', val: 3 },
+                { label: '3rd (i-stem)', val: 3.5 },
+                { label: '4th Declension', val: 4 },
+                { label: '5th Declension', val: 5 }
+            ];
+
+            const verbTypes = [
+                { label: '1st Conjugation', val: 1 },
+                { label: '2nd Conjugation', val: 2 },
+                { label: '3rd Conjugation', val: 3 },
+                { label: '3rd (-io)', val: 3.5 },
+                { label: '4th Conjugation', val: 4 },
+                { label: 'Irregular', val: 0 }
+            ];
+
+            const tbody = document.getElementById('stats-tbody');
+            if (!tbody) return;
+
+            let totalNouns = 0;
+            let totalVerbs = 0;
+
+            for (let i = 0; i < 6; i++) {
+                const nType = nounTypes[i];
+                const vType = verbTypes[i];
+
+                const nCount = RAW_NOUNS_DATA.filter(n => n.declension === nType.val).length;
+                const vCount = RAW_VERBS_DATA.filter(v => v.conjugation === vType.val).length;
+                
+                totalNouns += nCount;
+                totalVerbs += vCount;
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${nType.label}</td>
+                    <td>${nCount}</td>
+                    <td>${vType.label}</td>
+                    <td>${vCount}</td>
+                `;
+                tbody.appendChild(tr);
+            }
+
+            const trTotal = document.createElement('tr');
+            trTotal.className = 'total-row';
+            trTotal.innerHTML = `
+                <td>Total Nouns</td>
+                <td>${totalNouns}</td>
+                <td>Total Verbs</td>
+                <td>${totalVerbs}</td>
+            `;
+            tbody.appendChild(trTotal);
+        });
     </script>
 </body>
 </html>
