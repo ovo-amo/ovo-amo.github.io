@@ -2139,7 +2139,7 @@ function buildCheatSheet(){
     byCat.get(item.k).push(item);
   }
   let html=`<h1>&#957;&#932;eX &mdash; LaTeX Cheat Sheet</h1>`+
-    `<p class="cs-sub">One-page reference for Ross. Type the command on the left to get the symbol it names.</p><div class="cs-grid">`;
+    `<p class="cs-sub">LaTex reference for Ross.</p><div class="cs-grid">`;
   for(const cat of order){
     html+=`<div class="cs-cat"><div class="cs-cat-title">${escapeHtml(cat)}</div>`;
     for(const item of byCat.get(cat))
