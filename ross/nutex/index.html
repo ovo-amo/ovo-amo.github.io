@@ -1,0 +1,2368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>&#957;&#932;eX for Ross</title>
+  <link rel="icon" type="image/png" href="../../images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="loading-overlay">
+  <div class="load-inner">
+    <div class="load-logo">&#957;TeX</div>
+    <div class="load-track"><div class="load-fill" id="load-fill"></div></div>
+    <div class="load-msg" id="load-msg">Preparing your workspace&hellip;</div>
+  </div>
+</div>
+<div id="global-progress"><div id="global-progress-bar"></div></div>
+<div id="app-container">
+
+<!-- ═══ LEFT SIDEBAR ═══ -->
+<aside id="sidebar">
+  <div class="sb-header">
+    <span class="sb-logo" id="logo-el"></span>
+    <div class="sb-actions">
+      <button class="icon-btn" id="settings-btn" title="Settings">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </button>
+      <button class="icon-btn" id="rp-toggle-btn" title="Tools panel">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav id="sb-nav"></nav>
+</aside>
+
+<!-- ═══ MAIN CONTENT ═══ -->
+<main id="main-content">
+<div id="course-content">
+
+<h1>Fundamentals</h1>
+
+<p>Congratulations on attending the best summer program in mathematics, and welcome to <strong>&#957;&#932;eX for Ross</strong> &mdash; an interactive platform for mastering \(\LaTeX\). I hope this is sufficient for the majority of your problem sets. If not, you are in luck because of the great community supporting you this summer. <i>Enjoy! &mdash; Timothy (Ross '24, '25).</i></p>
+
+<p>If you have not already, you should set up an <a href="https://overleaf.com/">Overleaf account</a> or a local \(\TeX\) distribution such as <a href="https://www.tug.org/texlive/">TeX&nbsp;Live</a> (cross-platform) or <a href="https://miktex.org/">MiKTeX</a> (Windows). You can then download the set templates from the Ross Discord server. This guide focuses solely on mathematical notation; it does not explain how to install a compiler or structure a whole document.</p>
+
+<p><strong>A note on the name.</strong> \(\TeX\) was created by Donald Knuth and takes its name from the Greek &tau;&epsilon;&chi;&nu;&eta; (<i>technē</i>), "art" or "craft" &mdash; the same root as <i>technical</i>. The final letter is a Greek <em>chi</em> (&chi;), not an "x", so \(\TeX\) is pronounced "tech" (as in <i>technology</i>), never "teks". \(\LaTeX\) stands for <strong>La</strong>mport <strong>TeX</strong>, after Leslie Lamport, who built it as a friendlier layer on top of \(\TeX\); say it "LAH-tek" or "LAY-tek". Writing the logos with their characteristic raised and lowered letters requires the macros <code>\TeX</code> and <code>\LaTeX</code> &mdash; you only ever need these in running text, never inside an equation.</p>
+
+<h2 class="basic">Inline and Display Math</h2>
+
+<p>\(\LaTeX\) works much like any other text editor, except that you constantly switch between <em>text mode</em> (ordinary prose) and <em>math mode</em> (where letters become italic variables and spacing is handled for you).</p>
+
+<p>There are two flavours of math mode. <strong>Inline math</strong> uses <code>\(...\)</code> and sits inside a line of text; <strong>display math</strong> uses <code>\[...\]</code> and is centred on its own line. Inline math is the default for almost everything, like <i>the set of integers is denoted \(\mathbf{Z}\)</i>. Reserve display math for expressions you want to emphasise, or that are simply too tall or wide to sit comfortably in a line. For instance, the \(3\times 3\) identity matrix is best displayed: \[\begin{bmatrix}1&amp;0&amp;0\\0&amp;1&amp;0\\0&amp;0&amp;1\end{bmatrix}.\] Notice that the matrix above renders centred and at full size, whereas \(\mathbf{Z}\) stayed in the line &mdash; that is the difference between the two modes.</p>
+
+<p>Always wrap any mathematics, even a lone number, in these delimiters (calendar dates are the usual exception, since they are not really mathematical quantities). Punctuation belongs to the sentence, not the equation, but it still must appear: a sentence that ends on display math still ends with a period, placed <em>inside</em> the <code>\[...\]</code> right after the expression. Finally, never begin a sentence with mathematics &mdash; at least one word must precede any notation, both because a capital letter cannot start an italic variable cleanly and because it simply reads better.</p>
+
+<p>This platform shows you which wrapper an exercise expects on the grey lines above and below the editor, and supplies it automatically &mdash; but keep mental track of whether you are in <code>\(...\)</code> or <code>\[...\]</code>, because it changes how some symbols are sized (see <ref>2.3</ref> and <ref>3.1</ref>).</p>
+
+<h2 class="basic">Symbols</h2>
+
+<p>Numbers and the basic operators <code>+</code>, <code>-</code>, <code>=</code> are typed literally. Everything else &mdash; a relation, a Greek letter, a special sign &mdash; is produced by a <strong>command</strong> (also called a <em>macro</em>): a backslash <code>\</code> followed by a name. For example, never multiply with <code>*</code> (which renders as the raised asterisk \(*\)); use <code>\cdot</code> for a centred dot \(a\cdot b\) or <code>\times</code> for a cross \(a\times b\). A command name is made of letters only, so \(\LaTeX\) needs to know where it ends: <code>\times2</code> would be read as a command called <code>times2</code>. Either add a space (<code>\times 2</code>) or a brace; the space is swallowed in the output, so it never appears on the page.</p>
+
+<p>Here are the relations and operators you will reach for constantly.</p>
+
+<table>
+  <thead><tr><th>Name</th><th>\(\LaTeX\)</th><th>Output</th></tr></thead>
+  <tbody>
+    <tr><td>Not equal</td><td><code>\neq</code></td><td class="math-cell">\neq</td></tr>
+    <tr><td>Less / greater or equal</td><td><code>\leq \geq</code></td><td class="math-cell">\leq \quad \geq</td></tr>
+    <tr><td>Approximately equal</td><td><code>\approx</code></td><td class="math-cell">\approx</td></tr>
+    <tr><td>Equivalent / congruent</td><td><code>\equiv</code></td><td class="math-cell">\equiv</td></tr>
+    <tr><td>Proportional to</td><td><code>\propto</code></td><td class="math-cell">\propto</td></tr>
+    <tr><td>Plus or minus</td><td><code>\pm \mp</code></td><td class="math-cell">\pm \quad \mp</td></tr>
+    <tr><td>Centred / cross product</td><td><code>\cdot \times</code></td><td class="math-cell">\cdot \quad \times</td></tr>
+    <tr><td>Division sign</td><td><code>\div</code></td><td class="math-cell">\div</td></tr>
+    <tr><td>Infinity</td><td><code>\infty</code></td><td class="math-cell">\infty</td></tr>
+    <tr><td>Arrows</td><td><code>\to \mapsto</code></td><td class="math-cell">\to \quad \mapsto</td></tr>
+    <tr><td>Implication / iff</td><td><code>\implies \iff</code></td><td class="math-cell">\implies \quad \iff</td></tr>
+  </tbody>
+</table>
+
+<p><strong>Greek letters.</strong> Each Greek letter is a command spelled the way it sounds: <code>\alpha</code> \(\alpha\), <code>\beta</code> \(\beta\), <code>\gamma</code> \(\gamma\), <code>\pi</code> \(\pi\), <code>\theta</code> \(\theta\), <code>\lambda</code> \(\lambda\). For the capital form, capitalise the first letter of the command: <code>\Gamma</code> \(\Gamma\), <code>\Delta</code> \(\Delta\), <code>\Sigma</code> \(\Sigma\), <code>\Omega</code> \(\Omega\). Capitals that look identical to a Latin letter (a capital alpha is just "A") have no command &mdash; you type the Latin letter instead. Several lowercase letters also have a fancier variant prefixed with <code>var</code>: <code>\epsilon</code> \(\epsilon\) versus <code>\varepsilon</code> \(\varepsilon\), and <code>\phi</code> \(\phi\) versus <code>\varphi</code> \(\varphi\).</p>
+
+<table>
+  <thead><tr><th>Name</th><th>\(\LaTeX\)</th><th>Output</th></tr></thead>
+  <tbody>
+    <tr><td>Element of / not</td><td><code>\in \notin</code></td><td class="math-cell">\in \quad \notin</td></tr>
+    <tr><td>Subset / subset-or-equal</td><td><code>\subset \subseteq</code></td><td class="math-cell">\subset \quad \subseteq</td></tr>
+    <tr><td>Union / intersection</td><td><code>\cup \cap</code></td><td class="math-cell">\cup \quad \cap</td></tr>
+    <tr><td>Empty set</td><td><code>\emptyset \varnothing</code></td><td class="math-cell">\emptyset \quad \varnothing</td></tr>
+    <tr><td>Set complement / minus</td><td><code>\setminus</code></td><td class="math-cell">A \setminus B</td></tr>
+    <tr><td>For all / there exists</td><td><code>\forall \exists</code></td><td class="math-cell">\forall \quad \exists</td></tr>
+    <tr><td>Such that (in set-builder)</td><td><code>\mid</code></td><td class="math-cell">\{x \mid x &gt; 0\}</td></tr>
+  </tbody>
+</table>
+
+<p>A set is written with escaped braces (the bare <code>{ }</code> are invisible grouping characters, covered in <ref>4.1</ref>): <code>\{1, 2, 3\}</code> gives \(\{1, 2, 3\}\). Set-builder notation pairs that with <code>\mid</code> for the vertical "such that" bar, as in <code>\{\, n \in \mathbf{Z} \mid n &gt; 0 \,\}</code>, which produces \(\{\, n \in \mathbf{Z} \mid n &gt; 0 \,\}\). Prefer <code>\mid</code> over a bare <code>|</code> here: \(\LaTeX\) treats <code>\mid</code> as a <em>relation</em> and gives it balanced spacing, whereas a lone <code>|</code> is spaced as an ordinary symbol and looks cramped.</p>
+
+<exercise>
+  <expression data-type="inline">
+    a \neq b
+    <hint>Not-equal is a single command: <code>\neq</code>.</hint>
+  </expression>
+  <expression data-type="inline">
+    0 \leq x \leq 1
+    <hint>The symbol &#x2264; is <code>\leq</code>. You may chain two of them.</hint>
+  </expression>
+  <expression data-type="inline">
+    \pi \approx 3.14
+    <hint>Greek pi is <code>\pi</code>; "approximately" is <code>\approx</code>. A decimal point is typed literally.</hint>
+  </expression>
+  <expression data-type="inline">
+    \alpha + \beta = \gamma
+    <hint>Lowercase Greek letters are spelled out: <code>\alpha</code>, <code>\beta</code>, <code>\gamma</code>.</hint>
+  </expression>
+  <expression data-type="inline" data-pretest="true">
+    \{\, n \in \mathbf{Z} \mid n &gt; 0 \,\}
+    <hint>Escaped braces <code>\{ \}</code>; membership <code>\in</code>; the integers \(\mathbf{Z}\) are <code>\mathbf{Z}</code>; the "such that" bar is <code>\mid</code>. The thin spaces <code>\,</code> just tidy the gaps.</hint>
+  </expression>
+  <expression data-type="inline">
+    A \cup B \subseteq C
+    <hint>Union is <code>\cup</code>; "subset or equal" is <code>\subseteq</code>.</hint>
+  </expression>
+</exercise>
+
+<h2 class="basic">Fonts and Alphabets</h2>
+
+<p>The same letter can be set in several mathematical <em>alphabets</em>, each carrying its own meaning. You saw one already: \(\mathbf{Z}\) is written <code>\mathbf{Z}</code>, where <code>\mathbf</code> stands for <strong>math bold face</strong>. The <code>Z</code> in braces is the command's <strong>argument</strong> &mdash; the thing it acts on. Many commands take no argument, but a font command always takes exactly one (everything between its braces is restyled).</p>
+
+<p>The most important alphabet for you is <strong>blackboard bold</strong>, <code>\mathbb</code>, which gives \(\mathbb{R}\), \(\mathbb{N}\), \(\mathbb{Z}\), \(\mathbb{Q}\), \(\mathbb{C}\). Why "bb"? On a <em>blackboard</em> a lecturer cannot easily write a thick bold letter, so the convention grew of <em>doubling</em> one stroke of the letter instead &mdash; a "double-struck" R for the bold \(\mathbf R\) of the reals. \(\LaTeX\) named the command after that classroom habit: <code>\math</code>-<code>bb</code> = "math blackboard-bold". Remember the picture of a chalk-doubled letter and you will never forget the name. (Many number theorists at Ross will happily debate \(\mathbb{Z}\) versus \(\mathbf{Z}\); both are correct, but pick one and stay consistent within a document.)</p>
+
+<p>The other alphabets are named just as literally once you know the typographic word behind each.</p>
+
+<table>
+  <thead><tr><th>Command</th><th>Stands for</th><th>Output</th></tr></thead>
+  <tbody>
+    <tr><td><code>\mathbf{A}</code></td><td>math <strong>b</strong>old <strong>f</strong>ace</td><td class="math-cell">\mathbf{A}</td></tr>
+    <tr><td><code>\mathbb{A}</code></td><td>math <strong>b</strong>lackboard <strong>b</strong>old</td><td class="math-cell">\mathbb{A}</td></tr>
+    <tr><td><code>\mathcal{A}</code></td><td>math <strong>cal</strong>ligraphic</td><td class="math-cell">\mathcal{A}</td></tr>
+    <tr><td><code>\mathfrak{A}</code></td><td><strong>Frak</strong>tur (German blackletter)</td><td class="math-cell">\mathfrak{A}</td></tr>
+    <tr><td><code>\mathrm{A}</code></td><td>math <strong>r</strong>o<strong>m</strong>an (upright)</td><td class="math-cell">\mathrm{A}</td></tr>
+    <tr><td><code>\mathsf{A}</code></td><td>math <strong>s</strong>ans-<strong>s</strong>erif</td><td class="math-cell">\mathsf{A}</td></tr>
+    <tr><td><code>\mathit{A}</code></td><td>math <strong>it</strong>alic</td><td class="math-cell">\mathit{A}</td></tr>
+    <tr><td><code>\mathtt{A}</code></td><td>math <strong>t</strong>ele<strong>t</strong>ype</td><td class="math-cell">\mathtt{A}</td></tr>
+  </tbody>
+</table>
+
+<p>A few habits worth forming now. Single variables are italic by default, so you only need a font command to <em>change</em> that default: write \(\mathbb{R}\) for the reals, \(\mathcal{F}\) for a family of sets, and crucially <code>\mathrm</code> (upright roman) for anything that is a <em>name</em> rather than a variable &mdash; the "d" in a differential \(\mathrm{d}x\), or a multi-letter constant. Without it, \(\LaTeX\) reads <code>dx</code> as \(d\) times \(x\), in slanted type. The same logic gives us proper function names, which the next section automates.</p>
+
+<exercise>
+  <expression data-type="inline">
+    x \in \mathbb{R}
+    <hint>Blackboard-bold R (the reals) is <code>\mathbb{R}</code>; membership is <code>\in</code>.</hint>
+  </expression>
+  <expression data-type="inline">
+    \mathbf{v} \cdot \mathbf{w}
+    <hint>Bold vectors use <code>\mathbf{...}</code>; the centred dot is <code>\cdot</code>.</hint>
+  </expression>
+  <expression data-type="inline" data-pretest="true">
+    f \colon \mathbb{N} \to \mathbb{Q}
+    <hint>The natural numbers and rationals are <code>\mathbb{N}</code> and <code>\mathbb{Q}</code>. Use <code>\colon</code> for a properly-spaced function colon, and <code>\to</code> for the arrow.</hint>
+  </expression>
+  <expression data-type="inline">
+    \mathrm{d}x
+    <hint>Upright roman "d" is <code>\mathrm{d}</code>, kept distinct from the variable \(x\).</hint>
+  </expression>
+  <expression data-type="inline">
+    \mathcal{P}(A)
+    <hint>Calligraphic letters (here a power-set \(\mathcal P\)) use <code>\mathcal{...}</code>.</hint>
+  </expression>
+</exercise>
+
+<exercise class="review">
+  <expression data-type="inline">
+    \mathbb{Z} \subseteq \mathbb{Q} \subseteq \mathbb{R}
+    <hint>Chain three blackboard-bold sets with <code>\subseteq</code> between each.</hint>
+  </expression>
+  <expression data-type="inline">
+    \forall \varepsilon &gt; 0
+    <hint>"For all" is <code>\forall</code>; the curly epsilon is <code>\varepsilon</code> (the plain one is <code>\epsilon</code>). Use <code>&gt;</code> for the inequality.</hint>
+  </expression>
+  <expression data-type="display">
+    A \cap B = \{\, x \mid x \in A \text{ and } x \in B \,\}
+    <hint>Intersection <code>\cap</code>; set-builder with <code>\mid</code>; the word "and" must sit in <code>\text{ and }</code> so it is not read as three variables (more in <ref>6.3</ref>).</hint>
+  </expression>
+  <expression data-type="inline">
+    \theta \approx \frac{\pi}{6}
+    <hint>Greek <code>\theta</code> and <code>\pi</code>, joined by <code>\approx</code> over a fraction <code>\frac{\pi}{6}</code> (fractions are covered in <ref>3.1</ref>).</hint>
+  </expression>
+</exercise>
+
+<h1>Superscripts, Subscripts, and Operators</h1>
+
+<p>Almost every formula carries an exponent, an index, or a big operator like a sum. These three subsections give you the grammar for all of them.</p>
+
+<h2 class="basic">Superscripts and Subscripts</h2>
+
+<p>A <strong>superscript</strong> is produced with <code>^</code> and a <strong>subscript</strong> with <code>_</code> (underscore). Each attaches to the single token before it: <code>x^2</code> gives \(x^2\) and <code>a_1</code> gives \(a_1\). "Single token" is the crucial idea &mdash; if the script is more than one character, you <em>must</em> wrap it in braces. <code>x^10</code> renders as \(x^10\) (a one raised, then a stray zero), whereas <code>x^{10}</code> gives the intended \(x^{10}\). The same holds for subscripts: <code>a_{ij}</code>, not <code>a_ij</code>.</p>
+
+<p>You can combine both on one base, and the order does not matter: <code>x_i^2</code> and <code>x^2_i</code> both render as \(x_i^2\). What you may <em>not</em> do is stack two of the same kind directly: <code>x^2^3</code> is the classic <strong>double superscript error</strong>. Decide what you mean and brace it &mdash; <code>x^{2^3}</code> for a tower \(x^{2^3}\), or <code>{x^2}^3</code> for \({x^2}^3\). Nesting is fine as deep as you like, as long as every level is braced.</p>
+
+<p>Two shortcuts. A <strong>prime</strong> is just an apostrophe: <code>f'</code> and <code>f''</code> give \(f'\) and \(f''\) (it is shorthand for a superscript, so do not write <code>f^'</code>). And a leading subscript or superscript with an empty base, like the left-index in \({}^{n}C_k\), is written <code>{}^{n}C_k</code> &mdash; the empty <code>{}</code> gives the script something to attach to.</p>
+
+<exercise>
+  <expression data-type="inline">
+    x^2 + y^2
+    <hint>Single-character exponents need no braces: <code>x^2</code>.</hint>
+  </expression>
+  <expression data-type="inline">
+    a_1 + a_2 + a_n
+    <hint>Subscripts use <code>_</code>: <code>a_1</code>, <code>a_2</code>, <code>a_n</code>.</hint>
+  </expression>
+  <expression data-type="inline">
+    x^{10} - 1
+    <hint>A two-digit exponent must be braced: <code>x^{10}</code>, not <code>x^10</code>.</hint>
+  </expression>
+  <expression data-type="inline" data-pretest="true">
+    a_{ij} = x_i^2 + y_j^2
+    <hint>Two-letter subscript braced: <code>a_{ij}</code>. A base may carry both scripts in either order: <code>x_i^2</code>.</hint>
+  </expression>
+  <expression data-type="inline">
+    2^{2^k}
+    <hint>To stack exponents you must brace the inner one: <code>2^{2^k}</code>. Writing <code>2^2^k</code> is a double-superscript error.</hint>
+  </expression>
+  <expression data-type="inline">
+    f'(x_0)
+    <hint>A prime is a plain apostrophe right after the symbol: <code>f'</code>.</hint>
+  </expression>
+</exercise>
+
+<h2 class="basic">Named Functions and Operators</h2>
+
+<p>A function name written as bare letters comes out italic and wrongly spaced &mdash; <code>sin x</code> looks like the product \(s\cdot i\cdot n\cdot x\). \(\LaTeX\) provides upright, correctly-spaced commands for the standard functions. Compare the wrong \(sin x\) with the right <code>\sin x</code> giving \(\sin x\).</p>
+
+<table>
+  <thead><tr><th>Family</th><th>Commands</th></tr></thead>
+  <tbody>
+    <tr><td>Trigonometric</td><td><code>\sin \cos \tan \cot \sec \csc</code></td></tr>
+    <tr><td>Logarithm / exponential</td><td><code>\log \ln \exp</code></td></tr>
+    <tr><td>Number theory / algebra</td><td><code>\gcd \deg \dim \det \ker</code></td></tr>
+    <tr><td>Operators with limits</td><td><code>\lim \sup \inf \min \max</code></td></tr>
+  </tbody>
+</table>
+
+<p>The last row is special: those are <strong>operators with limits</strong>, meaning a subscript drops <em>beneath</em> them in display math, like a sum's lower bound. The arrow under a limit is <code>\to</code>, and the whole subscript is braced:</p>
+
+<pre class="paired">\log_2 8 = 3<br>\lim_{x \to 0} \frac{\sin x}{x} = 1</pre>
+
+<p>For a name with no built-in command &mdash; <code>lcm</code>, <code>char</code>, <code>ord</code>, <code>id</code> &mdash; never just italicise it. Wrap it in <code>\operatorname{...}</code>, which formats any word exactly like the built-ins: \(\operatorname{lcm}(a,b)\). For modular reduction as an operator, <code>\bmod</code> gives \(a \bmod n\) (the parenthesised <code>\pmod</code> form lives in <ref>3.4</ref>).</p>
+
+<exercise>
+  <expression data-type="inline">
+    \sin x + \cos x
+    <hint>Function names get a backslash: <code>\sin</code>, <code>\cos</code>. The trailing space after the command disappears in the output.</hint>
+  </expression>
+  <expression data-type="inline">
+    \tan\theta = \frac{\sin\theta}{\cos\theta}
+    <hint>Three trig commands and a fraction. The Greek angle is <code>\theta</code>; no space needed between <code>\tan</code> and <code>\theta</code> since a command name ends at the backslash.</hint>
+  </expression>
+  <expression data-type="inline">
+    \log_2 8 = 3
+    <hint>Logs take a subscript base: <code>\log_2</code>.</hint>
+  </expression>
+  <expression data-type="display" data-advanced="true">
+    \lim_{n \to \infty} \frac{1}{n} = 0
+    <hint><code>\lim</code> with a braced subscript <code>_{n \to \infty}</code>; the arrow is <code>\to</code> and infinity is <code>\infty</code>. In display mode the subscript drops beneath.</hint>
+  </expression>
+  <expression data-type="inline" data-pretest="true">
+    \gcd(a, b) = 1
+    <hint>Greatest common divisor has a built-in command: <code>\gcd</code>. Coprimality is everywhere at Ross.</hint>
+  </expression>
+  <expression data-type="inline">
+    \operatorname{lcm}(a, b)
+    <hint>No built-in macro for lcm, so use <code>\operatorname{lcm}</code> to get the upright, well-spaced name.</hint>
+  </expression>
+</exercise>
+
+<h2 class="basic">Large Operators</h2>
+
+<p>Sums, products, and integrals are <strong>large operators</strong>. Each takes its bounds as a subscript (lower) and superscript (upper), exactly like the operators-with-limits above:</p>
+
+<pre class="paired">\sum_{i=1}^{n} i = \frac{n(n+1)}{2}<br>\prod_{k=1}^{n} k = n!<br>\int_0^1 x^2 \, \mathrm{d}x = \frac{1}{3}</pre>
+
+<p>Two things to carry away. First, the integral's "d" should be upright and preceded by a thin space: write <code>x^2 \, \mathrm{d}x</code>, never <code>x^2 dx</code>. Second, all the large operators share one pattern, so once you can write a sum you can write any of them:</p>
+
+<table>
+  <thead><tr><th>Command</th><th>Operator</th><th>Output</th></tr></thead>
+  <tbody>
+    <tr><td><code>\sum</code></td><td>Summation</td><td class="math-cell">\sum_{i=1}^{n}</td></tr>
+    <tr><td><code>\prod</code></td><td>Product</td><td class="math-cell">\prod_{k=1}^{n}</td></tr>
+    <tr><td><code>\int</code></td><td>Integral</td><td class="math-cell">\int_a^b</td></tr>
+    <tr><td><code>\iint \iiint</code></td><td>Double / triple integral</td><td class="math-cell">\iint_D</td></tr>
+    <tr><td><code>\oint</code></td><td>Contour integral</td><td class="math-cell">\oint_C</td></tr>
+    <tr><td><code>\bigcup \bigcap</code></td><td>Big union / intersection</td><td class="math-cell">\bigcup_{i=1}^{n}</td></tr>
+    <tr><td><code>\bigoplus \bigotimes</code></td><td>Big sum / product (algebra)</td><td class="math-cell">\bigoplus_{i}</td></tr>
+  </tbody>
+</table>
+
+<exercise>
+  <expression data-type="display" data-pretest="true">
+    \sum_{i=1}^{n} i = \frac{n(n+1)}{2}
+    <hint>Summation with bounds: <code>\sum_{i=1}^{n}</code>. The right-hand side is a fraction <code>\frac{n(n+1)}{2}</code>.</hint>
+  </expression>
+  <expression data-type="display">
+    \prod_{k=1}^{n} k = n!
+    <hint>Product is <code>\prod</code>, with the same bound syntax as a sum. The factorial is just <code>n!</code>.</hint>
+  </expression>
+  <expression data-type="display" data-advanced="true">
+    \int_0^1 x^2 \, \mathrm{d}x = \frac{1}{3}
+    <hint>Integral with limits: <code>\int_0^1</code>. Put a thin space <code>\,</code> before the upright differential <code>\mathrm{d}x</code>.</hint>
+  </expression>
+  <expression data-type="display">
+    \bigcup_{i=1}^{\infty} A_i
+    <hint>Big union is <code>\bigcup</code>, bounds as usual; infinity is <code>\infty</code>.</hint>
+  </expression>
+  <expression data-type="display">
+    \sum_{k=0}^{n} x^k = \frac{1 - x^{n+1}}{1 - x}
+    <hint>A finite geometric sum. Braced exponents <code>x^k</code> and <code>x^{n+1}</code>; the right side is one fraction.</hint>
+  </expression>
+</exercise>
+
+<h2 class="advanced">Operator Sizing: Display vs Inline</h2>
+
+<p>A large operator changes shape depending on the surrounding mode, and this is the single most common source of "why does it look squished?" confusion. The switch is governed by \(\LaTeX\)'s notion of <em>style</em>: display math uses <code>\displaystyle</code> (bounds stacked above and below, large symbol), inline math uses <code>\textstyle</code> (bounds tucked to the side, compact). The same code gives both:</p>
+
+<pre class="paired">\textstyle\sum_{i=1}^{n} i<br>\displaystyle\sum_{i=1}^{n} i</pre>
+
+<p>You can override the style per operator. Prefix with <code>\displaystyle</code> to force the big, stacked look inside a line &mdash; though that stretches the line and usually means the expression wants its own display. The mirror <code>\textstyle</code> forces the compact form even in display. For only the bound <em>placement</em> (without resizing) there are <code>\limits</code> and <code>\nolimits</code> after the operator, but <code>\displaystyle</code> is the lever you will actually reach for.</p>
+
+<exercise>
+  <expression data-type="inline" data-advanced="true">
+    \displaystyle\sum_{k=0}^{n} \binom{n}{k} = 2^n
+    <hint>To keep the stacked-bounds look inside a line, prefix with <code>\displaystyle</code>. The binomial <code>\binom{n}{k}</code> is from <ref>3.3</ref>; the right side is a braced power <code>2^n</code>.</hint>
+  </expression>
+  <expression data-type="inline" data-advanced="true">
+    \textstyle\prod_{i=1}^{n} \frac{1}{i}
+    <hint>Force the compact, side-set bounds with <code>\textstyle</code>, even though there is a fraction inside.</hint>
+  </expression>
+</exercise>
+
+<exercise class="review">
+  <expression data-type="display">
+    \sum_{k=1}^{n} k^2 = \frac{n(n+1)(2n+1)}{6}
+    <hint>Sum of squares: <code>\sum_{k=1}^{n} k^2</code> over the fraction <code>\frac{n(n+1)(2n+1)}{6}</code>.</hint>
+  </expression>
+  <expression data-type="display" data-advanced="true">
+    \lim_{x \to 0} \frac{\sin x}{x} = 1
+    <hint>Limit with <code>\lim_{x \to 0}</code>, the function name <code>\sin</code>, and a fraction.</hint>
+  </expression>
+  <expression data-type="inline">
+    a_{n+1} = a_n + a_{n-1}
+    <hint>Brace any multi-token subscript: <code>a_{n+1}</code>, <code>a_{n-1}</code>.</hint>
+  </expression>
+  <expression data-type="display" data-advanced="true">
+    \int_{-\infty}^{\infty} e^{-x^2} \, \mathrm{d}x = \sqrt{\pi}
+    <hint>Bounds may be expressions: <code>\int_{-\infty}^{\infty}</code>. Note the braced exponent <code>e^{-x^2}</code> and the square root <code>\sqrt{\pi}</code> (see <ref>3.2</ref>).</hint>
+  </expression>
+  <expression data-type="inline" data-advanced="true" data-image="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20320%20140%22%20width%3D%22320%22%20height%3D%22140%22%3E%3Crect%20width%3D%22320%22%20height%3D%22140%22%20rx%3D%228%22%20fill%3D%22%23f6f7f2%22%2F%3E%3Crect%20x%3D%223%22%20y%3D%223%22%20width%3D%22314%22%20height%3D%22134%22%20rx%3D%227%22%20fill%3D%22none%22%20stroke%3D%22%23d8dccf%22%20stroke-width%3D%222%22%2F%3E%3Cg%20font-family%3D%22%27Bradley%20Hand%27%2C%27Segoe%20Print%27%2C%27Comic%20Sans%20MS%27%2Ccursive%22%20fill%3D%22%232b4a8b%22%20stroke%3D%22%232b4a8b%22%20stroke-width%3D%220.4%22%3E%3Ctext%20x%3D%2260%22%20y%3D%2292%22%20font-size%3D%2254%22%20transform%3D%22rotate%28-3%2060%2092%29%22%3Ee%3C%2Ftext%3E%3Ctext%20x%3D%2292%22%20y%3D%2258%22%20font-size%3D%2230%22%20transform%3D%22rotate%28-2%2092%2058%29%22%3Ei%26%23960%3B%3C%2Ftext%3E%3Ctext%20x%3D%22140%22%20y%3D%2290%22%20font-size%3D%2248%22%20transform%3D%22rotate%282%20140%2090%29%22%3E%2B%201%20%3D%200%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fsvg%3E">
+    e^{i\pi} + 1 = 0
+    <hint><strong>Whiteboard challenge.</strong> Read the scribble and type the \(\LaTeX\) for it. Euler's identity: a braced exponent <code>e^{i\pi}</code>, then <code>+ 1 = 0</code>.</hint>
+  </expression>
+</exercise>
+
+<h1>Fractions, Roots, and Binomials</h1>
+
+<p>Stacked notation &mdash; fractions, radicals, binomial coefficients, and the congruences of modular arithmetic.</p>
+
+<h2 class="basic">Fractions</h2>
+
+<p>The workhorse is <code>\frac{numerator}{denominator}</code>: <code>\frac{a+b}{c}</code> gives \(\frac{a+b}{c}\). Like the large operators, a fraction is sized by the current style. In display math it is full size; inline, it shrinks so the line is not pushed apart, which is why <code>\frac{1}{2}</code> looks small in a sentence: \(\frac{1}{2}\).</p>
+
+<p>You can override the style per fraction. <code>\dfrac{a}{b}</code> is a <strong>d</strong>isplay fraction, forced full-size even inline: \(\dfrac{a}{b}\). <code>\tfrac{a}{b}</code> is a <strong>t</strong>ext fraction, forced small even in display: \(\tfrac{a}{b}\). Reach for <code>\tfrac</code> when a small fraction appears in running prose like a coefficient, and for <code>\dfrac</code> when an inline fraction is genuinely unreadable at the shrunken size. For a continued fraction, <code>\cfrac</code> keeps every level full-size and aligned; it is occasionally handy but rarely needed in a basic document. As a rule, if you find yourself fighting the sizing inline, that is \(\LaTeX\) telling you the expression wants its own displayed line.</p>
+
+<exercise>
+  <expression data-type="display">
+    \frac{a + b}{c}
+    <hint>Fraction: <code>\frac{numerator}{denominator}</code>.</hint>
+  </expression>
+  <expression data-type="inline" data-pretest="true">
+    \frac{1}{2} + \frac{1}{3} = \frac{5}{6}
+    <hint>Three fractions joined by <code>+</code> and <code>=</code>; each is a <code>\frac{...}{...}</code>.</hint>
+  </expression>
+  <expression data-type="display" data-advanced="true">
+    \frac{\mathrm{d}}{\mathrm{d}x} \left( x^n \right) = n x^{n-1}
+    <hint>A derivative as a fraction of upright differentials: <code>\frac{\mathrm{d}}{\mathrm{d}x}</code>. Wrap \(x^n\) in auto-sized parentheses <code>\left( ... \right)</code> (see <ref>4.2</ref>); the exponent <code>x^{n-1}</code> is braced.</hint>
+  </expression>
+  <expression data-type="inline">
+    \tfrac{1}{2}
+    <hint>Force the small inline form with <code>\tfrac</code>.</hint>
+  </expression>
+</exercise>
+
+<h2 class="basic">Square Roots and Radicals</h2>
+
+<p>A square root is <code>\sqrt{...}</code>: <code>\sqrt{x + 1}</code> gives \(\sqrt{x+1}\). The radical sign automatically stretches its <em>vinculum</em> (the bar on top) over the whole argument, so always brace the full contents &mdash; <code>\sqrt{x+1}</code>, not <code>\sqrt x+1</code>, which only covers the \(x\): \(\sqrt x+1\).</p>
+
+<p>For higher roots, an <strong>optional</strong> argument in square brackets sets the index: <code>\sqrt[3]{x}</code> is the cube root \(\sqrt[3]{x}\), and <code>\sqrt[n]{x}</code> gives the \(n\)th root \(\sqrt[n]{x}\). This is your first encounter with the square-bracket optional argument, a pattern shared by several commands. Roots nest cleanly: <code>\sqrt{1 + \sqrt{x}}</code> gives \(\sqrt{1 + \sqrt{x}}\).</p>
+
+<exercise>
+  <expression data-type="inline">
+    \sqrt{x + 1}
+    <hint>Brace the entire radicand so the bar covers it all: <code>\sqrt{x + 1}</code>.</hint>
+  </expression>
+  <expression data-type="inline">
+    \sqrt[3]{x}
+    <hint>The index goes in an optional square-bracket argument: <code>\sqrt[3]{x}</code>.</hint>
+  </expression>
+  <expression data-type="display" data-pretest="true">
+    x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+    <hint>The quadratic formula: plus-or-minus <code>\pm</code>, a square root <code>\sqrt{b^2 - 4ac}</code> with braced exponent, all over <code>2a</code> as one fraction.</hint>
+  </expression>
+  <expression data-type="inline">
+    \sqrt{1 + \sqrt{x}}
+    <hint>Roots nest: put one <code>\sqrt{...}</code> inside another.</hint>
+  </expression>
+</exercise>
+
+<h2 class="advanced">Binomial Coefficients</h2>
+
+<p>A binomial coefficient is <code>\binom{n}{k}</code>, giving \(\binom{n}{k}\) &mdash; "n choose k". It is sized by style just like a fraction, with display and text variants <code>\dbinom</code> and <code>\tbinom</code>. Do not build it by hand out of <code>\frac</code> and parentheses; <code>\binom</code> spaces and sizes the parentheses for you.</p>
+
+<exercise>
+  <expression data-type="display">
+    \binom{n}{k} = \frac{n!}{k!\,(n-k)!}
+    <hint>Binomial on the left: <code>\binom{n}{k}</code>. On the right, factorials with a thin space: <code>\frac{n!}{k!\,(n-k)!}</code>.</hint>
+  </expression>
+  <expression data-type="display">
+    (x + y)^n = \sum_{k=0}^{n} \binom{n}{k} x^{k} y^{n-k}
+    <hint>The binomial theorem: a sum <code>\sum_{k=0}^{n}</code> of <code>\binom{n}{k}</code> times braced powers <code>x^{k} y^{n-k}</code>.</hint>
+  </expression>
+</exercise>
+
+<h2 class="basic">Modular Arithmetic</h2>
+
+<p>Number theory is the heart of Ross, so congruences deserve their own corner. The congruence relation is <code>\equiv</code>, and the parenthesised modulus is <code>\pmod{...}</code>, which supplies the parentheses and the word "mod" and the spacing all at once: <code>a \equiv b \pmod{n}</code> renders as \(a \equiv b \pmod{n}\). Contrast this with the binary <code>\bmod</code> from <ref>2.2</ref>, used when "mod" is an operator inside an expression: \(a \bmod n\).</p>
+
+<p>For divisibility, prefer the relation <code>\mid</code> over a bare <code>|</code>: <code>a \mid b</code> reads "a divides b" with proper relational spacing, \(a \mid b\), and its negation is <code>\nmid</code>, \(a \nmid b\). As in set-builder notation, the reason to avoid <code>|</code> here is spacing: <code>\mid</code> is a relation, a lone bar is not.</p>
+
+<exercise>
+  <expression data-type="inline">
+    a \equiv b \pmod{n}
+    <hint>Congruence symbol <code>\equiv</code>; the parenthesised modulus is <code>\pmod{n}</code> (it adds the parentheses for you).</hint>
+  </expression>
+  <expression data-type="inline">
+    3 \mid 12
+    <hint>"Divides" is the relation <code>\mid</code>, not a bare <code>|</code>.</hint>
+  </expression>
+  <expression data-type="inline" data-pretest="true">
+    x^2 \equiv 1 \pmod{8}
+    <hint>A braced exponent <code>x^2</code>, congruence <code>\equiv</code>, and the modulus <code>\pmod{8}</code>.</hint>
+  </expression>
+  <expression data-type="inline">
+    2 \nmid (2k + 1)
+    <hint>"Does not divide" is <code>\nmid</code>.</hint>
+  </expression>
+</exercise>
+
+<exercise class="review">
+  <expression data-type="display">
+    \frac{1}{1 - x} = \sum_{n=0}^{\infty} x^n
+    <hint>A fraction equal to a geometric series: <code>\frac{1}{1 - x}</code> and <code>\sum_{n=0}^{\infty} x^n</code>.</hint>
+  </expression>
+  <expression data-type="inline">
+    \sqrt[3]{27} = 3
+    <hint>Cube root via the optional argument: <code>\sqrt[3]{27}</code>.</hint>
+  </expression>
+  <expression data-type="inline">
+    a \equiv b \pmod{m} \implies a^k \equiv b^k \pmod{m}
+    <hint>Two congruences joined by implication <code>\implies</code>; each side uses <code>\equiv</code> and <code>\pmod{...}</code>, with braced powers <code>a^k</code>.</hint>
+  </expression>
+  <expression data-type="display" data-advanced="true">
+    \binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}
+    <hint>Pascal's rule: three binomials, each <code>\binom{...}{...}</code> with braced subexpressions like <code>{n-1}</code>.</hint>
+  </expression>
+</exercise>
+
+<h1>Brackets</h1>
+
+<h2 class="basic">Basics</h2>
+
+<p>Parentheses and square brackets can be typed as normal — <code>(...)</code> and <code>[...]</code>. However, curly braces require a backslash — <code>\{...\}</code> — since, as seen before, they have a special meaning in \(\LaTeX\). Here are a couple more, though you likely only need the first few.</p>
+
+<table>
+  <thead><tr><th>Name</th><th>\(\LaTeX\)</th><th>Output</th></tr></thead>
+  <tbody>
+    <tr><td>Parentheses</td><td><code>( )</code></td><td class="math-cell">( )</td></tr>
+    <tr><td>Square Brackets</td><td><code>[ ]</code></td><td class="math-cell">[ ]</td></tr>
+    <tr><td>Curly Braces</td><td><code>\{ \}</code></td><td class="math-cell">\{ \}</td></tr>
+    <tr><td>Angle Brackets</td><td><code>\langle \rangle</code></td><td class="math-cell">\langle \rangle</td></tr>
+    <tr><td>Floor</td><td><code>\lfloor \rfloor</code></td><td class="math-cell">\lfloor \rfloor</td></tr>
+    <tr><td>Ceiling</td><td><code>\lceil \rceil</code></td><td class="math-cell">\lceil \rceil</td></tr>
+    <tr><td>Single bar</td><td><code>| |</code></td><td class="math-cell">| |</td></tr>
+    <tr><td>Double bar</td><td><code>\| \|</code></td><td class="math-cell">\| \|</td></tr>
+  </tbody>
+</table>
+
+<exercise>
+  <expression data-type="inline">
+    [a] + [b]
+  </expression>
+  <expression data-type="inline">
+    \{ (0, 0), (1, 1) \}
+  </expression>
+  <expression data-type="inline" data-pretest="true">
+    \mathbf{N} = \{ 0, 1, 2, \dots \}
+    <hint>Use <code>\dots</code> instead of <code>\cdots</code> for dots on the ground.</hint>
+  </expression>
+  <expression data-type="inline">
+    \lfloor n \rfloor + \lceil n \rceil
+  </expression>
+  <expression data-type="inline">
+    \|\mathbf{v}\| = |\mathbf{v}_1| + |\mathbf{v}_2| + \cdots + |\mathbf{v}_n|
+  </expression>
+</exercise>
+
+<h2 class="basic">Sizing</h2>
+
+<p>Use <code>\left</code> and <code>\right</code> before a delimiter to scale it automatically:</p>
+
+<pre class="paired">\left( \frac{a}{b} \right)<br>\left\{ x \middle| x > 0 \right\}</pre>
+<p>The <code>\middle</code> command creates a scaling delimiter between a <code>\left</code>/<code>\right</code> pair.</p>
+<exercise>
+  <expression data-type="inline" data-pretest="true">
+    \left( \frac{1}{2} \right)
+    <hint>Wrap with <code>\left(</code> and <code>\right)</code> to auto-scale. Fraction: <code>\frac{num}{den}</code>.</hint>
+  </expression>
+  <expression data-type="inline">
+    \left[ \sqrt{x^2 + y^2} \right]
+    <hint><code>\left[</code> and <code>\right]</code> for square brackets. Square root: <code>\sqrt{...}</code>. Superscript: <code>^{2}</code>.</hint>
+  </expression>
+  <expression data-type="display">
+    \left\{ x \in \mathbb{R} \middle| x^2 \leq 1 \right\}
+    <hint>Set-builder: <code>\left\{</code> ... <code>\middle|</code> ... <code>\right\}</code>. The symbol &#x211D; is <code>\mathbb{R}</code>. The symbol &#x2264; is <code>\leq</code>. Membership &#x2208; is <code>\in</code>.</hint>
+  </expression>
+  <expression data-type="inline">
+    \left\langle \sum_{i=1}^{n} a_i \right\rangle
+    <hint>Auto-sized angle brackets: <code>\left\langle</code> and <code>\right\rangle</code>. Sum: <code>\sum_{i=1}^{n}</code>.</hint>
+  </expression>
+</exercise>
+
+<h2 class="advanced">Manual Sizing and Invisible Delimiters</h2>
+<p>Use manual sizing commands when auto-sizing is wrong:</p>
+<table>
+  <thead><tr><th>Size</th><th>Commands</th><th>Example</th></tr></thead>
+  <tbody>
+    <tr><td>Normal</td><td><code>( )</code></td><td class="math-cell">(x)</td></tr>
+    <tr><td>+1</td><td><code>\big( \big)</code></td><td class="math-cell">\big(x\big)</td></tr>
+    <tr><td>+2</td><td><code>\Big( \Big)</code></td><td class="math-cell">\Big(x\Big)</td></tr>
+    <tr><td>+3</td><td><code>\bigg( \bigg)</code></td><td class="math-cell">\bigg(x\bigg)</td></tr>
+    <tr><td>+4</td><td><code>\Bigg( \Bigg)</code></td><td class="math-cell">\Bigg(x\Bigg)</td></tr>
+  </tbody>
+</table>
+<p>The <strong>invisible delimiter</strong> <code>\left.</code> (backslash+dot) lets you have a bracket on one side only:</p>
+<pre class="paired">\left. \frac{df}{dx} \right|_{x=0}</pre>
+<exercise>
+  <expression data-type="display">
+    \bigg( \frac{a}{b} \bigg) + (c + d)
+    <hint>Manual sizing: <code>\bigg(</code> and <code>\bigg)</code> for the large pair; plain <code>(</code> and <code>)</code> for the small pair. Compare with auto-sizing from <ref>4.2</ref>.</hint>
+  </expression>
+  <expression data-type="display">
+    \left. \frac{d}{dx} x^n \right|_{x=1} = n
+    <hint>Invisible left delimiter: <code>\left.</code> (backslash+dot). Evaluation bar: <code>\right|</code> with subscript <code>_{x=1}</code>.</hint>
+  </expression>
+  <expression data-type="display">
+    f\Big( g(x) \Big) = \Big[ h(x) + 1 \Big]
+    <hint><code>\Big(</code> / <code>\Big)</code> is one step larger than normal parens. Same for <code>\Big[</code> / <code>\Big]</code>.</hint>
+  </expression>
+</exercise>
+
+<h2 class="advanced">Declaring Paired Delimiters</h2>
+<p>In full LaTeX (with the <code>mathtools</code> package), define custom delimiter commands:</p>
+<pre><code>\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}</code></pre>
+<p>After declaration, <code>\abs{x}</code> gives \(|x|\), <code>\norm{v}</code> gives \(\|v\|\), and starred variants auto-scale.</p>
+<p>KaTeX does not support <code>\DeclarePairedDelimiter</code> directly, but understanding the concept prepares you for real LaTeX documents.</p>
+
+<exercise class="review">
+  <expression data-type="display">
+    \left\lfloor \frac{n}{2} \right\rfloor
+    <hint>Auto-scaled floor brackets: <code>\left\lfloor</code> and <code>\right\rfloor</code>.</hint>
+  </expression>
+  <expression data-type="display">
+    P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}
+    <hint>The conditional bar is plain <code>|</code>. Use <code>\cdot</code> for dot multiplication.</hint>
+  </expression>
+  <expression data-type="display">
+    \| \vec{v} \|_2 = \sqrt{v_1^2 + v_2^2}
+    <hint>Double bars: <code>\|</code> on both sides. Vector arrow: <code>\vec{v}</code>. The subscript <code>_2</code> goes <em>after</em> the closing <code>\|</code>.</hint>
+  </expression>
+  <expression data-type="display">
+    \int_0^1 x^2 \, dx = \left. \frac{x^3}{3} \right|_0^1 = \frac{1}{3}
+    <hint>Integral with limits: <code>\int_0^1</code>. Thin space: <code>\,</code>. Evaluation bar: <code>\left.</code>...<code>\right|_0^1</code>.</hint>
+  </expression>
+  <expression data-type="display" data-advanced="true">
+    \left\{ x \in \mathbb{Z} \middle| |x| \leq 5 \right\}
+    <hint>Set-builder: <code>\left\{</code>...<code>\middle|</code>...<code>\right\}</code>. Integers &#x2124;: <code>\mathbb{Z}</code>. The absolute value bars are plain <code>|</code> here.</hint>
+  </expression>
+</exercise>
+
+<h1>Environments</h1>
+
+<p>So far every expression has been a single line. An <strong>environment</strong> is a block opened by <code>\begin{name}</code> and closed by <code>\end{name}</code>, and it is how \(\LaTeX\) builds anything with rows and columns &mdash; aligned equations, matrices, and case splits. Two characters do all the structural work inside every environment in this section: <code>&amp;</code> separates columns, and <code>\\</code> ends a row. Master those two and the rest is just choosing a name.</p>
+
+<h2 class="basic">Aligning Equations</h2>
+
+<p>A single displayed equation can simply use <code>\[...\]</code>, but a multi-line derivation should have its equals signs lined up. That is what the <code>align*</code> environment does. Put one <code>&amp;</code> immediately before the symbol you want every line to align on (usually <code>=</code>), and end each line with <code>\\</code>:</p>
+
+<pre class="paired">\begin{align*}
+(a+b)^2 &amp;= a^2 + 2ab + b^2 \\
+        &amp;= a^2 + b^2 + 2ab
+\end{align*}</pre>
+
+<p>Read the <code>&amp;</code> as an invisible vertical line the equals signs snap to. A few rules to keep in mind:</p>
+
+<table>
+  <thead><tr><th>Rule</th><th>Why</th></tr></thead>
+  <tbody>
+    <tr><td>One <code>&amp;</code> per line, before the alignment symbol</td><td>Everything left of <code>&amp;</code> is right-aligned, everything right is left-aligned</td></tr>
+    <tr><td>End every line but the last with <code>\\</code></td><td>A stray <code>\\</code> after the final line causes a "misplaced alignment" error</td></tr>
+    <tr><td>Star the name: <code>align*</code>, not <code>align</code></td><td>The star suppresses equation numbers (a convention used throughout \(\LaTeX\)); <code>align</code> numbers every line</td></tr>
+    <tr><td>Type only the body here</td><td>The editor supplies the <code>\begin{align*}</code> / <code>\end{align*}</code> wrapper for you, just as it supplies <code>\(...\)</code></td></tr>
+  </tbody>
+</table>
+
+<exercise>
+  <expression data-type="align*">
+    x + y &amp;= 5 \\
+    x - y &amp;= 1
+    <hint>Two equations aligned on <code>=</code>: put <code>&amp;</code> right before each equals sign and end the first line with <code>\\</code>.</hint>
+  </expression>
+  <expression data-type="align*" data-pretest="true">
+    f(x) &amp;= (x+1)^2 \\
+    &amp;= x^2 + 2x + 1
+    <hint>Align on <code>=</code> with <code>&amp;=</code>. The second line has nothing left of the equals sign, so it begins with <code>&amp;</code>. Brace the exponent: <code>(x+1)^2</code>.</hint>
+  </expression>
+  <expression data-type="align*">
+    a &amp;= b \\
+    b &amp;= c \\
+    a &amp;= c
+    <hint>Three aligned lines; each ends with <code>\\</code> except the last, and each has <code>&amp;</code> before its <code>=</code>.</hint>
+  </expression>
+  <expression data-type="align*" data-advanced="true">
+    \binom{n}{k} &amp;= \frac{n!}{k!\,(n-k)!} \\
+    &amp;= \binom{n}{n-k}
+    <hint>An aligned derivation using the binomial coefficient <code>\binom{n}{k}</code> from <ref>3.3</ref>. Align on <code>=</code>; the factorial form needs a thin space <code>\,</code> before <code>(n-k)!</code>.</hint>
+  </expression>
+</exercise>
+
+<h2 class="basic">Matrices</h2>
+
+<p>Matrices are a grid, so they use <code>&amp;</code> between entries and <code>\\</code> between rows &mdash; the same two characters as <code>align*</code>. The only choice is which delimiter you want around the grid, and \(\LaTeX\) bakes that into the environment name:</p>
+
+<table>
+  <thead><tr><th>Environment</th><th>Delimiter</th><th>Output</th></tr></thead>
+  <tbody>
+    <tr><td><code>pmatrix</code></td><td><strong>p</strong>arentheses</td><td class="math-cell">\begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix}</td></tr>
+    <tr><td><code>bmatrix</code></td><td><strong>b</strong>rackets</td><td class="math-cell">\begin{bmatrix} a &amp; b \\ c &amp; d \end{bmatrix}</td></tr>
+    <tr><td><code>Bmatrix</code></td><td><strong>B</strong>races</td><td class="math-cell">\begin{Bmatrix} a &amp; b \\ c &amp; d \end{Bmatrix}</td></tr>
+    <tr><td><code>vmatrix</code></td><td><strong>v</strong>ertical bars (determinant)</td><td class="math-cell">\begin{vmatrix} a &amp; b \\ c &amp; d \end{vmatrix}</td></tr>
+    <tr><td><code>Vmatrix</code></td><td><strong>V</strong> double bars (norm)</td><td class="math-cell">\begin{Vmatrix} a &amp; b \\ c &amp; d \end{Vmatrix}</td></tr>
+    <tr><td><code>matrix</code></td><td>no delimiter</td><td class="math-cell">\begin{matrix} a &amp; b \\ c &amp; d \end{matrix}</td></tr>
+  </tbody>
+</table>
+
+<p>The naming is mnemonic once you see it: the lowercase letter is the delimiter, and an uppercase letter means the &ldquo;bigger&rdquo; bracket of that pair &mdash; <code>b</code> for square brackets, <code>B</code> for curly braces; <code>v</code> for single bars, <code>V</code> for double bars. So <code>vmatrix</code> is exactly the notation for a determinant, and <code>Vmatrix</code> the double bars of a norm. For an ellipsis inside a matrix, use <code>\cdots</code> (horizontal), <code>\vdots</code> (vertical), and <code>\ddots</code> (diagonal). All of these need math mode, and unlike plain arrays they auto-size their brackets to the contents.</p>
+
+<exercise>
+  <expression data-type="display">
+    \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix}
+    <hint>Identity in parentheses: <code>pmatrix</code>, entries separated by <code>&amp;</code>, rows by <code>\\</code>.</hint>
+  </expression>
+  <expression data-type="display">
+    \begin{bmatrix} a &amp; b \\ c &amp; d \end{bmatrix}
+    <hint>Square brackets means <code>bmatrix</code>. Two rows of two entries.</hint>
+  </expression>
+  <expression data-type="display" data-pretest="true">
+    \begin{vmatrix} a &amp; b \\ c &amp; d \end{vmatrix} = ad - bc
+    <hint>A determinant uses vertical bars: <code>vmatrix</code>. The right side is just <code>ad - bc</code>.</hint>
+  </expression>
+  <expression data-type="display">
+    \begin{pmatrix} x \\ y \\ z \end{pmatrix}
+    <hint>A column vector is a one-column <code>pmatrix</code>: each entry on its own row, separated by <code>\\</code> with no <code>&amp;</code>.</hint>
+  </expression>
+  <expression data-type="display">
+    \begin{bmatrix} a_{11} &amp; \cdots &amp; a_{1n} \\ \vdots &amp; \ddots &amp; \vdots \\ a_{n1} &amp; \cdots &amp; a_{nn} \end{bmatrix}
+    <hint>A general matrix with ellipses: <code>\cdots</code> across, <code>\vdots</code> down, <code>\ddots</code> on the diagonal. Entries carry two-digit subscripts, so brace them: <code>a_{11}</code>.</hint>
+  </expression>
+</exercise>
+
+<h2 class="basic">Piecewise Definitions</h2>
+
+<p>A function defined by cases &mdash; and the brace that groups them &mdash; is the <code>cases</code> environment. Each line has the value, then <code>&amp;</code>, then its condition, ended by <code>\\</code>. \(\LaTeX\) draws the single large left brace automatically:</p>
+
+<pre class="paired">|x| = \begin{cases}
+  x &amp; \text{if } x \geq 0 \\
+  -x &amp; \text{if } x &lt; 0
+\end{cases}</pre>
+
+<p>The conditions are words, so they sit inside <code>\text{...}</code> (see <ref>6.3</ref>) &mdash; note the trailing space inside <code>\text{if }</code> so the condition does not collide with the math after it. The <code>&amp;</code> here separates &ldquo;value&rdquo; from &ldquo;condition&rdquo; rather than two matrix columns, but it is the very same separator doing the very same job.</p>
+
+<exercise>
+  <expression data-type="display">
+    f(x) = \begin{cases} 1 &amp; x &gt; 0 \\ 0 &amp; x \leq 0 \end{cases}
+    <hint>Use <code>cases</code>. Value, then <code>&amp;</code>, then condition; end the first line with <code>\\</code>.</hint>
+  </expression>
+  <expression data-type="display" data-pretest="true">
+    |x| = \begin{cases} x &amp; \text{if } x \geq 0 \\ -x &amp; \text{if } x &lt; 0 \end{cases}
+    <hint>The conditions are words, so wrap them in <code>\text{if }</code> (with a trailing space). Two cases, joined by <code>\\</code>.</hint>
+  </expression>
+  <expression data-type="display">
+    \operatorname{sgn}(x) = \begin{cases} 1 &amp; x &gt; 0 \\ 0 &amp; x = 0 \\ -1 &amp; x &lt; 0 \end{cases}
+    <hint>Three cases. The name on the left has no built-in command, so use <code>\operatorname{sgn}</code> from <ref>2.2</ref>.</hint>
+  </expression>
+</exercise>
+
+<exercise class="review">
+  <expression data-type="align*">
+    (a+b)^2 &amp;= a^2 + 2ab + b^2 \\
+    (a-b)^2 &amp;= a^2 - 2ab + b^2
+    <hint>Two aligned identities. Each has <code>&amp;=</code> and a braced square; the first line ends in <code>\\</code>.</hint>
+  </expression>
+  <expression data-type="display">
+    \begin{pmatrix} 1 &amp; 2 \\ 3 &amp; 4 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}
+    <hint>A matrix times a column vector: two <code>pmatrix</code> environments written side by side.</hint>
+  </expression>
+  <expression data-type="display" data-advanced="true" data-image="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20150%22%20width%3D%22360%22%20height%3D%22150%22%3E%3Crect%20width%3D%22360%22%20height%3D%22150%22%20rx%3D%228%22%20fill%3D%22%23f6f7f2%22%2F%3E%3Crect%20x%3D%223%22%20y%3D%223%22%20width%3D%22354%22%20height%3D%22144%22%20rx%3D%227%22%20fill%3D%22none%22%20stroke%3D%22%23d8dccf%22%20stroke-width%3D%222%22%2F%3E%3Cg%20font-family%3D%22%27Bradley%20Hand%27%2C%27Segoe%20Print%27%2C%27Comic%20Sans%20MS%27%2Ccursive%22%20fill%3D%22%231f1f24%22%20stroke%3D%22%231f1f24%22%20stroke-width%3D%220.4%22%3E%3Cline%20x1%3D%2234%22%20y1%3D%2234%22%20x2%3D%2234%22%20y2%3D%22118%22%20stroke%3D%22%231f1f24%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%2F%3E%3Ctext%20x%3D%2252%22%20y%3D%2268%22%20font-size%3D%2234%22%20transform%3D%22rotate%28-3%2052%2068%29%22%3Ea%3C%2Ftext%3E%3Ctext%20x%3D%2292%22%20y%3D%2264%22%20font-size%3D%2234%22%20transform%3D%22rotate%282%2092%2064%29%22%3Eb%3C%2Ftext%3E%3Ctext%20x%3D%2250%22%20y%3D%22108%22%20font-size%3D%2234%22%20transform%3D%22rotate%282%2050%20108%29%22%3Ec%3C%2Ftext%3E%3Ctext%20x%3D%2292%22%20y%3D%22112%22%20font-size%3D%2234%22%20transform%3D%22rotate%28-2%2092%20112%29%22%3Ed%3C%2Ftext%3E%3Cline%20x1%3D%22128%22%20y1%3D%2234%22%20x2%3D%22128%22%20y2%3D%22118%22%20stroke%3D%22%231f1f24%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%2F%3E%3Ctext%20x%3D%22150%22%20y%3D%2292%22%20font-size%3D%2238%22%20transform%3D%22rotate%28-2%20150%2092%29%22%3E%3D%20ad%20%26%238211%3B%20bc%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fsvg%3E">
+    \begin{vmatrix} a &amp; b \\ c &amp; d \end{vmatrix} = ad - bc
+    <hint><strong>Whiteboard challenge.</strong> Read the scribble and type its \(\LaTeX\). A determinant is a <code>vmatrix</code> (vertical bars), equal to <code>ad - bc</code>.</hint>
+  </expression>
+</exercise>
+
+<h1>Annotations and Fine-Tuning</h1>
+
+<p>The last family of tools decorates and spaces what you have already built: accents over letters, braces that label a sub-expression, and the deliberate spacing that separates good typesetting from a wall of symbols.</p>
+
+<h2 class="basic">Accents</h2>
+
+<p>An accent sits on top of its argument and takes exactly one argument; braces are optional over a single letter (<code>\hat a</code> works) but always safe. The catch is <em>width</em>: <code>\hat</code>, <code>\tilde</code>, and <code>\bar</code> are fixed-width and do not stretch, so each has a <em>wide</em> partner for arguments longer than one symbol.</p>
+
+<table>
+  <thead><tr><th>Accent</th><th>Single letter</th><th>Output</th><th>Wide (several symbols)</th></tr></thead>
+  <tbody>
+    <tr><td>Hat</td><td><code>\hat{a}</code></td><td class="math-cell">\hat{a}</td><td><code>\widehat{abc}</code></td></tr>
+    <tr><td>Tilde</td><td><code>\tilde{a}</code></td><td class="math-cell">\tilde{a}</td><td><code>\widetilde{abc}</code></td></tr>
+    <tr><td>Bar</td><td><code>\bar{a}</code></td><td class="math-cell">\bar{a}</td><td><code>\overline{abc}</code></td></tr>
+    <tr><td>Vector</td><td><code>\vec{a}</code></td><td class="math-cell">\vec{a}</td><td><code>\overrightarrow{AB}</code></td></tr>
+    <tr><td>Dot / double dot</td><td><code>\dot{a}</code> <code>\ddot{a}</code></td><td class="math-cell">\dot{a}\ \ddot{a}</td><td>&mdash;</td></tr>
+  </tbody>
+</table>
+
+<p>The difference is easy to see &mdash; the fixed accent stays one-letter-wide and looks cramped, while the wide version stretches to cover the whole argument:</p>
+
+<pre class="paired">\hat{abc}<br>\widehat{abc}</pre>
+
+<p>As a rule: one symbol, use the short accent; more than one, use the wide one. The <code>\overline</code> bar doubles as the notation for set complements and complex conjugates. One trap worth memorising: with vectors, put any subscript <em>outside</em> the accent &mdash; write <code>\vec{v}_1</code> for \(\vec{v}_1\), not <code>\vec{v_1}</code>. This platform warns you if you get it backwards.</p>
+
+<exercise>
+  <expression data-type="inline">
+    \hat{x} + \bar{y}
+    <hint>A hat is <code>\hat{...}</code> and a bar is <code>\bar{...}</code>.</hint>
+  </expression>
+  <expression data-type="inline">
+    \vec{v} = \vec{a} + \vec{b}
+    <hint>Vector arrows use <code>\vec{...}</code> over each single letter.</hint>
+  </expression>
+  <expression data-type="inline" data-pretest="true">
+    \overline{z} = \overline{a + bi}
+    <hint>A bar over several symbols stretches, so use <code>\overline{...}</code> (not <code>\bar</code>) for the conjugate of <code>a + bi</code>.</hint>
+  </expression>
+  <expression data-type="inline">
+    \widehat{ABC}
+    <hint>A hat over more than one letter must stretch: <code>\widehat{...}</code>.</hint>
+  </expression>
+  <expression data-type="inline">
+    \dot{x} = v, \quad \ddot{x} = a
+    <hint>Newton's dot notation for time derivatives: <code>\dot{x}</code> and <code>\ddot{x}</code>, separated by a <code>\quad</code> gap.</hint>
+  </expression>
+  <expression data-type="inline">
+    \vec{v}_1 + \vec{v}_2
+    <hint>Subscript goes <em>outside</em> the arrow: <code>\vec{v}_1</code>, never <code>\vec{v_1}</code>.</hint>
+  </expression>
+</exercise>
+
+<h2 class="advanced">Braces and Labels</h2>
+
+<p>To label or group part of an expression, a horizontal brace can be drawn above or below it. <code>\underbrace{a+b+c}_{\text{sum}}</code> puts a brace under the terms with a subscript label: \(\underbrace{a+b+c}_{\text{sum}}\). Its mirror is <code>\overbrace{...}^{...}</code>, with the label as a superscript: \(\overbrace{1+2+\cdots+n}^{n\text{ terms}}\). The label is attached exactly like an ordinary subscript or superscript on the brace, which is why one uses <code>_</code> and the other <code>^</code>.</p>
+
+<p>Closely related are <code>\overset{above}{base}</code> and <code>\underset{below}{base}</code>, which place one thing over or under another &mdash; handy for annotating a relation, as in <code>a \overset{?}{=} b</code> giving \(a \overset{?}{=} b\). These are finishing touches; reach for them only when an annotation genuinely aids the reader.</p>
+
+<exercise>
+  <expression data-type="display">
+    \underbrace{a + b + c}_{\text{sum}}
+    <hint>Brace underneath with a labelled subscript: <code>\underbrace{...}_{\text{sum}}</code>.</hint>
+  </expression>
+  <expression data-type="display">
+    \overbrace{1 + 2 + \cdots + n}^{n \text{ terms}}
+    <hint>Brace on top with a superscript label: <code>\overbrace{...}^{...}</code>. The running dots are <code>\cdots</code>; the label mixes a variable and the word "terms" via <code>\text</code>.</hint>
+  </expression>
+</exercise>
+
+<h2 class="basic">Spacing and Text</h2>
+
+<p>In math mode \(\LaTeX\) ignores the spaces you type and inserts its own based on what each symbol <em>is</em>, so pressing the space bar more does nothing. To adjust spacing you use explicit commands:</p>
+
+<table>
+  <thead><tr><th>Command</th><th>Size</th><th>Typical use</th></tr></thead>
+  <tbody>
+    <tr><td><code>\,</code></td><td>Thin space</td><td>Before a differential <code>\mathrm{d}x</code>; inside set braces</td></tr>
+    <tr><td><code>\:</code></td><td>Medium space</td><td>Occasional fine-tuning</td></tr>
+    <tr><td><code>\;</code></td><td>Thick space</td><td>Separating clauses in a formula</td></tr>
+    <tr><td><code>\quad</code></td><td>Wide gap</td><td>Between an equation and a side condition</td></tr>
+    <tr><td><code>\qquad</code></td><td>Double-wide gap</td><td>Large separation, e.g. listing cases on one line</td></tr>
+    <tr><td><code>\!</code></td><td>Negative thin space</td><td>Pulling two symbols slightly closer</td></tr>
+  </tbody>
+</table>
+
+<p>The thin space <code>\,</code> is the one you will use most. To put real words inside math, wrap them in <code>\text{...}</code>: without it, <code>x = 0 for all y</code> becomes the italic letter-soup \(x = 0 for all y\) instead of \(x = 0 \text{ for all } y\). Mind the spaces &mdash; they must go <em>inside</em> the braces (<code>\text{ for all }</code>), because math mode eats the spaces on either side. This is the same <code>\text</code> you met in <code>cases</code> conditions and brace labels.</p>
+
+<exercise>
+  <expression data-type="inline">
+    \int x^2 \, \mathrm{d}x
+    <hint>The thin space before the differential is <code>\,</code>; the upright d is <code>\mathrm{d}</code>.</hint>
+  </expression>
+  <expression data-type="inline" data-pretest="true">
+    x = 0 \text{ for all } y
+    <hint>Words go inside <code>\text{ for all }</code> &mdash; keep the spaces inside the braces so the phrase does not collide with the math.</hint>
+  </expression>
+  <expression data-type="inline">
+    a \quad b \qquad c
+    <hint>A wide gap is <code>\quad</code> and a double-wide gap is <code>\qquad</code>.</hint>
+  </expression>
+  <expression data-type="inline">
+    n \in \mathbb{Z}, \quad n &gt; 0
+    <hint>A side condition set off by a <code>\quad</code> gap; the integers are <code>\mathbb{Z}</code> from <ref>1.3</ref>.</hint>
+  </expression>
+</exercise>
+
+<exercise class="review">
+  <expression data-type="inline">
+    \hat{p} \approx \bar{x}
+    <hint>A hat <code>\hat{p}</code> and a bar <code>\bar{x}</code>, joined by <code>\approx</code>.</hint>
+  </expression>
+  <expression data-type="display" data-advanced="true">
+    \lim_{n \to \infty} \left( 1 + \frac{1}{n} \right)^n = e
+    <hint>A limit, auto-sized parentheses <code>\left( ... \right)</code> (see <ref>4.2</ref>) around a fraction, all raised to <code>^n</code>.</hint>
+  </expression>
+  <expression data-type="inline">
+    f(x) = 0 \text{ for all } x \in \mathbb{R}
+    <hint>The phrase sits in <code>\text{ for all }</code>; the reals are <code>\mathbb{R}</code> and membership is <code>\in</code>.</hint>
+  </expression>
+  <expression data-type="display" data-advanced="true">
+    \underbrace{1 + 1 + \cdots + 1}_{n \text{ times}} = n
+    <hint>A labelled under-brace from <ref>6.2</ref>: <code>\underbrace{...}_{n \text{ times}}</code>. The running dots are <code>\cdots</code>, and the label mixes a variable with a word via <code>\text</code>.</hint>
+  </expression>
+</exercise>
+
+<h1>Common Errors and Further Reading</h1>
+
+<p>You now have everything needed for a clean problem set. This closing section is a checklist of the mistakes that trip up first-years &mdash; many of which this platform flags for you as you type &mdash; followed by a few conventions and where to go next.</p>
+
+<h2 class="basic">Common Errors and Warnings</h2>
+
+<p>These are the recurring slips, roughly in order of how often they appear in a first week at Ross. The editor here watches for several of them (marked &check;) and shows a gentle warning as you type.</p>
+
+<table>
+  <thead><tr><th>Mistake</th><th>Wrong</th><th>Right</th><th>Flagged</th></tr></thead>
+  <tbody>
+    <tr><td>Multi-token script unbraced</td><td><code>x^10</code>, <code>a_ij</code></td><td><code>x^{10}</code>, <code>a_{ij}</code></td><td></td></tr>
+    <tr><td>Double superscript</td><td><code>x^2^3</code></td><td><code>x^{2^3}</code> or <code>{x^2}^3</code></td><td></td></tr>
+    <tr><td>ASCII inequalities</td><td><code>&lt;=</code> <code>&gt;=</code> <code>!=</code></td><td><code>\leq</code> <code>\geq</code> <code>\neq</code></td><td>&check;</td></tr>
+    <tr><td>Literal dots</td><td><code>...</code></td><td><code>\ldots</code> or <code>\cdots</code></td><td>&check;</td></tr>
+    <tr><td>Double bar</td><td><code>||</code></td><td><code>\|</code> or <code>\Vert</code></td><td>&check;</td></tr>
+    <tr><td>Bare function name</td><td><code>sin x</code></td><td><code>\sin x</code></td><td>&check;</td></tr>
+    <tr><td>Asterisk product</td><td><code>a * b</code></td><td><code>a \cdot b</code>, <code>a \times b</code></td><td></td></tr>
+    <tr><td>Slanted differential</td><td><code>dx</code></td><td><code>\, \mathrm{d}x</code></td><td></td></tr>
+    <tr><td>Subscript inside accent</td><td><code>\vec{v_1}</code></td><td><code>\vec{v}_1</code></td><td>&check;</td></tr>
+    <tr><td>Trailing row separator</td><td><code>... \\ \end{align*}</code></td><td>no <code>\\</code> after the last line</td><td></td></tr>
+  </tbody>
+</table>
+
+<p>Two of these deserve a fuller word. The <strong>double-superscript error</strong> <code>x^2^3</code> is genuinely ambiguous &mdash; \(\LaTeX\) cannot tell whether you mean the tower \(x^{2^3}\) or \({x^2}^3\), so you must brace one level. And the rule about <strong>math mode</strong> cuts both ways: every symbol belongs inside <code>\(...\)</code> or <code>\[...\]</code>, but every <em>word</em> inside math belongs in <code>\text{...}</code>. Forgetting either half is equally common.</p>
+
+<exercise class="review">
+  <expression data-type="inline">
+    x^{10} \leq y^{12}
+    <hint>Brace multi-digit exponents (<code>x^{10}</code>) and use <code>\leq</code>, not <code>&lt;=</code>.</hint>
+  </expression>
+  <expression data-type="inline">
+    \sin^2 x + \cos^2 x = 1
+    <hint>Function names get a backslash. The squared trig form is written <code>\sin^2 x</code>.</hint>
+  </expression>
+  <expression data-type="inline">
+    1, 2, \ldots, n
+    <hint>A run of dots on the baseline is <code>\ldots</code>, never three literal periods.</hint>
+  </expression>
+</exercise>
+
+<h2 class="basic">Style Conventions</h2>
+
+<p>Beyond avoiding errors, a few habits make your work read like a mathematician's. Be <strong>consistent</strong>: pick \(\mathbb{Z}\) or \(\mathbf{Z}\) for the integers and stay with it. Prefer <strong>semantic commands</strong> to look-alikes &mdash; <code>\mid</code> for "divides" or "such that" rather than a bare <code>|</code>, <code>\colon</code> for a function colon, <code>\to</code> for a mapping arrow &mdash; because each carries the spacing its meaning deserves. <strong>Display</strong> any equation that is too tall or important to sit in a line, and keep punctuation as part of the sentence, inside the display. Finally, let \(\LaTeX\) do the spacing: resist the urge to nudge things with manual spaces unless something genuinely looks wrong.</p>
+
+<h2 class="basic">Further Reading</h2>
+
+<p>This guide is deliberately a <em>basic</em> reference. When you outgrow it, these are the standard next stops. <a href="https://www.overleaf.com/learn">Overleaf's documentation</a> is the most beginner-friendly, with a searchable article for nearly every topic. <a href="https://ctan.org/pkg/lshort">The Not So Short Introduction to LaTeX</a> ("lshort") is the classic free book covering whole-document structure. When you have a symbol but not its name, <a href="https://detexify.kirelabs.org/classify.html">Detexify</a> lets you draw it and returns the command, and the <a href="https://ctan.org/pkg/comprehensive">Comprehensive LaTeX Symbol List</a> catalogues thousands more. For questions, <a href="https://tex.stackexchange.com/">TeX Stack Exchange</a> has almost certainly answered yours already. Since this platform renders with <a href="https://katex.org/docs/support_table">KaTeX</a>, its support table tells you exactly which commands will display here.</p>
+
+<p>One topic deliberately left out is <strong>Ti<em>k</em>Z</strong>, \(\LaTeX\)'s language for drawing figures &mdash; commutative diagrams, graphs, geometric pictures, and more. It is powerful and genuinely fun, but it is a small programming language in its own right and well beyond a basic notation guide. If a diagram is what you need, start from the <a href="https://tikz.dev/">Ti<em>k</em>Z &amp; PGF manual</a> or one of the many online galleries, and borrow liberally. For now, everything in the seven sections above is enough to write your summer's mathematics cleanly.</p>
+
+<p><strong>Enjoy Ross!</strong></p>
+</div>
+</main>
+
+<div id="cheatsheet" aria-hidden="true"></div>
+
+<aside id="right-panel">
+  <div class="rp-header">
+    <div class="rp-tab-bar">
+      <button class="rp-tab active" data-rptab="scratch">Scratch</button>
+      <button class="rp-tab" data-rptab="reference">Reference</button>
+      <button class="rp-tab" data-rptab="backpack">Learned</button>
+    </div>
+    <button class="icon-btn" id="rp-close-btn" title="Close">&times;</button>
+  </div>
+  <div class="rp-panels">
+    <div class="rp-panel active" id="rp-scratch">
+      <div class="rp-mode-bar" id="scratch-mode-bar">
+        <button class="rp-mode-btn active" data-mode="display" data-bot="\]">\[ display \]</button>
+        <button class="rp-mode-btn" data-mode="inline" data-bot="\)">\( inline \)</button>
+        <button class="rp-mode-btn" data-mode="align*" data-bot="\end{align*}">{align*}</button>
+        <button class="rp-mode-btn" data-mode="text" data-bot="}">\text{ }</button>
+      </div>
+      <div class="rp-editor-wrap"><div id="scratch-ed-ct"></div></div>
+      <div class="rp-env bot" id="scratch-env-bot">\]</div>
+      <div class="rp-output" id="scratch-output"></div>
+    </div>
+    <div class="rp-panel" id="rp-reference">
+      <div class="rp-search"><input type="text" id="ref-search" placeholder="Search commands..." autocomplete="off"></div>
+      <div class="rp-ref-list" id="ref-list"></div>
+    </div>
+    <div class="rp-panel" id="rp-backpack">
+      <div class="rp-search"><input type="text" id="bp-search" placeholder="Search learned..." autocomplete="off"></div>
+      <p class="rp-backpack-note" id="bp-note">Complete exercises to unlock commands!</p>
+      <div class="rp-ref-list" id="bp-list"></div>
+    </div>
+  </div>
+</aside>
+
+</div>
+
+<button id="mob-toggle" aria-label="Menu">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
+  </svg>
+</button>
+
+<div class="modal-overlay" id="settings-modal">
+  <div class="modal" style="width:480px">
+    <div class="modal-hdr"><span class="modal-title">Settings</span><button class="modal-close">&times;</button></div>
+    <div class="modal-body">
+      <div class="set-group">
+        <label class="set-label">Theme</label>
+        <div class="set-opts" id="theme-opts">
+          <button class="set-opt" data-v="light">Light</button>
+          <button class="set-opt" data-v="dark">Dark</button>
+          <button class="set-opt" data-v="system">System</button>
+        </div>
+      </div>
+      <div class="set-group">
+        <label class="set-label">Course Mode</label>
+        <p class="set-desc">Basic hides advanced sections behind a reveal button.</p>
+        <div class="set-opts" id="mode-opts">
+          <button class="set-opt" data-v="basic">Basic</button>
+          <button class="set-opt" data-v="advanced">Advanced</button>
+        </div>
+      </div>
+      <div class="set-group">
+        <div class="toggle-row"><div class="toggle-info"><div class="toggle-lbl">Bracket Autocomplete</div><div class="toggle-desc">Auto-close brackets as you type</div></div><div class="toggle-sw" data-s="bracketAutocomplete"></div></div>
+        <div class="toggle-row"><div class="toggle-info"><div class="toggle-lbl">Exercise Shadow</div><div class="toggle-desc">Show target as ghost in output pane</div></div><div class="toggle-sw" data-s="exerciseShadow"></div></div>
+        <div class="toggle-row"><div class="toggle-info"><div class="toggle-lbl">Strict Style Mode</div><div class="toggle-desc">Flag bad LaTeX practices before verifying</div></div><div class="toggle-sw" data-s="strictStyle"></div></div>
+        <div class="toggle-row"><div class="toggle-info"><div class="toggle-lbl">Auto-Advance</div><div class="toggle-desc">Move to next expression after a correct answer</div></div><div class="toggle-sw" data-s="autoAdvance"></div></div>
+      </div>
+      <div class="set-group">
+        <label class="set-label">Pre-Test</label>
+        <p class="set-desc">Answer one challenging question per basic section to instantly skip content you already know.</p>
+        <button class="pretest-launch-btn" id="pretest-launch-btn">&#9654; Start Pre-Test</button>
+      </div>
+      <div class="set-group">
+        <label class="set-label">Cheat Sheet</label>
+        <p class="set-desc">Open a printable one-page reference of every command, grouped by topic.</p>
+        <button class="pretest-launch-btn" id="cheatsheet-btn">&#128424;&#65039; Print Cheat Sheet</button>
+      </div>
+      <button class="reset-btn" id="reset-btn">Reset All Progress</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="hint-modal">
+  <div class="modal" style="width:520px">
+    <div class="modal-hdr"><span class="modal-title">Hint</span><button class="modal-close">&times;</button></div>
+    <div class="modal-body">
+      <div class="hint-text" id="hint-text"></div>
+      <div class="hint-cmds"><div class="hint-cmds-ttl">Commands in this expression</div><div class="hint-cmds-list" id="hint-cmds-list"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="preview-modal">
+  <div class="modal" style="width:680px">
+    <div class="modal-hdr">
+      <span class="modal-title">Expression Preview</span>
+      <div class="tab-bar" id="preview-tab-bar">
+        <button class="tab-btn active" data-ptab="chunks">Chunks</button>
+        <button class="tab-btn" data-ptab="source">Source</button>
+        <button class="tab-btn" data-ptab="edit">Edit</button>
+      </div>
+      <button class="modal-close">&times;</button>
+    </div>
+    <div class="preview-body">
+      <div class="t-panel active" id="pp-chunks">
+        <p class="sec-lbl">Rendered output</p>
+        <div class="answer-render" id="pp-rendered"></div>
+        <p class="sec-lbl" id="pp-latex-lbl">RAW LATEX &#x2014; HOVER TO HIGHLIGHT</p>
+        <div class="answer-latex-box" id="pp-latex"></div>
+      </div>
+      <div class="t-panel" id="pp-source">
+        <div class="source-wrap">
+          <div class="source-hdr">
+            <span class="sec-lbl" style="padding:0">Raw LaTeX</span>
+            <button class="copy-btn" id="pp-copy-btn">&#x2398; Copy</button>
+          </div>
+          <pre class="source-pre" id="pp-source-code"></pre>
+          <p class="copy-note" id="pp-copy-note" style="display:none">Copying disabled &#x2014; type it yourself!</p>
+        </div>
+      </div>
+      <div class="t-panel" id="pp-edit">
+        <div class="edit-wrap">
+          <div class="env-line top" id="pp-edit-top"></div>
+          <div class="edit-cm-wrap"><div id="pp-edit-ct" style="min-height:100px"></div></div>
+          <div class="env-line bot" id="pp-edit-bot"></div>
+          <div class="edit-output" id="pp-edit-out"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="pretest-modal">
+  <div class="modal" style="width:620px">
+    <div class="modal-hdr">
+      <span class="modal-title" id="pt-title">Pre-Test</span>
+      <span class="pretest-ctr" id="pt-counter"></span>
+      <button class="modal-close">&times;</button>
+    </div>
+    <div class="pretest-prog-track"><div class="pretest-prog-fill" id="pt-prog-fill"></div></div>
+    <div class="pretest-timer-track" id="pt-timer-track"><div class="pretest-timer-fill" id="pt-timer-fill"></div></div>
+    <div id="pt-body" class="pretest-body">
+      <div class="pretest-sub-lbl" id="pt-sub-lbl"></div>
+      <div class="pretest-target" id="pt-target"></div>
+      <div class="pretest-editor-section">
+        <div class="env-line top" id="pt-env-top"></div>
+        <div id="pt-ed-ct" style="min-height:80px"></div>
+        <div class="env-line bot" id="pt-env-bot"></div>
+      </div>
+      <div class="pretest-output" id="pt-output"></div>
+    </div>
+    <div class="pretest-footer" id="pt-footer">
+      <button class="ex-btn" id="pt-skip-btn">Skip</button>
+      <button class="ex-btn primary" id="pt-check-btn">Check</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast-ct"></div>
+<div class="first-hint hidden" id="first-hint">
+  <p>Welcome to <strong>&#957;&#932;eX</strong>! Open Settings to customise.</p>
+  <button id="dismiss-hint">Got it</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pixelmatch@5.3.0/dist/pixelmatch.min.js"></script>
+
+<script type="module">
+// ═══════════════════════════════════════════
+// 0.  REFERENCE DATA
+// ═══════════════════════════════════════════
+const REF = [
+  {c:"x^2  a_i",                  k:"Scripts",     d:"Super/subscript",            e:"x^2 + a_{ij}",                       sub:"2.1"},
+  {c:"x^{2^3}",                   k:"Scripts",     d:"Nested (brace each level)",  e:"2^{2^k}",                            sub:"2.1"},
+  {c:"\\sin \\cos \\tan",         k:"Functions",   d:"Trig functions",            e:"\\sin^2 x + \\cos^2 x",              sub:"2.2"},
+  {c:"\\log \\ln \\exp",          k:"Functions",   d:"Log / exp",                  e:"\\log_2 8 = 3",                      sub:"2.2"},
+  {c:"\\lim_{x\\to a}",           k:"Functions",   d:"Limit",                      e:"\\lim_{x\\to 0}\\frac{\\sin x}{x}",  sub:"2.2"},
+  {c:"\\operatorname{lcm}",       k:"Functions",   d:"Custom operator name",       e:"\\operatorname{lcm}(a,b)",           sub:"2.2"},
+  {c:"\\bmod",                    k:"Functions",   d:"Binary mod operator",        e:"a \\bmod n",                         sub:"2.2"},
+  {c:"\\sum_{i}^{n}",             k:"Operators",   d:"Summation",                  e:"\\sum_{i=1}^{n} i^2",                sub:"2.3"},
+  {c:"\\prod",                    k:"Operators",   d:"Product",                    e:"\\prod_{k=1}^{n} k",                 sub:"2.3"},
+  {c:"\\int_a^b",                 k:"Operators",   d:"Integral",                   e:"\\int_0^1 x\\,\\mathrm{d}x",         sub:"2.3"},
+  {c:"\\bigcup \\bigcap",         k:"Operators",   d:"Big union / intersection",   e:"\\bigcup_{i=1}^{\\infty} A_i",       sub:"2.3"},
+  {c:"\\displaystyle",            k:"Operators",   d:"Force display sizing inline", e:"\\displaystyle\\sum_{k=0}^{n}\\binom{n}{k}", sub:"2.3"},
+  {c:"\\frac{a}{b}",              k:"Fractions",   d:"Fraction",                   e:"\\frac{a+b}{c}",                     sub:"3.1"},
+  {c:"\\dfrac \\tfrac",           k:"Fractions",   d:"Display / text fraction",    e:"\\dfrac{a}{b},\\ \\tfrac{a}{b}",     sub:"3.1"},
+  {c:"\\frac{\\mathrm{d}}{\\mathrm{d}x}", k:"Fractions", d:"Derivative",          e:"\\frac{\\mathrm{d}}{\\mathrm{d}x} x^n", sub:"3.1"},
+  {c:"\\sqrt{x}",                 k:"Fractions",   d:"Square root",                e:"\\sqrt{x+1}",                        sub:"3.2"},
+  {c:"\\sqrt[n]{x}",              k:"Fractions",   d:"nth root",                   e:"\\sqrt[3]{x}",                       sub:"3.2"},
+  {c:"\\binom{n}{k}",             k:"Fractions",   d:"Binomial coefficient",       e:"\\binom{n}{k}",                      sub:"3.3"},
+  {c:"( ) [ ]",                   k:"Brackets",    d:"Parentheses / square braces",e:"(a+b)+[c-d]",                        sub:"4.1"},
+  {c:"\\{ \\}",                   k:"Brackets",    d:"Curly braces (escaped)",     e:"\\{x\\in A\\}",                      sub:"4.1"},
+  {c:"\\langle \\rangle",         k:"Brackets",    d:"Angle brackets",             e:"\\langle x,y\\rangle",               sub:"4.1"},
+  {c:"\\lfloor \\rfloor",         k:"Brackets",    d:"Floor brackets",             e:"\\lfloor x\\rfloor",                 sub:"4.1"},
+  {c:"\\lceil \\rceil",           k:"Brackets",    d:"Ceiling brackets",           e:"\\lceil x\\rceil",                   sub:"4.1"},
+  {c:"| |  and  \\| \\|",         k:"Brackets",    d:"Vertical bars",              e:"|x|+\\|v\\|",                        sub:"4.1"},
+  {c:"\\left \\right",            k:"Brackets",    d:"Auto-scaling delimiters",    e:"\\left(\\frac{a}{b}\\right)",        sub:"4.2"},
+  {c:"\\middle",                  k:"Brackets",    d:"Scaling middle delimiter",   e:"\\left\\{x\\middle|x>0\\right\\}",   sub:"4.2"},
+  {c:"\\big \\Big \\bigg \\Bigg", k:"Brackets",    d:"Manual bracket sizing",      e:"\\bigg(\\frac{a}{b}\\bigg)",         sub:"4.3"},
+  {c:"\\left.",                   k:"Brackets",    d:"Invisible left delimiter",   e:"\\left.f'\\right|_{x=0}",            sub:"4.3"},
+  {c:"align*  & \\\\",            k:"Environments",d:"Aligned equations",          e:"\\begin{aligned}x&=1\\\\y&=2\\end{aligned}", sub:"5.1"},
+  {c:"pmatrix  bmatrix",          k:"Environments",d:"Matrix (parens / brackets)", e:"\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}", sub:"5.2"},
+  {c:"vmatrix",                   k:"Environments",d:"Determinant (bars)",         e:"\\begin{vmatrix}a&b\\\\c&d\\end{vmatrix}", sub:"5.2"},
+  {c:"cases",                     k:"Environments",d:"Piecewise definition",       e:"f(x)=\\begin{cases}1&x>0\\\\0&x\\le 0\\end{cases}", sub:"5.3"},
+  {c:"\\leq \\geq",               k:"Relations",   d:"Less/greater or equal",      e:"a\\leq b\\leq c",                    sub:"1.2"},
+  {c:"\\neq",                     k:"Relations",   d:"Not equal",                  e:"a\\neq b",                           sub:"1.2"},
+  {c:"\\approx \\propto",         k:"Relations",   d:"Approx / proportional",      e:"\\pi\\approx 3.14",                  sub:"1.2"},
+  {c:"\\to \\mapsto",             k:"Relations",   d:"Arrows",                     e:"f\\colon A\\to B",                   sub:"1.2"},
+  {c:"\\implies \\iff",           k:"Relations",   d:"Implication / iff",          e:"p\\implies q",                       sub:"1.2"},
+  {c:"\\equiv \\pmod{n}",         k:"Relations",   d:"Congruence (mod)",           e:"a\\equiv b\\pmod{n}",                sub:"3.4"},
+  {c:"\\mid \\nmid",              k:"Relations",   d:"Divides / does not divide",  e:"a\\mid b,\\ a\\nmid c",              sub:"3.4"},
+  {c:"\\in \\notin",              k:"Sets",        d:"Element of",                 e:"x\\in A",                            sub:"1.2"},
+  {c:"\\subset \\subseteq",       k:"Sets",        d:"Subset",                     e:"A\\subseteq B",                      sub:"1.2"},
+  {c:"\\cup \\cap",               k:"Sets",        d:"Union / intersection",       e:"A\\cup B",                           sub:"1.2"},
+  {c:"\\setminus",                k:"Sets",        d:"Set difference",             e:"A\\setminus B",                      sub:"1.2"},
+  {c:"\\{ x \\mid \\dots \\}",    k:"Sets",        d:"Set-builder",                e:"\\{\\,n\\mid n>0\\,\\}",             sub:"1.2"},
+  {c:"\\forall \\exists",         k:"Sets",        d:"Quantifiers",                e:"\\forall x\\,\\exists y",            sub:"1.2"},
+  {c:"\\mathbb{R}",               k:"Fonts",       d:"Blackboard bold",            e:"\\mathbb{R},\\mathbb{N},\\mathbb{Z}", sub:"1.3"},
+  {c:"\\mathbf{v}",               k:"Fonts",       d:"Bold",                       e:"\\mathbf{v}\\cdot\\mathbf{w}",       sub:"1.3"},
+  {c:"\\mathrm{d}",               k:"Fonts",       d:"Roman upright",              e:"\\mathrm{d}x",                       sub:"1.3"},
+  {c:"\\mathcal{P}",              k:"Fonts",       d:"Calligraphic",               e:"\\mathcal{P}(A)",                    sub:"1.3"},
+  {c:"\\alpha \\beta \\gamma",    k:"Greek",       d:"Common lowercase",           e:"\\alpha+\\beta=\\gamma",             sub:"1.2"},
+  {c:"\\pi \\theta \\lambda",     k:"Greek",       d:"More lowercase",             e:"\\theta\\approx\\frac{\\pi}{6}",     sub:"1.2"},
+  {c:"\\varepsilon \\varphi",     k:"Greek",       d:"Variant forms",              e:"\\forall\\varepsilon>0",             sub:"1.2"},
+  {c:"\\Gamma \\Delta \\Sigma",   k:"Greek",       d:"Uppercase Greek",            e:"\\Delta x,\\,\\Sigma_i",             sub:"1.2"},
+  {c:"\\hat \\bar \\tilde",       k:"Accents",     d:"Single-letter accents",      e:"\\hat{x}+\\bar{y}",                  sub:"6.1"},
+  {c:"\\vec{v}",                  k:"Accents",     d:"Vector arrow",               e:"\\vec{v}_1+\\vec{v}_2",              sub:"6.1"},
+  {c:"\\widehat \\overline",      k:"Accents",     d:"Wide (stretching) accents",  e:"\\overline{a+bi}",                   sub:"6.1"},
+  {c:"\\dot \\ddot",              k:"Accents",     d:"Time derivatives",           e:"\\dot{x},\\ \\ddot{x}",              sub:"6.1"},
+  {c:"\\underbrace \\overbrace",  k:"Spacing",     d:"Labelled braces",            e:"\\underbrace{a+b}_{s}",              sub:"6.2"},
+  {c:"\\, \\; \\quad \\qquad",    k:"Spacing",     d:"Spacing commands",           e:"a\\quad b\\qquad c",                 sub:"6.3"},
+  {c:"\\text{...}",               k:"Spacing",     d:"Words inside math",          e:"x=0\\text{ for all }y",              sub:"6.3"},
+  {c:"\\infty",                   k:"Special",     d:"Infinity",                   e:"\\lim_{n\\to\\infty}a_n"},
+  {c:"\\pm \\mp",                 k:"Special",     d:"Plus-minus",                 e:"x=\\frac{-b\\pm\\sqrt{\\Delta}}{2a}"},
+  {c:"\\cdot \\times",            k:"Special",     d:"Multiplication",             e:"a\\cdot b,\\ a\\times b"},
+  {c:"\\cdots \\ldots \\vdots",   k:"Special",     d:"Ellipses",                   e:"a_1,\\ldots,a_n"},
+  {c:"\\nabla \\partial",         k:"Special",     d:"Gradient / partial",         e:"\\nabla f,\\ \\partial_x f"},
+];
+
+// ═══════════════════════════════════════════
+// 1.  STATE
+// ═══════════════════════════════════════════
+const state = {
+  settings:{theme:"system",courseMode:"basic",bracketAutocomplete:true,
+             exerciseShadow:true,strictStyle:false,autoAdvance:true},
+  progress:{}, sections:[], editors:new Map(),
+};
+let previewEditor=null, currentPreviewType="display";
+let pretestEditor=null, pretestCurrentType="display";
+let scratchEditor=null, scratchInited=false;
+const PT={questions:[],idx:0,correct:0,timer:null};
+
+// ═══════════════════════════════════════════
+// 2.  UTILITIES
+// ═══════════════════════════════════════════
+function simpleHash(s){let h=0;for(let i=0;i<s.length;i++)h=Math.imul(31,h)+s.charCodeAt(i)|0;return(h>>>0).toString(16)}
+function processHintHtml(html){
+  return html.replace(/<ref>(\d+)\.(\d+)<\/ref>/g,(_,s,sub)=>`<a href="#section-${s}-${sub}" class="hint-link">(&sect;${s}.${sub})</a>`);
+}
+function extractCommands(latex){const r=[],re=/\\([a-zA-Z]+)/g;let m;while((m=re.exec(latex))!==null)r.push('\\'+m[1]);return r}
+function stripLatex(s){
+  let r=s.replace(/\\[,;:!]|\\quad\b|\\qquad\b|\\ /g,'');
+  r=r.replace(/(\\[a-zA-Z]+) +([a-zA-Z])/g,'$1\x00$2');
+  r=r.replace(/\s+/g,'');
+  return r.replace(/\x00/g,' ');
+}
+function escapeHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function showToast(msg,type='info'){
+  const ct=document.getElementById('toast-ct'),t=document.createElement('div');
+  t.className=`toast ${type}`;
+  const ic={warning:'&#9888;',error:'&#10060;',success:'&#10003;',info:'&#128712;'};
+  t.innerHTML=`<span>${ic[type]||ic.info}</span><span class="toast-msg">${msg}</span>`;
+  ct.appendChild(t);setTimeout(()=>t.remove(),4000);
+}
+function renderLatex(latex,type,container){
+  if(!container)return;
+  try{
+    const dm=type==='display'||type==='align*';
+    const src=type==='align*'?`\\begin{aligned}${latex}\\end{aligned}`:latex;
+    katex.render(src,container,{displayMode:dm,throwOnError:false,strict:false});
+  }catch(_){container.innerHTML='<span style="color:var(--err);font-size:.8rem">Render error</span>'}
+}
+
+// ═══════════════════════════════════════════
+// 3.  SYNTAX HIGHLIGHTING
+// ═══════════════════════════════════════════
+function highlightLatexCode(text){
+  let r='',i=0;
+  while(i<text.length){
+    const c=text[i];
+    if(c==='\\'){
+      i++;
+      if(i<text.length&&/[a-zA-Z]/.test(text[i])){
+        let cmd='';
+        while(i<text.length&&/[a-zA-Z]/.test(text[i])){cmd+=text[i];i++}
+        r+=`<span class="lx-cmd">\\${cmd}</span>`;
+      }else if(i<text.length){r+=`<span class="lx-cmd">${escapeHtml('\\'+text[i])}</span>`;i++}
+      else r+='\\';
+    }else if(c==='{'||c==='}'){r+=`<span class="lx-brace">${c}</span>`;i++}
+    else if(c==='_'||c==='^'){r+=`<span class="lx-op">${c}</span>`;i++}
+    else if(c==='<'){r+='&lt;';i++}else if(c==='>'){r+='&gt;';i++}else if(c==='&'){r+='&amp;';i++}
+    else{r+=c;i++}
+  }
+  return r;
+}
+function applySyntaxHighlighting(){
+  document.querySelectorAll('#course-content p code,#course-content td code').forEach(el=>{
+    el.innerHTML=highlightLatexCode(el.textContent);
+  });
+  document.querySelectorAll('#course-content pre:not(.paired) code').forEach(el=>{
+    el.innerHTML=highlightLatexCode(el.textContent);
+  });
+}
+
+// ═══════════════════════════════════════════
+// 4.  BRACKET PARSER  (len bug fixed)
+// ═══════════════════════════════════════════
+const SIZING_PFXS=['\\Biggr','\\Biggl','\\biggr','\\biggl','\\Bigr','\\Bigl','\\bigr','\\bigl','\\Bigm','\\bigm','\\Biggm','\\biggm','\\Bigg','\\bigg','\\Big','\\big'];
+class BracketParser{
+  constructor(latex){this.latex=latex;this.chunks=[];this.cid=0}
+  parse(){
+    const stk=[];let i=0;const s=this.latex;
+    while(i<s.length){
+      const op=this._open(i);
+      if(op){stk.push({type:op.type,start:i,len:op.len});i+=op.len;continue}
+      const cl=this._close(i);
+      if(cl&&stk.length){
+        const top=stk[stk.length-1];
+        if(this._pair(top.type,cl.type)){
+          stk.pop();
+          this.chunks.push({id:`chunk-${this.cid++}`,start:top.start,end:i+cl.len,openType:top.type});
+        }
+        i+=cl.len;continue;
+      }
+      const env=this._env(i);
+      if(env){this.chunks.push({id:`chunk-${this.cid++}`,start:env.s,end:env.e,openType:'env'});i=env.e;continue}
+      if(s[i]==='\\'){i++;if(i<s.length){if(/[a-zA-Z]/.test(s[i])){while(i<s.length&&/[a-zA-Z]/.test(s[i]))i++}else i++}continue}
+      i++;
+    }
+    return this.chunks;
+  }
+  _sp(i){
+    const s=this.latex;
+    for(const p of SIZING_PFXS){
+      if(s.startsWith(p,i)){const a=s[i+p.length];if(!a||!/[a-zA-Z]/.test(a))return{p,len:p.length}}
+    }
+    return null;
+  }
+  _open(i){
+    const s=this.latex,sp=this._sp(i);
+    let j=sp?i+sp.len:i;
+    while(j<s.length&&s[j]===' ')j++;
+    const chk=j;
+    if(!sp){
+      const lp=[['\\left\\{','left-brace'],['\\left(','left-paren'],['\\left[','left-bracket'],['\\left\\langle','left-angle'],['\\left\\lfloor','left-floor'],['\\left\\lceil','left-ceil'],['\\left\\lvert','left-vbar'],['\\left\\lVert','left-VBar'],['\\left|','left-abs'],['\\left\\|','left-norm'],['\\left.','left-invis']];
+      for(const[pat,type]of lp)if(s.startsWith(pat,i))return{type,len:pat.length};
+    }
+    const dp=[['\\{','brace'],['(','paren'],['[','bracket'],['{','group']];
+    for(const[pat,type]of dp)if(s.startsWith(pat,chk))return{type,len:(chk-i)+pat.length};
+    return null;
+  }
+  _close(i){
+    const s=this.latex,sp=this._sp(i);
+    let j=sp?i+sp.len:i;
+    while(j<s.length&&s[j]===' ')j++;
+    const chk=j;
+    if(!sp){
+      const rp=[['\\right\\}','right-brace'],['\\right)','right-paren'],['\\right]','right-bracket'],['\\right\\rangle','right-angle'],['\\right\\rfloor','right-floor'],['\\right\\rceil','right-ceil'],['\\right\\rvert','right-vbar'],['\\right\\rVert','right-VBar'],['\\right|','right-abs'],['\\right\\|','right-norm'],['\\right.','right-invis']];
+      for(const[pat,type]of rp)if(s.startsWith(pat,i))return{type,len:pat.length};
+    }
+    const dc=[['\\}','brace'],[')',  'paren'],[']','bracket'],['}','group']];
+    for(const[pat,type]of dc)if(s.startsWith(pat,chk))return{type,len:(chk-i)+pat.length};
+    return null;
+  }
+  _pair(o,c){
+    const m={paren:'paren',bracket:'bracket',brace:'brace',group:'group','left-paren':'right-paren','left-bracket':'right-bracket','left-brace':'right-brace','left-angle':'right-angle','left-floor':'right-floor','left-ceil':'right-ceil','left-vbar':'right-vbar','left-VBar':'right-VBar','left-abs':'right-abs','left-norm':'right-norm','left-invis':['right-paren','right-bracket','right-brace','right-angle','right-floor','right-ceil','right-vbar','right-VBar','right-abs','right-norm','right-invis']};
+    const e=m[o];if(!e)return false;
+    return Array.isArray(e)?e.includes(c):e===c;
+  }
+  _env(i){
+    const s=this.latex,bm=s.substring(i).match(/^\\begin\{([^}]+)\}/);
+    if(!bm)return null;
+    const ep=`\\end{${bm[1]}}`,ei=s.indexOf(ep,i+bm[0].length);
+    if(ei===-1)return null;
+    return{s:i,e:ei+ep.length};
+  }
+}
+
+// ═══════════════════════════════════════════
+// 5.  CHUNK TREE + ANNOTATORS
+// ═══════════════════════════════════════════
+function buildChunkTree(chunks){
+  const nodes=chunks.map(c=>({...c,children:[]}));
+  for(const n of nodes){
+    let best=null,bsz=Infinity;
+    for(const o of nodes){
+      if(o===n)continue;
+      if(o.start<=n.start&&o.end>=n.end&&(o.start<n.start||o.end>n.end)){
+        const sz=o.end-o.start;if(sz<bsz){bsz=sz;best=o}
+      }
+    }
+    n._p=best;
+  }
+  const root={id:'root',start:0,end:Infinity,children:[]};
+  for(const n of nodes){(n._p??root).children.push(n);delete n._p}
+  return root;
+}
+function buildAnnotatedKatex(latex,chunks){
+  const tree=buildChunkTree(chunks);
+  function ann(s,e,ch,node){
+    const ig=node&&node.openType==='group';
+    const is=ig?s+1:s,ie=ig?e-1:e;
+    let inner='',pos=is;
+    for(const c of[...(ch||[])].sort((a,b)=>a.start-b.start)){
+      inner+=latex.substring(pos,c.start);
+      inner+=ann(c.start,c.end,c.children,c);
+      pos=c.end;
+    }
+    inner+=latex.substring(pos,ie);
+    if(!node)return inner;
+    return ig?`{\\htmlId{${node.id}}{${inner}}}`:`\\htmlId{${node.id}}{${inner}}`;
+  }
+  return ann(0,latex.length,tree.children,null);
+}
+function buildAnnotatedHtml(latex,chunks){
+  const tree=buildChunkTree(chunks);
+  function ec(c){
+    if(c===undefined||c===null)return'';
+    return c==='<'?'&lt;':c==='>'?'&gt;':c==='&'?'&amp;':c;
+  }
+  function ann(s,e,ch){
+    let r='',pos=s;
+    for(const c of[...(ch||[])].sort((a,b)=>a.start-b.start)){
+      for(let k=pos;k<c.start;k++)r+=ec(latex[k]);
+      r+=`<span class="chunk-latex" data-chunk-id="${c.id}">`;
+      r+=ann(c.start,c.end,c.children);
+      r+='</span>';
+      pos=c.end;
+    }
+    for(let k=pos;k<e;k++)r+=ec(latex[k]);
+    return r;
+  }
+  return ann(0,latex.length,tree.children);
+}
+
+// ═══════════════════════════════════════════
+// 6.  BI-DIRECTIONAL HIGHLIGHTING
+// ═══════════════════════════════════════════
+function setupBiHighlighting(katexCt,latexCt){
+  const clear=()=>{
+    katexCt.querySelectorAll('.chunk-hl').forEach(e=>e.classList.remove('chunk-hl'));
+    latexCt.querySelectorAll('.chunk-hl').forEach(e=>e.classList.remove('chunk-hl'));
+  };
+  katexCt.querySelectorAll('[id^="chunk-"]').forEach(el=>{
+    el.addEventListener('mouseenter',e=>{e.stopPropagation();clear();el.classList.add('chunk-hl');latexCt.querySelector(`[data-chunk-id="${el.id}"]`)?.classList.add('chunk-hl')});
+    el.addEventListener('mouseleave',clear);
+  });
+  latexCt.querySelectorAll('[data-chunk-id]').forEach(el=>{
+    el.addEventListener('mouseenter',e=>{e.stopPropagation();clear();el.classList.add('chunk-hl');katexCt.querySelector(`#${el.dataset.chunkId}`)?.classList.add('chunk-hl')});
+    el.addEventListener('mouseleave',clear);
+  });
+}
+
+// ═══════════════════════════════════════════
+// 7.  PAIRED PRE — flat grid
+// ═══════════════════════════════════════════
+function getPairedParts(pre){
+  const parts=[];let cur='';
+  for(const n of pre.childNodes){
+    if(n.nodeType===Node.TEXT_NODE)cur+=n.textContent;
+    else if(n.nodeName==='BR'){const t=cur.trim();if(t)parts.push(t);cur=''}
+  }
+  const t=cur.trim();if(t)parts.push(t);
+  return parts.length?parts:[''];
+}
+function processPairedPres(){
+  document.querySelectorAll('pre.paired').forEach(pre=>{
+    const parts=getPairedParts(pre);
+    const cols=parts.length===1?1:parts.length<=2?2:3;
+    const container=document.createElement('div');
+    container.className='paired-group';
+    container.style.setProperty('--paired-cols',cols);
+    const codeBlocks=[],renders=[];
+    for(const latex of parts){
+      const parser=new BracketParser(latex),chunks=parser.parse();
+      const aKatex=buildAnnotatedKatex(latex,chunks),aHtml=buildAnnotatedHtml(latex,chunks);
+      const cb=document.createElement('pre');cb.className='paired';
+      cb.innerHTML=`<code>${aHtml}</code>`;
+      const rd=document.createElement('div');rd.className='paired-katex';rd.title='Click to inspect';
+      rd.tabIndex=0;rd.setAttribute('role','button');rd.setAttribute('aria-label','Inspect math: '+latex);
+      try{katex.render(aKatex,rd,{displayMode:true,throwOnError:false,strict:false,trust:ctx=>['\\htmlId','\\htmlClass'].includes(ctx.command)})}
+      catch(_){katex.render(latex,rd,{displayMode:true,throwOnError:false})}
+      const openPaired=()=>openPreviewModal(latex,'display',{allowCopy:true});
+      rd.addEventListener('click',openPaired);
+      rd.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openPaired()}});
+      codeBlocks.push(cb);renders.push({el:rd,chunks,cb});
+    }
+    codeBlocks.forEach(cb=>container.appendChild(cb));
+    renders.forEach(({el,chunks,cb})=>{container.appendChild(el);setupBiHighlighting(el,cb)});
+    pre.parentNode.insertBefore(container,pre);pre.remove();
+  });
+}
+
+// Make rendered math in the prose/tables clickable -> opens the preview modal.
+function makeContentMathClickable(){
+  const root=document.getElementById('course-content');
+  if(!root)return;
+  root.querySelectorAll('.katex').forEach(k=>{
+    if(k.dataset.mathBound)return;
+    // leave exercise UI, paired examples (own handler), completed lists, and modals alone
+    if(k.closest('.exercise-card,.paired-group,.done-list,.modal-overlay'))return;
+    // only bind the outermost katex, never a nested one
+    if(k.parentElement&&k.parentElement.closest('.katex'))return;
+    const ann=k.querySelector('.katex-mathml annotation');
+    const tex=ann?ann.textContent.trim():'';
+    if(!tex)return;
+    const disp=!!k.closest('.katex-display');
+    k.dataset.mathBound='1';
+    k.classList.add('math-clickable');
+    k.title='Click to inspect';
+    k.tabIndex=0;
+    k.setAttribute('role','button');
+    k.setAttribute('aria-label','Inspect math: '+tex);
+    const open=()=>openPreviewModal(tex,disp?'display':'inline',{allowCopy:true});
+    k.addEventListener('click',open);
+    k.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}});
+  });
+}
+
+// ═══════════════════════════════════════════
+// 8.  PEEVES
+// ═══════════════════════════════════════════
+const PEEVES=[
+  {re:/\|\|/,msg:'Use \\| instead of || for double vertical bars'},
+  {re:/(?<!\\)(sin|cos|tan|cot|sec|csc|log|ln|exp|lim|sup|inf|max|min|det|dim|ker|gcd|deg|arg)(?![a-zA-Z])/,msg:'Use \\$1 for the function name'},
+  {re:/\\vec\{[^}]+_/,msg:'Place subscript outside \\vec: \\vec{v}_1 not \\vec{v_1}'},
+  {re:/(?<!\\)(?<![<>])<=(?!=)/,msg:'Use \\leq for \u2264'},
+  {re:/(?<!\\)>=(?!=)/,msg:'Use \\geq for \u2265'},
+  {re:/(?<!\\)(?<![<>!])!=(?!=)/,msg:'Use \\neq for \u2260'},
+  {re:/(?<!\\)\.\.\./,msg:'Use \\ldots or \\cdots instead of ...'},
+];
+function checkPeeves(l){
+  for(const{re,msg}of PEEVES){const m=l.match(re);if(m)return msg.replace('$1',m[1]||m[0])}
+  return null;
+}
+
+// ═══════════════════════════════════════════
+// 9.  CODEMIRROR  (no linter)
+// ═══════════════════════════════════════════
+let EditorView,EditorState,keymap,
+    highlightSpecialChars,history,historyKeymap,drawSelection,
+    dropCursor,rectangularSelection,crosshairCursor,highlightActiveLine;
+async function loadCodeMirror(){
+  const[vm,sm,cm]=await Promise.all([
+    import('https://esm.sh/@codemirror/view@6'),
+    import('https://esm.sh/@codemirror/state@6'),
+    import('https://esm.sh/@codemirror/commands@6'),
+  ]);
+  EditorView=vm.EditorView;EditorState=sm.EditorState;keymap=vm.keymap;
+  highlightSpecialChars=vm.highlightSpecialChars;history=cm.history;
+  historyKeymap=cm.historyKeymap;drawSelection=vm.drawSelection;
+  dropCursor=vm.dropCursor;rectangularSelection=vm.rectangularSelection;
+  crosshairCursor=vm.crosshairCursor;highlightActiveLine=vm.highlightActiveLine;
+}
+
+function createBracketAutocomplete(){
+  const getCloseCmd=cmd=>{
+    if(cmd==='left')return'\\right';
+    if(cmd.endsWith('l'))return'\\'+cmd.slice(0,-1)+'r';
+    return'\\'+cmd;
+  };
+  const SPECIAL=[
+    {trigger:'e',prefix:'\\langl', close:'\\rangle'},
+    {trigger:'r',prefix:'\\lfloo', close:'\\rfloor'},
+    {trigger:'l',prefix:'\\lcei',  close:'\\rceil'},
+    {trigger:'t',prefix:'\\lver',  close:'\\rvert'},
+  ];
+  return EditorView.inputHandler.of((view,from,to,text)=>{
+    if(!state.settings.bracketAutocomplete)return false;
+    const doc=view.state.doc;
+    const hasSel=from!==to,pos=to;
+    const cBefore=from>0?doc.sliceString(from-1,from):'';
+    const cAfter=!hasSel&&pos<doc.length?doc.sliceString(pos,pos+1):'';
+    const two=!hasSel&&pos+1<doc.length?doc.sliceString(pos,pos+2):'';
+    const pairs={'(':')','[':']','{':'}'};
+
+    // ── Skip-over ──
+    if(!hasSel){
+      if(text==='}'&&two==='\\}'){view.dispatch({selection:{anchor:pos+2}});return true}
+      if(text===']'&&two==='\\]'){view.dispatch({selection:{anchor:pos+2}});return true}
+      if((text===')'&&cAfter===')')||(text===']'&&cAfter===']')||(text==='}'&&cAfter==='}')){
+        view.dispatch({selection:{anchor:pos+1}});return true;
+      }
+    }
+
+    // ── Special delimiters: \langle, \lfloor, \lceil, \lvert ──
+    if(!hasSel){
+      for(const{trigger,prefix,close}of SPECIAL){
+        if(text===trigger){
+          const pl=prefix.length;
+          const lb=doc.sliceString(Math.max(0,from-pl),from);
+          if(lb===prefix){
+            const pre2=doc.sliceString(Math.max(0,from-pl-10),from-pl);
+            const sm=pre2.match(/\\(left|big|Big|bigg|Bigg|bigl|Bigl|biggl|Biggl)$/);
+            const ins=sm?getCloseCmd(sm[1])+close:close;
+            view.dispatch({changes:{from:pos,to:pos,insert:trigger+ins},selection:{anchor:pos+1}});
+            return true;
+          }
+        }
+      }
+    }
+
+    if(!(text in pairs))return false;
+
+    // ── Sizing command detection ──
+    const isEsc=(text==='{'||text==='[')&&cBefore==='\\';
+    const bstr=doc.sliceString(Math.max(0,from-10),from);
+    const inspect=isEsc?bstr.slice(0,-1):bstr;
+    const sm=inspect.match(/\\(left|big|Big|bigg|Bigg|bigl|Bigl|biggl|Biggl)$/);
+
+    // ── Selection wrapping ──
+    if(hasSel){
+      const sel=doc.sliceString(from,to);
+      let close=pairs[text];
+      if(sm){const ce=isEsc?'\\'+close:close;close=getCloseCmd(sm[1])+ce}
+      else if(isEsc){close='\\'+close}
+      view.dispatch({changes:{from,to,insert:text+sel+close},selection:{anchor:from+1,head:from+1+sel.length}});
+      return true;
+    }
+
+    // ── Auto-close ──
+    let close=pairs[text],ins=text;
+    if(sm){const ce=isEsc?'\\'+close:close;ins=text+getCloseCmd(sm[1])+ce}
+    else if(isEsc){ins=text+'\\'+close}
+    else{ins=text+close}
+    view.dispatch({changes:{from:pos,to:pos,insert:ins},selection:{anchor:pos+1}});
+    return true;
+  });
+}
+
+function createEditor(container,onChange){
+  const exts=[
+    highlightSpecialChars(),history(),drawSelection(),dropCursor(),
+    EditorState.allowMultipleSelections.of(true),rectangularSelection(),
+    crosshairCursor(),highlightActiveLine(),
+    keymap.of(historyKeymap),
+    createBracketAutocomplete(),
+    EditorView.lineWrapping,
+    EditorView.updateListener.of(u=>{if(u.docChanged&&onChange)onChange(u.state.doc.toString())}),
+    EditorView.theme({
+      '&':{backgroundColor:'var(--bg-card)',color:'var(--tx-0)'},
+      '.cm-content':{caretColor:'var(--brand)',fontFamily:"'JetBrains Mono',monospace"},
+      '.cm-activeLine':{backgroundColor:'var(--ed-act)'},
+      '.cm-selectionBackground':{backgroundColor:'var(--ed-sel)'},
+      '&.cm-focused .cm-selectionBackground':{backgroundColor:'var(--ed-self)'},
+      '.cm-gutters':{backgroundColor:'var(--bg-1)',color:'var(--tx-2)',border:'none'},
+    }),
+  ];
+  return new EditorView({state:EditorState.create({doc:'',extensions:exts}),parent:container});
+}
+
+// ═══════════════════════════════════════════
+// 10. VERIFICATION
+// ═══════════════════════════════════════════
+const debounceTimers=new Map();
+async function verifyExpression(userInput,target,dataType){
+  if(state.settings.strictStyle){const e=checkPeeves(userInput);if(e){showToast(e,'warning');return false}}
+  if(stripLatex(userInput)===stripLatex(target))return true;
+  return visualCompare(userInput,target,dataType);
+}
+function countNonWhite(d){let n=0;for(let i=0;i<d.length;i+=4)if(d[i]<242||d[i+1]<242||d[i+2]<242)n++;return n}
+async function visualCompare(user,target,type){
+  const tmp=document.createElement('div');
+  tmp.style.cssText='position:absolute;left:-9999px;top:-9999px;background:#fff;';
+  document.body.appendChild(tmp);
+  const ud=document.createElement('div'),td=document.createElement('div');
+  tmp.append(ud,td);
+  try{
+    const dm=type!=='inline';
+    const wrap=s=>type==='align*'?`\\begin{aligned}${s}\\end{aligned}`:s;
+    const ul=state.settings.strictStyle?user:stripLatex(user);
+    const tl=state.settings.strictStyle?target:stripLatex(target);
+    katex.render(wrap(ul),ud,{displayMode:dm,throwOnError:false,strict:false});
+    katex.render(wrap(tl),td,{displayMode:dm,throwOnError:false,strict:false});
+    const[uc,tc]=await Promise.all([
+      html2canvas(ud,{scale:2,backgroundColor:'#ffffff',logging:false}),
+      html2canvas(td,{scale:2,backgroundColor:'#ffffff',logging:false}),
+    ]);
+    const W=Math.max(uc.width,tc.width),H=Math.max(uc.height,tc.height);
+    const norm=src=>{
+      const c=document.createElement('canvas');c.width=W;c.height=H;
+      const cx=c.getContext('2d');cx.fillStyle='#fff';cx.fillRect(0,0,W,H);
+      cx.drawImage(src,0,0);return cx.getImageData(0,0,W,H);
+    };
+    const uID=norm(uc),tID=norm(tc);
+    const uNW=countNonWhite(uID.data),tNW=countNonWhite(tID.data);
+    if(uNW<15||tNW<15)return false;
+    if(uNW<tNW*0.35)return false;
+    const pmFn=typeof pixelmatch!=='undefined'?pixelmatch:typeof window.pixelmatch!=='undefined'?window.pixelmatch:null;
+    let diff;
+    if(pmFn){diff=pmFn(uID.data,tID.data,new Uint8Array(W*H*4),W,H,{threshold:0.12,includeAA:false})}
+    else{
+      diff=0;
+      for(let i=0;i<uID.data.length;i+=4){
+        const Y=0.299*(uID.data[i]-tID.data[i])+0.587*(uID.data[i+1]-tID.data[i+1])+0.114*(uID.data[i+2]-tID.data[i+2]);
+        if(Y*Y>600)diff++;
+      }
+    }
+    return diff/(W*H)<0.018;
+  }catch(_){return false}
+  finally{document.body.removeChild(tmp)}
+}
+
+// ═══════════════════════════════════════════
+// 11. DOM PARSING
+// ═══════════════════════════════════════════
+function parseContent(){
+  const content=document.getElementById('course-content');
+  const sections=[];let sn=0,ssn=0,cur=null;
+  let allTargets='';
+  content.querySelectorAll('expression').forEach(e=>{
+    const cl=e.cloneNode(true);cl.querySelector('hint')?.remove();
+    allTargets+=cl.textContent.trim();
+  });
+  const hash=simpleHash(allTargets);
+  if(localStorage.getItem('nutex-hash')&&localStorage.getItem('nutex-hash')!==hash){
+    localStorage.removeItem('nutex-progress');showToast('Course updated \u2014 progress reset.','info');
+  }
+  localStorage.setItem('nutex-hash',hash);
+  for(const child of Array.from(content.children)){
+    if(child.tagName==='H1'){
+      sn++;ssn=0;
+      cur={num:sn,title:child.textContent.trim(),element:child,subsections:[],reviewExercise:null};
+      sections.push(cur);
+      child.id=`section-${sn}`;
+      child.textContent=`${sn}. ${child.textContent.trim()}`;
+    }else if(child.tagName==='H2'&&cur){
+      ssn++;
+      const isAdv=child.classList.contains('advanced');
+      const raw=child.textContent.trim();
+      const sub={num:ssn,fullNum:`${sn}.${ssn}`,title:raw,element:child,isAdvanced:isAdv,exercise:null};
+      cur.subsections.push(sub);
+      child.id=`section-${sn}-${ssn}`;
+      child.textContent=`${sn}.${ssn} ${raw}`;
+    }else if(child.tagName==='EXERCISE'&&cur){
+      const isRev=child.classList.contains('review');
+      if(isRev){
+        const rh=document.createElement('h2');
+        rh.className='review-header';rh.id=`section-${sn}-review`;rh.textContent=`${sn}.Review`;
+        child.parentNode.insertBefore(rh,child);
+        cur.reviewExercise={element:child,expressions:parseExpressions(child,false),num:sn};
+      }else{
+        const last=cur.subsections[cur.subsections.length-1];
+        if(last)last.exercise={element:child,expressions:parseExpressions(child,last.isAdvanced)};
+      }
+    }
+  }
+  state.sections=sections;return sections;
+}
+function parseExpressions(exEl,subsAdv=false){
+  return Array.from(exEl.querySelectorAll('expression')).map((expr,idx)=>{
+    const hintEl=expr.querySelector('hint');
+    const hint=hintEl?hintEl.innerHTML:(expr.dataset.hint?escapeHtml(expr.dataset.hint):'');
+    const cl=expr.cloneNode(true);cl.querySelector('hint')?.remove();
+    const latex=cl.textContent.trim();
+    return{index:idx,latex,type:expr.dataset.type||'inline',hint,
+           isAdvanced:subsAdv||expr.dataset.advanced==='true',
+           isPretest:expr.dataset.pretest==='true',
+           image:expr.dataset.image||null,element:expr};
+  });
+}
+
+// ═══════════════════════════════════════════
+// 12. SIDEBAR + SCROLL TRACKING
+// ═══════════════════════════════════════════
+function buildSidebar(){
+  const nav=document.getElementById('sb-nav');nav.innerHTML='';
+  for(const sec of state.sections){
+    const secEl=document.createElement('div');secEl.className='nav-section expanded';
+    secEl.innerHTML=`<div class="nav-sec-hdr" data-secn="${sec.num}"><span>${sec.num}. ${sec.title.replace(/^\d+\.\s*/,'')}</span><span class="chev">&rsaquo;</span></div><div class="nav-subs"></div>`;
+    const subs=secEl.querySelector('.nav-subs');
+    for(const sub of sec.subsections){
+      const nonAdv=sub.exercise?sub.exercise.expressions.filter(e=>!e.isAdvanced).length:0;
+      const prog=getSubsectionProgress(sec.num,sub.num,sub.exercise);
+      const el=document.createElement('div');
+      el.className=`nav-sub ${sub.isAdvanced?'advanced':''}`;
+      el.dataset.secn=sec.num;el.dataset.subn=sub.num;
+      el.innerHTML=`<span>${sub.fullNum} ${sub.title.replace(/^\d+\.\d+\s*/,'')}</span>${nonAdv>0?`<span class="nav-prog ${prog>=nonAdv?'done':''}">[${prog}/${nonAdv}]</span>`:''}`;
+      el.addEventListener('click',()=>document.getElementById(`section-${sec.num}-${sub.num}`)?.scrollIntoView({behavior:'smooth'}));
+      subs.appendChild(el);
+    }
+    if(sec.reviewExercise){
+      const total=sec.reviewExercise.expressions.filter(e=>!e.isAdvanced).length;
+      const prog=getReviewProgress(sec.num,sec.reviewExercise);
+      const rel=document.createElement('div');
+      rel.className='nav-sub';rel.dataset.secn=sec.num;rel.dataset.review='1';
+      rel.innerHTML=`<span>${sec.num}.Review</span><span class="nav-prog ${prog>=total?'done':''}">[${prog}/${total}]</span>`;
+      rel.addEventListener('click',()=>document.getElementById(`section-${sec.num}-review`)?.scrollIntoView({behavior:'smooth'}));
+      subs.appendChild(rel);
+    }
+    secEl.querySelector('.nav-sec-hdr').addEventListener('click',()=>secEl.classList.toggle('expanded'));
+    nav.appendChild(secEl);
+  }
+}
+function setupScrollTracking(){
+  const items=[];
+  for(const sec of state.sections){
+    for(const sub of sec.subsections)if(sub.element?.id)items.push({el:sub.element,sn:sec.num,ss:sub.num,adv:sub.isAdvanced,rev:false});
+    const rel=document.getElementById(`section-${sec.num}-review`);
+    if(rel)items.push({el:rel,sn:sec.num,ss:null,adv:false,rev:true});
+  }
+  function update(){
+    const midY=window.scrollY+window.innerHeight*0.3;
+    let active=null;
+    for(const item of items){
+      if(state.settings.courseMode==='basic'&&item.adv)continue;
+      const top=item.el.getBoundingClientRect().top+window.scrollY;
+      if(top<=midY+4)active=item;
+    }
+    document.querySelectorAll('.nav-sub').forEach(e=>e.classList.remove('active'));
+    if(active){
+      const sel=active.rev?`.nav-sub[data-secn="${active.sn}"][data-review]`:`.nav-sub[data-secn="${active.sn}"][data-subn="${active.ss}"]`;
+      document.querySelector(sel)?.classList.add('active');
+      document.querySelectorAll('.nav-section').forEach(s=>{if(s.querySelector(`.nav-sec-hdr[data-secn="${active.sn}"]`))s.classList.add('expanded')});
+    }
+  }
+  window.addEventListener('scroll',update,{passive:true});
+  setTimeout(update,200);
+}
+
+// ═══════════════════════════════════════════
+// 13. EXERCISE CARDS
+// ═══════════════════════════════════════════
+function buildExerciseCards(){
+  for(const sec of state.sections){
+    for(const sub of sec.subsections)if(sub.exercise)buildExerciseCard(sub.exercise,`${sec.num}.${sub.num}`,false);
+    if(sec.reviewExercise)buildExerciseCard(sec.reviewExercise,`${sec.num}`,true);
+  }
+}
+function buildExerciseCard(exercise,prefix,isReview){
+  const card=document.createElement('div');
+  card.className='exercise-card';card.dataset.prefix=prefix;card.dataset.review=isReview?'1':'';
+  const exprs=exercise.expressions;
+  const pk=isReview?`review-${prefix}`:`exercise-${prefix}`;
+  const saved=state.progress[pk]||[];
+  const allDone=saved.length>=exprs.length;
+  if(allDone)card.classList.add('completed');
+  card.innerHTML=`
+    <div class="ex-header">
+      <span class="ex-title">Exercise ${prefix}(a)</span>
+      <span class="mode-badge" title="Math mode for this exercise"></span>
+      <div class="ex-actions">
+        <button class="ex-btn hint-btn">Hint</button>
+        <button class="ex-btn answer-btn">Answer</button>
+      </div>
+    </div>
+    <div class="ex-body">
+      <div class="math-pane target-pane"><span class="label">Target</span><div class="math-content target-ct"></div></div>
+      <div class="math-pane output-pane${state.settings.exerciseShadow?'':' no-shadow'}"><span class="label">Output</span><div class="target-shadow"></div><div class="math-content output-ct"></div></div>
+      <div class="input-pane"><div class="editor-wrap"><div class="env-line top"></div><div class="ed-container"></div><div class="env-line bot"></div></div></div>
+    </div>
+    <div class="ex-footer">${exprs.map((e,i)=>`<div class="nav-dot${i===0?' active':''}${saved.includes(i)?' complete':''}${e.isAdvanced?' adv':''}" data-di="${i}" title="(${String.fromCharCode(97+i)})${e.isAdvanced?' ADVANCED':''}"></div>`).join('')}</div>
+    <ul class="done-list hidden">${exprs.map((_,i)=>`<li data-li="${i}"><div class="done-render"></div><span class="open-hint">&#x2197; view</span></li>`).join('')}</ul>`;
+  exercise.element.replaceWith(card);exercise.cardElement=card;exercise.currentIndex=0;
+  const editor=createEditor(card.querySelector('.ed-container'),val=>onEditorChange(exercise,val));
+  state.editors.set(card,editor);
+  updateExerciseUI(exercise,0);
+  setupExerciseEvents(exercise,card);
+  if(allDone)showCompletedState(exercise,card);
+}
+function setupExerciseEvents(exercise,card){
+  card.querySelectorAll('.nav-dot').forEach(dot=>{
+    dot.addEventListener('click',()=>{
+      const idx=parseInt(dot.dataset.di);
+      exercise.currentIndex=idx;updateExerciseUI(exercise,idx);
+      const ed=state.editors.get(card);
+      if(ed)ed.dispatch({changes:{from:0,to:ed.state.doc.length,insert:''}});
+    });
+  });
+  card.querySelector('.hint-btn').addEventListener('click',()=>showHintModal(exercise.expressions[exercise.currentIndex]));
+  card.querySelector('.answer-btn').addEventListener('click',()=>{
+    const expr=exercise.expressions[exercise.currentIndex];
+    openPreviewModal(expr.latex,expr.type,{allowCopy:false});
+  });
+  const targetPane=card.querySelector('.target-pane');
+  const revealTarget=()=>{
+    const expr=exercise.expressions[exercise.currentIndex];
+    if(expr.image)return; // image targets must be parsed by eye, not revealed
+    openPreviewModal(expr.latex,expr.type,{allowCopy:false});
+  };
+  targetPane.addEventListener('click',revealTarget);
+  targetPane.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();revealTarget()}});
+}
+function updateExerciseUI(exercise,idx){
+  const card=exercise.cardElement,expr=exercise.expressions[idx];
+  const letter=String.fromCharCode(97+idx);
+  const badge=expr.isAdvanced?`<span class="expr-adv-badge">ADVANCED</span>`:'';
+  card.querySelector('.ex-title').innerHTML=`Exercise ${card.dataset.prefix}(${letter})${badge}`;
+  card.querySelectorAll('.nav-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
+  const wm={'inline':['\\(','\\)'],'display':['\\[','\\]'],'align*':['\\begin{align*}','\\end{align*}'],'text':['','']};
+  const[top,bot]=wm[expr.type]??wm['inline'];
+  card.querySelector('.env-line.top').textContent=top;
+  card.querySelector('.env-line.bot').textContent=bot;
+  const modeLabel={'inline':'Inline','display':'Display','align*':'Align','text':'Text'}[expr.type]||'Inline';
+  const mb=card.querySelector('.mode-badge');
+  if(mb)mb.textContent=modeLabel+' mode';
+  const targetCt=card.querySelector('.target-ct');
+  const targetPane=card.querySelector('.target-pane');
+  if(expr.image){
+    targetCt.innerHTML=`<img class="target-img" src="${expr.image}" alt="Handwritten expression to transcribe">`;
+    card.querySelector('.target-shadow').innerHTML=''; // never leak the answer behind an image prompt
+    // image targets are not revealable: drop the button affordance
+    targetPane.removeAttribute('tabindex');targetPane.removeAttribute('role');
+    targetPane.setAttribute('aria-label','Handwritten expression to transcribe');
+    targetPane.style.cursor='default';
+  }else{
+    renderLatex(expr.latex,expr.type,targetCt);
+    if(state.settings.exerciseShadow)renderLatex(expr.latex,expr.type,card.querySelector('.target-shadow'));
+    targetPane.tabIndex=0;targetPane.setAttribute('role','button');
+    targetPane.setAttribute('aria-label','Reveal the target LaTeX source');
+    targetPane.style.cursor='';
+  }
+  card.querySelector('.output-ct').innerHTML='';
+}
+
+// ═══════════════════════════════════════════
+// 14. EDITOR CHANGE HANDLER
+// ═══════════════════════════════════════════
+function onEditorChange(exercise,value){
+  const card=exercise.cardElement,expr=exercise.expressions[exercise.currentIndex];
+  renderLatex(value,expr.type,card.querySelector('.output-ct'));
+  const key=card.dataset.prefix+(card.dataset.review?'r':'');
+  clearTimeout(debounceTimers.get(key));
+  debounceTimers.set(key,setTimeout(async()=>{
+    debounceTimers.delete(key);if(!value.trim())return;
+    const ok=await verifyExpression(value,expr.latex,expr.type);
+    if(!ok)return;
+    card.classList.add('success-flash');setTimeout(()=>card.classList.remove('success-flash'),700);
+    const pk=card.dataset.review?`review-${card.dataset.prefix}`:`exercise-${card.dataset.prefix}`;
+    if(!state.progress[pk])state.progress[pk]=[];
+    if(!state.progress[pk].includes(exercise.currentIndex))state.progress[pk].push(exercise.currentIndex);
+    saveProgress();
+    card.querySelector(`.nav-dot[data-di="${exercise.currentIndex}"]`)?.classList.add('complete');
+    updateSidebarProgress();updateGlobalProgress();updateBackpack();
+    const allDone=state.progress[pk].length>=exercise.expressions.length;
+    if(allDone){setTimeout(()=>showCompletedState(exercise,card),state.settings.autoAdvance?1500:700);return}
+    if(state.settings.autoAdvance){
+      const done=state.progress[pk],n=exercise.expressions.length,next=exercise.currentIndex+1;
+      // advance to the next expression if it exists and is unfinished;
+      // otherwise wrap back to the first still-incomplete expression
+      const target=(next<n&&!done.includes(next))
+        ?next
+        :exercise.expressions.findIndex((e,i)=>!done.includes(i));
+      if(target>=0){
+        setTimeout(()=>{
+          exercise.currentIndex=target;updateExerciseUI(exercise,target);
+          const ed=state.editors.get(card);
+          if(ed){ed.dispatch({changes:{from:0,to:ed.state.doc.length,insert:''}});ed.focus()}
+        },1500);
+      }
+    }
+  },750));
+}
+
+// ═══════════════════════════════════════════
+// 15. COMPLETED STATE + MARK COMPLETE
+// ═══════════════════════════════════════════
+function showCompletedState(exercise,card){
+  card.classList.add('completed');
+  const prefix=card.dataset.prefix,isRev=!!card.dataset.review;
+  const tEl=card.querySelector('.ex-title');
+  tEl.innerHTML=`Exercise ${isRev?prefix+'.Review':prefix} \u2014 Complete`;tEl.classList.add('done');
+  card.querySelector('.ex-actions').style.display='none';
+  card.querySelector('.ex-body').style.display='none';
+  card.querySelector('.ex-footer').style.display='none';
+  const list=card.querySelector('.done-list');list.classList.remove('hidden');
+  list.querySelectorAll('li').forEach((li,i)=>{
+    const expr=exercise.expressions[i];
+    renderLatex(expr.latex,expr.type,li.querySelector('.done-render'));
+    li.addEventListener('click',()=>openPreviewModal(expr.latex,expr.type,{allowCopy:true}));
+  });
+}
+function markSubsectionComplete(sn,ssn){
+  const sec=state.sections.find(s=>s.num===sn);
+  const sub=sec?.subsections.find(s=>s.num===ssn);
+  if(!sub?.exercise)return;
+  const key=`exercise-${sn}.${ssn}`;
+  state.progress[key]=sub.exercise.expressions.map((_,i)=>i);
+  saveProgress();
+  if(sub.exercise.cardElement&&!sub.exercise.cardElement.classList.contains('completed'))
+    showCompletedState(sub.exercise,sub.exercise.cardElement);
+  updateSidebarProgress();updateGlobalProgress();updateBackpack();
+}
+
+// ═══════════════════════════════════════════
+// 16. PREVIEW MODAL (unified)
+// ═══════════════════════════════════════════
+function openPreviewModal(latex,type,{allowCopy=true}={}){
+  if(!type||type==='null')type='display';
+  currentPreviewType=type;
+  const modal=document.getElementById('preview-modal');
+
+  // chunks tab
+  const rendered=document.getElementById('pp-rendered'),latexDisp=document.getElementById('pp-latex');
+  const parser=new BracketParser(latex),chunks=parser.parse();
+  rendered.innerHTML='';
+  try{katex.render(buildAnnotatedKatex(latex,chunks),rendered,{displayMode:type!=='inline',throwOnError:false,strict:false,trust:ctx=>['\\htmlId','\\htmlClass'].includes(ctx.command)})}
+  catch(_){katex.render(latex,rendered,{displayMode:type!=='inline',throwOnError:false})}
+  latexDisp.innerHTML=buildAnnotatedHtml(latex,chunks);
+  setupBiHighlighting(rendered,latexDisp);
+
+  // source tab
+  document.getElementById('pp-source-code').innerHTML=`<code>${highlightLatexCode(latex)}</code>`;
+  const copyBtn=document.getElementById('pp-copy-btn'),copyNote=document.getElementById('pp-copy-note');
+  copyBtn.style.display=allowCopy?'':'none';
+  copyNote.style.display=allowCopy?'none':'';
+  copyBtn.onclick=async()=>{
+    try{await navigator.clipboard.writeText(latex);showToast('Copied!','success')}
+    catch(_){showToast('Copy failed','error')}
+  };
+
+  // edit tab — hide when not allowed
+  const editTabBtn=modal.querySelector('[data-ptab="edit"]');
+  if(editTabBtn){editTabBtn.classList.toggle('hidden',!allowCopy)}
+
+  const wm={'inline':['\\(','\\)'],'display':['\\[','\\]'],'align*':['\\begin{align*}','\\end{align*}'],'text':['\\text{','}']};
+  const[et,eb]=wm[type]??wm['display'];
+  document.getElementById('pp-edit-top').textContent=et;
+  document.getElementById('pp-edit-bot').textContent=eb;
+  const editCt=document.getElementById('pp-edit-ct'),editOut=document.getElementById('pp-edit-out');
+  if(!previewEditor)previewEditor=createEditor(editCt,val=>renderLatex(val,currentPreviewType,editOut));
+  previewEditor.dispatch({changes:{from:0,to:previewEditor.state.doc.length,insert:latex}});
+  renderLatex(latex,type,editOut);
+
+  // tab switching
+  modal.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.onclick=()=>{
+      modal.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+      modal.querySelectorAll('.t-panel').forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(`pp-${btn.dataset.ptab}`)?.classList.add('active');
+    };
+  });
+  // default tab: chunks (skip edit if hidden)
+  const defaultTab=modal.querySelector('.tab-btn:not(.hidden)');
+  if(defaultTab)defaultTab.click();
+  modal.classList.add('active');
+}
+
+// ═══════════════════════════════════════════
+// 17. HINT MODAL
+// ═══════════════════════════════════════════
+function showHintModal(expr){
+  const modal=document.getElementById('hint-modal');
+  const textEl=document.getElementById('hint-text');
+  textEl.innerHTML=processHintHtml(expr.hint||'No hint available for this expression.');
+  if(typeof renderMathInElement==='function')
+    renderMathInElement(textEl,{delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false});
+  document.getElementById('hint-cmds-list').innerHTML=
+    extractCommands(expr.latex).map(c=>`<span class="hint-cmd">${escapeHtml(c)}</span>`).join('');
+  modal.classList.add('active');
+}
+
+// ═══════════════════════════════════════════
+// 18. PRE-TEST
+// ═══════════════════════════════════════════
+function getPretestQuestions(){
+  const qs=[];
+  for(const sec of state.sections)for(const sub of sec.subsections){
+    if(sub.isAdvanced||!sub.exercise)continue;
+    const exprs=sub.exercise.expressions.filter(e=>!e.isAdvanced);
+    if(!exprs.length)continue;
+    let expr=exprs.find(e=>e.isPretest)||exprs.reduce((b,e)=>extractCommands(e.latex).length>=extractCommands(b.latex).length?e:b);
+    qs.push({expr,sn:sec.num,ssn:sub.num,fullNum:sub.fullNum,label:`${sub.fullNum} \u2014 ${sub.title.replace(/^\d+\.\d+\s*/,'')}`,exercise:sub.exercise});
+  }
+  return qs;
+}
+function openPretestModal(){
+  PT.questions=getPretestQuestions();
+  if(!PT.questions.length){showToast('No pre-test questions available.','info');return}
+  PT.idx=0;PT.correct=0;
+  document.getElementById('settings-modal').classList.remove('active');
+  showPretestQuestion(0);
+  document.getElementById('pretest-modal').classList.add('active');
+}
+const PT_TIME_MS=30000;
+function stopPretestTimer(){if(PT.timer){clearInterval(PT.timer);PT.timer=null}}
+function startPretestTimer(onExpire){
+  stopPretestTimer();
+  const fill=document.getElementById('pt-timer-fill');
+  const track=document.getElementById('pt-timer-track');
+  if(!fill||!track){return}
+  track.style.display='';
+  const start=Date.now();
+  fill.classList.remove('warn');fill.style.width='100%';
+  PT.timer=setInterval(()=>{
+    if(!document.getElementById('pretest-modal').classList.contains('active')){stopPretestTimer();return}
+    const elapsed=Date.now()-start,remain=Math.max(0,PT_TIME_MS-elapsed);
+    const pct=remain/PT_TIME_MS*100;
+    fill.style.width=pct+'%';
+    fill.classList.toggle('warn',pct<=33);
+    if(remain<=0){stopPretestTimer();onExpire&&onExpire()}
+  },100);
+}
+function showPretestQuestion(idx){
+  const q=PT.questions[idx];if(!q){finishPretest();return}
+  pretestCurrentType=q.expr.type;
+  document.getElementById('pt-title').textContent=`Pre-Test`;
+  document.getElementById('pt-counter').textContent=`${idx+1}\u202f/\u202f${PT.questions.length}`;
+  document.getElementById('pt-prog-fill').style.width=`${(idx/PT.questions.length)*100}%`;
+  document.getElementById('pt-sub-lbl').textContent=q.label;
+  const tgt=document.getElementById('pt-target');tgt.innerHTML='';
+  renderLatex(q.expr.latex,q.expr.type,tgt);
+  const wm={'inline':['\\(','\\)'],'display':['\\[','\\]'],'align*':['\\begin{align*}','\\end{align*}'],'text':['','']};
+  const[top,bot]=wm[q.expr.type]??wm['display'];
+  document.getElementById('pt-env-top').textContent=top;
+  document.getElementById('pt-env-bot').textContent=bot;
+  if(!pretestEditor)pretestEditor=createEditor(document.getElementById('pt-ed-ct'),val=>renderLatex(val,pretestCurrentType,document.getElementById('pt-output')));
+  pretestEditor.dispatch({changes:{from:0,to:pretestEditor.state.doc.length,insert:''}});
+  document.getElementById('pt-output').innerHTML='';
+  const checkBtn=document.getElementById('pt-check-btn'),skipBtn=document.getElementById('pt-skip-btn');
+  checkBtn.disabled=false;checkBtn.textContent='Check';
+  checkBtn.onclick=pretestCheck;skipBtn.onclick=pretestSkip;
+  startPretestTimer(pretestTimeUp);
+}
+function pretestTimeUp(){
+  stopPretestTimer();
+  showToast('Time\u2019s up \u2014 moving on','warning');
+  PT.idx++;showPretestQuestion(PT.idx);
+}
+async function pretestCheck(){
+  const q=PT.questions[PT.idx],val=pretestEditor?.state.doc.toString()?.trim()||'';
+  if(!val){showToast('Type your answer first','warning');return}
+  stopPretestTimer();
+  const btn=document.getElementById('pt-check-btn');btn.disabled=true;btn.textContent='Checking\u2026';
+  const ok=await verifyExpression(val,q.expr.latex,q.expr.type);
+  btn.disabled=false;btn.textContent='Check';
+  if(ok){PT.correct++;markSubsectionComplete(q.sn,q.ssn);showToast(`${q.fullNum} complete!`,'success');setTimeout(()=>{PT.idx++;showPretestQuestion(PT.idx)},1200)}
+  else{showToast('Not quite \u2014 try again or skip','error');startPretestTimer(pretestTimeUp)}
+}
+function pretestSkip(){stopPretestTimer();PT.idx++;showPretestQuestion(PT.idx)}
+function finishPretest(){
+  stopPretestTimer();
+  const tt=document.getElementById('pt-timer-track');if(tt)tt.style.display='none';
+  document.getElementById('pt-prog-fill').style.width='100%';
+  document.getElementById('pt-body').innerHTML=`<div class="pretest-summary"><div class="pretest-score">${PT.correct}/${PT.questions.length}</div><p style="font-size:1.125rem;font-weight:600;margin:.5rem 0">sections answered correctly</p><p>Skipped sections remain available in the course.</p></div>`;
+  document.getElementById('pt-footer').innerHTML=`<span></span><button class="ex-btn primary" id="pt-done-btn">Done</button>`;
+  document.getElementById('pt-done-btn').addEventListener('click',()=>{
+    document.getElementById('pretest-modal').classList.remove('active');
+    setTimeout(()=>{
+      document.getElementById('pt-body').innerHTML=`<div class="pretest-sub-lbl" id="pt-sub-lbl"></div><div class="pretest-target" id="pt-target"></div><div class="pretest-editor-section"><div class="env-line top" id="pt-env-top"></div><div id="pt-ed-ct" style="min-height:80px"></div><div class="env-line bot" id="pt-env-bot"></div></div><div class="pretest-output" id="pt-output"></div>`;
+      document.getElementById('pt-footer').innerHTML=`<button class="ex-btn" id="pt-skip-btn">Skip</button><button class="ex-btn primary" id="pt-check-btn">Check</button>`;
+      pretestEditor=null;
+    },400);
+  });
+}
+
+// ═══════════════════════════════════════════
+// 19. RIGHT PANEL
+// ═══════════════════════════════════════════
+function renderScratch(val){
+  const mode=document.querySelector('#scratch-mode-bar .rp-mode-btn.active')?.dataset.mode||'display';
+  const out=document.getElementById('scratch-output');
+  if(!val?.trim()){out.innerHTML='';return}
+  if(mode==='text'){
+    try{katex.render(`\\text{${val}}`,out,{displayMode:false,throwOnError:false,strict:false})}
+    catch(_){out.innerHTML='<span style="color:var(--err);font-size:.8rem">Render error</span>'}
+  }else renderLatex(val,mode,out);
+}
+function initScratch(){
+  if(scratchInited)return;scratchInited=true;
+  scratchEditor=createEditor(document.getElementById('scratch-ed-ct'),val=>renderScratch(val));
+}
+function buildRefList(listEl,items,getLabel){
+  listEl.innerHTML='';let curCat='';
+  for(const item of items){
+    const cat=getLabel?getLabel(item):item.k;
+    if(cat!==curCat){
+      curCat=cat;const c=document.createElement('div');c.className='rp-ref-cat';c.textContent=curCat;listEl.appendChild(c);
+    }
+    const row=document.createElement('div');row.className='rp-ref-item';
+    const ce=document.createElement('code');ce.textContent=item.c;
+    const de=document.createElement('span');de.className='rp-ref-desc';de.textContent=item.d;
+    const re=document.createElement('span');re.className='rp-ref-render';
+    try{katex.render(item.e,re,{throwOnError:false,displayMode:false})}catch(_){}
+    row.append(ce,de,re);
+    row.addEventListener('click',()=>openPreviewModal(item.e,'display',{allowCopy:true}));
+    listEl.appendChild(row);
+  }
+}
+function buildReferenceList(query=''){
+  const q=query.toLowerCase();
+  const filtered=q?REF.filter(r=>r.c.toLowerCase().includes(q)||r.d.toLowerCase().includes(q)||r.k.toLowerCase().includes(q)):REF;
+  buildRefList(document.getElementById('ref-list'),filtered,null);
+}
+function updateBackpack(){
+  const completedSubs=new Set();
+  for(const sec of state.sections)for(const sub of sec.subsections){
+    if((state.progress[`exercise-${sec.num}.${sub.num}`]||[]).length>0)completedSubs.add(sub.fullNum);
+  }
+  const listEl=document.getElementById('bp-list'),noteEl=document.getElementById('bp-note');
+  const query=(document.getElementById('bp-search')?.value||'').toLowerCase();
+  let candidates=REF.filter(item=>item.sub&&completedSubs.has(item.sub));
+  if(query)candidates=candidates.filter(r=>r.c.toLowerCase().includes(query)||r.d.toLowerCase().includes(query));
+  noteEl.style.display=(candidates.length===0&&!query)?'block':'none';
+  // Group by subsection for display
+  buildRefList(listEl,candidates,item=>{
+    for(const sec of state.sections)for(const sub of sec.subsections)if(sub.fullNum===item.sub)return`\u00A7${item.sub} \u2014 ${sub.title.replace(/^\d+\.\d+\s*/,'')}`;
+    return`\u00A7${item.sub}`;
+  });
+}
+function buildCheatSheet(){
+  const cs=document.getElementById('cheatsheet');
+  if(!cs||cs.dataset.built)return;
+  const order=[],byCat=new Map();
+  for(const item of REF){
+    if(!byCat.has(item.k)){byCat.set(item.k,[]);order.push(item.k)}
+    byCat.get(item.k).push(item);
+  }
+  let html=`<h1>&#957;&#932;eX &mdash; LaTeX Cheat Sheet</h1>`+
+    `<p class="cs-sub">One-page reference for Ross. Type the command on the left to get the symbol it names.</p><div class="cs-grid">`;
+  for(const cat of order){
+    html+=`<div class="cs-cat"><div class="cs-cat-title">${escapeHtml(cat)}</div>`;
+    for(const item of byCat.get(cat))
+      html+=`<div class="cs-row"><code>${escapeHtml(item.c)}</code><span class="cs-desc">${escapeHtml(item.d)}</span></div>`;
+    html+=`</div>`;
+  }
+  cs.innerHTML=html+`</div>`;
+  cs.dataset.built='1';
+}
+function printCheatSheet(){
+  buildCheatSheet();
+  document.getElementById('settings-modal').classList.remove('active');
+  document.body.classList.add('printing-cheatsheet');
+  const cleanup=()=>{document.body.classList.remove('printing-cheatsheet');window.removeEventListener('afterprint',cleanup)};
+  window.addEventListener('afterprint',cleanup);
+  setTimeout(()=>{window.print();setTimeout(cleanup,500)},80);
+}
+function initRightPanel(){
+  document.querySelectorAll('.rp-tab').forEach(tab=>{
+    tab.addEventListener('click',()=>{
+      document.querySelectorAll('.rp-tab').forEach(t=>t.classList.remove('active'));
+      document.querySelectorAll('.rp-panel').forEach(p=>p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(`rp-${tab.dataset.rptab}`)?.classList.add('active');
+      if(tab.dataset.rptab==='scratch'&&!scratchInited)initScratch();
+      if(tab.dataset.rptab==='reference')buildReferenceList(document.getElementById('ref-search').value);
+      if(tab.dataset.rptab==='backpack')updateBackpack();
+    });
+  });
+  // Mode buttons
+  document.getElementById('scratch-mode-bar').querySelectorAll('.rp-mode-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('#scratch-mode-bar .rp-mode-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('scratch-env-bot').textContent=btn.dataset.bot;
+      if(scratchEditor)renderScratch(scratchEditor.state.doc.toString());
+    });
+  });
+  document.getElementById('ref-search').addEventListener('input',e=>buildReferenceList(e.target.value));
+  document.getElementById('bp-search').addEventListener('input',()=>updateBackpack());
+  document.getElementById('rp-close-btn').addEventListener('click',()=>{
+    document.getElementById('right-panel').classList.remove('open');
+    document.getElementById('rp-toggle-btn').classList.remove('active');
+    document.body.classList.remove('rp-open');
+  });
+  buildReferenceList('');
+}
+
+// ═══════════════════════════════════════════
+// 20. PROGRESS
+// ═══════════════════════════════════════════
+function getSubsectionProgress(sn,ssn,exercise){
+  if(!exercise)return 0;
+  const done=state.progress[`exercise-${sn}.${ssn}`]||[];
+  return done.filter(i=>!exercise.expressions[i]?.isAdvanced).length;
+}
+function getReviewProgress(sn,rev){
+  const done=state.progress[`review-${sn}`]||[];
+  return done.filter(i=>!rev.expressions[i]?.isAdvanced).length;
+}
+function updateSidebarProgress(){
+  document.querySelectorAll('.nav-sub').forEach(el=>{
+    const sn=parseInt(el.dataset.secn),sec=state.sections.find(s=>s.num===sn);if(!sec)return;
+    if(el.dataset.review){
+      const rev=sec.reviewExercise;if(!rev)return;
+      const total=rev.expressions.filter(e=>!e.isAdvanced).length,prog=getReviewProgress(sn,rev);
+      const sp=el.querySelector('.nav-prog');if(sp){sp.textContent=`[${prog}/${total}]`;sp.classList.toggle('done',prog>=total)}
+    }else{
+      const ssn=parseInt(el.dataset.subn),sub=sec.subsections.find(s=>s.num===ssn);if(!sub?.exercise)return;
+      const total=sub.exercise.expressions.filter(e=>!e.isAdvanced).length,prog=getSubsectionProgress(sn,ssn,sub.exercise);
+      const sp=el.querySelector('.nav-prog');if(sp){sp.textContent=`[${prog}/${total}]`;sp.classList.toggle('done',prog>=total)}
+    }
+  });
+}
+function updateGlobalProgress(){
+  let total=0,done=0;const isBasic=state.settings.courseMode==='basic';
+  for(const sec of state.sections){
+    for(const sub of sec.subsections){
+      if(isBasic&&sub.isAdvanced)continue;if(!sub.exercise)continue;
+      const ct=isBasic?sub.exercise.expressions.filter(e=>!e.isAdvanced):sub.exercise.expressions;
+      total+=ct.length;
+      done+=isBasic?getSubsectionProgress(sec.num,sub.num,sub.exercise):(state.progress[`exercise-${sec.num}.${sub.num}`]||[]).length;
+    }
+    if(sec.reviewExercise){
+      const ct=isBasic?sec.reviewExercise.expressions.filter(e=>!e.isAdvanced):sec.reviewExercise.expressions;
+      total+=ct.length;
+      done+=isBasic?getReviewProgress(sec.num,sec.reviewExercise):(state.progress[`review-${sec.num}`]||[]).length;
+    }
+  }
+  document.getElementById('global-progress-bar').style.width=total>0?`${(done/total)*100}%`:'0%';
+}
+function saveProgress(){localStorage.setItem('nutex-progress',JSON.stringify(state.progress))}
+function loadProgress(){try{const s=localStorage.getItem('nutex-progress');if(s)state.progress=JSON.parse(s)}catch(_){}}
+
+// ═══════════════════════════════════════════
+// 21. SETTINGS
+// ═══════════════════════════════════════════
+function loadSettings(){try{const s=localStorage.getItem('nutex-settings');if(s)state.settings={...state.settings,...JSON.parse(s)}}catch(_){}}
+function saveSettings(){localStorage.setItem('nutex-settings',JSON.stringify(state.settings))}
+function applyTheme(){let t=state.settings.theme;if(t==='system')t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.dataset.theme=t}
+function applyCourseMode(){
+  const isBasic=state.settings.courseMode==='basic';
+  for(const sec of state.sections)for(const sub of sec.subsections){
+    if(!sub.isAdvanced)continue;
+    const h2=sub.element,cardEl=sub.exercise?.cardElement;
+    if(h2.parentElement?.classList.contains('adv-content')){
+      if(!isBasic){const w=h2.closest('.adv-reveal');if(!w)continue;const p=w.parentNode,ac=w.querySelector('.adv-content');while(ac.firstChild)p.insertBefore(ac.firstChild,w);w.remove()}
+      continue;
+    }
+    if(!isBasic)continue;
+    const els=[];let sib=h2.nextElementSibling;
+    while(sib&&!['H1','H2'].includes(sib.tagName)&&!sib.classList.contains('exercise-card')){els.push(sib);sib=sib.nextElementSibling}
+    const title=sub.title.replace(/^\d+\.\d+\s*/,'');
+    const w=document.createElement('div');w.className='adv-reveal';
+    w.innerHTML=`<button class="adv-reveal-btn"><span class="chev">&rsaquo;</span><span class="btn-txt">Reveal advanced section: ${title}</span></button><div class="adv-content"></div>`;
+    h2.parentNode.insertBefore(w,h2);
+    const ac=w.querySelector('.adv-content');
+    ac.appendChild(h2);els.forEach(el=>ac.appendChild(el));if(cardEl)ac.appendChild(cardEl);
+    w.querySelector('.adv-reveal-btn').addEventListener('click',()=>{
+      const exp=w.classList.toggle('expanded');
+      w.querySelector('.btn-txt').textContent=exp?`Hide advanced section: ${title}`:`Reveal advanced section: ${title}`;
+    });
+  }
+  updateGlobalProgress();
+}
+function setupSettingsModal(){
+  document.querySelectorAll('#theme-opts .set-opt').forEach(btn=>{
+    btn.classList.toggle('active',btn.dataset.v===state.settings.theme);
+    btn.addEventListener('click',()=>{document.querySelectorAll('#theme-opts .set-opt').forEach(b=>b.classList.remove('active'));btn.classList.add('active');state.settings.theme=btn.dataset.v;saveSettings();applyTheme()});
+  });
+  document.querySelectorAll('#mode-opts .set-opt').forEach(btn=>{
+    btn.classList.toggle('active',btn.dataset.v===state.settings.courseMode);
+    btn.addEventListener('click',()=>{document.querySelectorAll('#mode-opts .set-opt').forEach(b=>b.classList.remove('active'));btn.classList.add('active');state.settings.courseMode=btn.dataset.v;saveSettings();applyCourseMode();updateSidebarProgress();updateGlobalProgress()});
+  });
+  document.querySelectorAll('.toggle-sw').forEach(sw=>{
+    const k=sw.dataset.s;sw.classList.toggle('on',!!state.settings[k]);
+    sw.addEventListener('click',()=>{state.settings[k]=!state.settings[k];sw.classList.toggle('on',state.settings[k]);saveSettings();
+      if(k==='exerciseShadow')document.querySelectorAll('.output-pane').forEach(p=>p.classList.toggle('no-shadow',!state.settings.exerciseShadow))});
+  });
+  document.getElementById('reset-btn').addEventListener('click',()=>{if(confirm('Reset all progress?')){localStorage.removeItem('nutex-progress');state.progress={};location.reload()}});
+  document.getElementById('pretest-launch-btn').addEventListener('click',openPretestModal);
+  document.getElementById('cheatsheet-btn').addEventListener('click',printCheatSheet);
+}
+function renderTableMath(){document.querySelectorAll('.math-cell').forEach(c=>{try{katex.render(c.textContent.trim(),c,{throwOnError:false})}catch(_){}})}
+
+// ═══════════════════════════════════════════
+// 22. INIT
+// ═══════════════════════════════════════════
+function setLoad(pct,msg){
+  const f=document.getElementById('load-fill'),m=document.getElementById('load-msg');
+  if(f)f.style.width=Math.max(0,Math.min(100,pct))+'%';
+  if(m&&msg)m.textContent=msg;
+}
+function finishLoading(){
+  setLoad(100);
+  setTimeout(()=>{document.body.classList.add('loaded');
+    setTimeout(()=>{const o=document.getElementById('loading-overlay');if(o)o.remove()},450);
+  },180);
+}
+async function init(){
+  loadSettings();loadProgress();applyTheme();
+  setLoad(10,'Loading the editor\u2026');
+  await loadCodeMirror();
+  window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',()=>{if(state.settings.theme==='system')applyTheme()});
+  katex.render('\\nu\\TeX',document.getElementById('logo-el'),{throwOnError:false});
+  applySyntaxHighlighting();
+  setLoad(35,'Typesetting the notes\u2026');
+  if(typeof renderMathInElement==='function')
+    renderMathInElement(document.getElementById('course-content'),{
+      delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],
+      ignoredTags:['script','noscript','style','textarea','pre','code','exercise','expression','hint'],
+      throwOnError:false,
+    });
+  parseContent();
+  setLoad(55,'Building exercises\u2026');
+  buildSidebar();buildExerciseCards();renderTableMath();
+  setLoad(75,'Rendering examples\u2026');
+  applyCourseMode();processPairedPres();
+  makeContentMathClickable();
+  setLoad(90,'Finishing up\u2026');
+  updateSidebarProgress();updateGlobalProgress();updateBackpack();
+  setupSettingsModal();initRightPanel();setupScrollTracking();
+  document.querySelectorAll('.modal-overlay').forEach(ov=>{
+    ov.addEventListener('click',e=>{if(e.target===ov)ov.classList.remove('active')});
+    ov.querySelector('.modal-close')?.addEventListener('click',()=>ov.classList.remove('active'));
+  });
+  document.getElementById('settings-btn').addEventListener('click',()=>document.getElementById('settings-modal').classList.add('active'));
+  document.getElementById('rp-toggle-btn').addEventListener('click',()=>{
+    const rp=document.getElementById('right-panel'),btn=document.getElementById('rp-toggle-btn');
+    const open=rp.classList.toggle('open');btn.classList.toggle('active',open);document.body.classList.toggle('rp-open',open);
+    if(open&&!scratchInited)initScratch();
+  });
+  document.getElementById('mob-toggle').addEventListener('click',()=>document.getElementById('sidebar').classList.toggle('open'));
+  document.getElementById('main-content').addEventListener('click',()=>{if(window.innerWidth<=1024)document.getElementById('sidebar').classList.remove('open')});
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){document.querySelectorAll('.modal-overlay.active').forEach(m=>m.classList.remove('active'));return}
+    // Alt+A reveals the answer, Alt+H the hint, for the exercise card holding focus
+    if(e.altKey&&!e.ctrlKey&&!e.metaKey&&(e.key==='a'||e.key==='A'||e.key==='h'||e.key==='H')){
+      const card=document.activeElement?.closest?.('.exercise-card');
+      if(card){
+        e.preventDefault();
+        const sel=(e.key==='a'||e.key==='A')?'.answer-btn':'.hint-btn';
+        card.querySelector(sel)?.click();
+      }
+    }
+  });
+  // Remember scroll position across reloads
+  let scrollSaveTimer=null;
+  window.addEventListener('scroll',()=>{
+    clearTimeout(scrollSaveTimer);
+    scrollSaveTimer=setTimeout(()=>{try{localStorage.setItem('nutex-scroll',String(Math.round(window.scrollY)))}catch(_){}}, 250);
+  },{passive:true});
+  const savedScroll=parseInt(localStorage.getItem('nutex-scroll')||'0',10);
+  if(savedScroll>0)requestAnimationFrame(()=>requestAnimationFrame(()=>window.scrollTo(0,savedScroll)));
+  if(!localStorage.getItem('nutex-settings')){
+    document.getElementById('first-hint').classList.remove('hidden');
+    document.getElementById('dismiss-hint').addEventListener('click',()=>{document.getElementById('first-hint').classList.add('hidden');saveSettings()});
+  }
+  finishLoading();
+}
+// Safety net: never trap the user behind the loader, even if init throws.
+setTimeout(()=>{if(!document.body.classList.contains('loaded'))finishLoading()},8000);
+init().catch(err=>{console.error(err);finishLoading()});
+</script>
+</body>
+</html>

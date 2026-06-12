@@ -336,3 +336,52 @@ pre.paired{border:none;border-radius:0;margin:0;background:var(--bg-code)}
 ::-webkit-scrollbar-track{background:var(--bg-1)}
 ::-webkit-scrollbar-thumb{background:var(--br-1);border-radius:4px}
 ::-webkit-scrollbar-thumb:hover{background:var(--tx-2)}
+
+/* === nuTeX additions: clickable prose math, output lock, image targets === */
+/* Rendered math in prose and tables is clickable and opens the preview modal */
+.math-clickable{cursor:pointer;border-radius:3px;padding:0 .1em;transition:background var(--tf)}
+.math-clickable:hover{background:rgba(139,92,246,.14)}
+/* Exercise output pane is no longer clickable (encourages writing without help) */
+.output-pane{cursor:default}
+.output-pane:hover{background:transparent}
+/* Whiteboard / image exercise targets */
+.target-img{max-width:100%;max-height:160px;object-fit:contain;display:block;margin:0 auto;border-radius:6px}
+
+/* === nuTeX additions, round 2 === */
+/* Fix: suppress KaTeX's own scrollbar inside exercise/pretest panes (the pane already scrolls, invisibly) */
+.math-content .katex-display,.pretest-target .katex-display,.pretest-output .katex-display{overflow:visible}
+/* Keyboard accessibility: visible focus ring on clickable math and rendered targets */
+.math-clickable:focus-visible,.math-pane:focus-visible,.paired-katex:focus-visible,.rp-ref-item:focus-visible{outline:2px solid var(--brand);outline-offset:2px;border-radius:4px}
+.math-clickable:focus:not(:focus-visible){outline:none}
+/* Mode indicator pill near the editor */
+.mode-badge{display:inline-flex;align-items:center;gap:.3rem;font-size:.5875rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--brand);background:rgba(139,92,246,.1);border:1px solid var(--br-0);border-radius:5px;padding:.12rem .4rem;margin-left:.5rem;vertical-align:middle}
+/* Pre-test countdown bar */
+.pretest-timer-track{height:5px;border-radius:3px;background:var(--br-0);overflow:hidden;margin:0 0 .75rem}
+.pretest-timer-fill{height:100%;width:100%;background:var(--brand);border-radius:3px;transition:width .25s linear,background .25s linear}
+.pretest-timer-fill.warn{background:var(--err,#e0566f)}
+/* Cheat-sheet: hidden on screen, revealed only for printing */
+#cheatsheet{display:none}
+@media print{
+  body.printing-cheatsheet *{visibility:hidden!important}
+  body.printing-cheatsheet #cheatsheet,body.printing-cheatsheet #cheatsheet *{visibility:visible!important}
+  body.printing-cheatsheet #cheatsheet{display:block!important;position:absolute;inset:0;margin:0;padding:1.5rem;background:#fff;color:#111;z-index:9999}
+  body.printing-cheatsheet #cheatsheet .cs-cat{break-inside:avoid}
+}
+#cheatsheet{padding:1.5rem;background:#fff;color:#111}
+#cheatsheet h1{font-size:1.4rem;margin:0 0 .25rem}
+#cheatsheet .cs-sub{color:#555;font-size:.85rem;margin:0 0 1.25rem}
+#cheatsheet .cs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.25rem 1.5rem}
+#cheatsheet .cs-cat{break-inside:avoid;margin-bottom:.5rem}
+#cheatsheet .cs-cat-title{font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:#7c3aed;border-bottom:1px solid #ddd;padding-bottom:.2rem;margin:.5rem 0 .35rem}
+#cheatsheet .cs-row{display:flex;align-items:baseline;gap:.6rem;padding:.12rem 0;font-size:.82rem}
+#cheatsheet .cs-row code{font-family:'JetBrains Mono',monospace;color:#222;white-space:nowrap}
+#cheatsheet .cs-row .cs-desc{color:#666;margin-left:auto;text-align:right}
+
+/* === nuTeX additions, round 3: loading overlay === */
+#loading-overlay{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;background:var(--bg-0,#fff);transition:opacity .4s ease}
+body.loaded #loading-overlay{opacity:0;pointer-events:none}
+.load-inner{display:flex;flex-direction:column;align-items:center;gap:1rem;width:min(320px,72vw)}
+.load-logo{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:700;color:var(--brand);letter-spacing:.02em}
+.load-track{width:100%;height:6px;border-radius:4px;background:var(--br-0,#e5e5e5);overflow:hidden}
+.load-fill{height:100%;width:8%;border-radius:4px;background:var(--brand);transition:width .35s ease}
+.load-msg{font-size:.8125rem;color:var(--tx-2,#888);letter-spacing:.01em}
