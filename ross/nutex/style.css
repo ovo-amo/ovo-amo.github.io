@@ -56,19 +56,19 @@ body.rp-open #main-content{margin-right:var(--rp-w)}
 .rp-panel.active{display:flex}
 
 /* Scratch mode buttons (replaces type select) */
-.rp-mode-bar{display:flex;border-bottom:1px solid var(--br-0);background:var(--bg-2);flex-shrink:0}
+.rp-mode-bar{display:flex;border-bottom:1px solid var(--br-0);background:var(--bg-2);flex-shrink:0;z-index:1}
 .rp-mode-btn{flex:1;padding:.4rem .2rem;border:none;border-right:1px solid var(--br-0);background:transparent;color:var(--tx-1);font-size:.7rem;cursor:pointer;transition:all var(--tf);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rp-mode-btn:last-child{border-right:none}
 .rp-mode-btn.active{background:var(--bg-card);color:var(--brand);font-weight:600}
 .rp-mode-btn:hover:not(.active){background:var(--bg-hover)}
 
-.rp-editor-wrap{flex:1;overflow:hidden;min-height:80px}
+.rp-editor-wrap{overflow-x:hidden;overflow-y:scroll;z-index:1}
 .rp-env{padding:.3rem .75rem;font-family:'JetBrains Mono',monospace;font-size:.8125rem;color:var(--tx-2);background:var(--bg-2);user-select:none;flex-shrink:0}
 .rp-env.bot{border-top:1px solid var(--br-0)}
 
 /* Scratch output — scrollable */
-.rp-output{padding:1rem;background:var(--bg-card);border-top:1px solid var(--br-0);text-align:center;min-height:56px;max-height:220px;overflow-y:auto;position:relative}
-.rp-output::before{content:'';position:absolute;inset:0;background-image:radial-gradient(var(--dot) 1.5px,transparent 1.5px);background-size:18px 18px;pointer-events:none}
+.rp-output{padding:1rem;background:var(--bg-1);border-top:1px solid var(--br-0);text-align:center;overflow-y:auto;position:relative}
+.rp-output::before{content:'';position:fixed;inset:0;background-image:radial-gradient(var(--dot) 1.5px,transparent 1.5px);background-size:18px 18px;pointer-events:none;width:calc(100% - 20px);top:53px}
 .rp-output .katex-display{margin:0}
 .rp-output>*{position:relative;z-index:1}
 

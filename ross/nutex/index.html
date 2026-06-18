@@ -42,6 +42,8 @@
 <main id="main-content">
 <div id="course-content">
 
+<!-- Note! Include, for instance, a <b>how to use this guide</b>. Also, it would be more fun to have no text, or at least minimal text, and make the whole thing based on a series of equations (with minimal explanatory hints if they get it wrong). For instance, start with $1+1=2$ and instructions to type that exactly. And, instead of text, just have some sort of ghost expression for, say, $\frac{}{}$ so that there is never someone telling you what to do. There's repetition if you get something wrong or use a hint... but not exact repetition because each expression has many variants. Or, perhaps, each equation is tagged with like a few of 100 different skill, and also tiered by difficulty so there's intelligent suggestion. -->
+
 <h1>Fundamentals</h1>
 
 <p>Congratulations on attending the best summer program in mathematics, and welcome to <strong>&#957;&#932;eX for Ross</strong> &mdash; an interactive platform for mastering \(\LaTeX\). I hope this is sufficient for the majority of your problem sets. If not, you are in luck because of the great community supporting you this summer. <i>Enjoy! &mdash; Timothy (Ross '24, '25).</i></p>
@@ -299,6 +301,8 @@
     <tr><td><code>\bigoplus \bigotimes</code></td><td>Big sum / product (algebra)</td><td class="math-cell">\bigoplus_{i}</td></tr>
   </tbody>
 </table>
+
+Don't use big symbols just because you feel like it. For instance, <code>\bigcup</code> is reserved for compact notation.
 
 <exercise>
   <expression data-type="display" data-pretest="true">
@@ -935,7 +939,6 @@
         <button class="rp-mode-btn" data-mode="text" data-bot="}">\text{ }</button>
       </div>
       <div class="rp-editor-wrap"><div id="scratch-ed-ct"></div></div>
-      <div class="rp-env bot" id="scratch-env-bot">\]</div>
       <div class="rp-output" id="scratch-output"></div>
     </div>
     <div class="rp-panel" id="rp-reference">
@@ -1056,6 +1059,7 @@
       <span class="pretest-ctr" id="pt-counter"></span>
       <button class="modal-close">&times;</button>
     </div>
+    <!-- Note! Visually distinguish the two tracks: currently, they are the same color. -->
     <div class="pretest-prog-track"><div class="pretest-prog-fill" id="pt-prog-fill"></div></div>
     <div class="pretest-timer-track" id="pt-timer-track"><div class="pretest-timer-fill" id="pt-timer-fill"></div></div>
     <div id="pt-body" class="pretest-body">
@@ -1179,7 +1183,7 @@ function processHintHtml(html){
   return html.replace(/<ref>(\d+)\.(\d+)<\/ref>/g,(_,s,sub)=>`<a href="#section-${s}-${sub}" class="hint-link">(&sect;${s}.${sub})</a>`);
 }
 function extractCommands(latex){const r=[],re=/\\([a-zA-Z]+)/g;let m;while((m=re.exec(latex))!==null)r.push('\\'+m[1]);return r}
-function stripLatex(s){
+function stripLaTeX(s){
   let r=s.replace(/\\[,;:!]|\\quad\b|\\qquad\b|\\ /g,'');
   r=r.replace(/(\\[a-zA-Z]+) +([a-zA-Z])/g,'$1\x00$2');
   r=r.replace(/\s+/g,'');
@@ -1193,7 +1197,7 @@ function showToast(msg,type='info'){
   t.innerHTML=`<span>${ic[type]||ic.info}</span><span class="toast-msg">${msg}</span>`;
   ct.appendChild(t);setTimeout(()=>t.remove(),4000);
 }
-function renderLatex(latex,type,container){
+function renderLaTeX(latex,type,container){
   if(!container)return;
   try{
     const dm=type==='display'||type==='align*';
@@ -1205,7 +1209,7 @@ function renderLatex(latex,type,container){
 // ═══════════════════════════════════════════
 // 3.  SYNTAX HIGHLIGHTING
 // ═══════════════════════════════════════════
-function highlightLatexCode(text){
+function highlightLaTeXCode(text){
   let r='',i=0;
   while(i<text.length){
     const c=text[i];
@@ -1226,10 +1230,10 @@ function highlightLatexCode(text){
 }
 function applySyntaxHighlighting(){
   document.querySelectorAll('#course-content p code,#course-content td code').forEach(el=>{
-    el.innerHTML=highlightLatexCode(el.textContent);
+    el.innerHTML=highlightLaTeXCode(el.textContent);
   });
   document.querySelectorAll('#course-content pre:not(.paired) code').forEach(el=>{
-    el.innerHTML=highlightLatexCode(el.textContent);
+    el.innerHTML=highlightLaTeXCode(el.textContent);
   });
 }
 
@@ -1586,7 +1590,7 @@ function createEditor(container,onChange){
 const debounceTimers=new Map();
 async function verifyExpression(userInput,target,dataType){
   if(state.settings.strictStyle){const e=checkPeeves(userInput);if(e){showToast(e,'warning');return false}}
-  if(stripLatex(userInput)===stripLatex(target))return true;
+  if(stripLaTeX(userInput)===stripLaTeX(target))return true;
   return visualCompare(userInput,target,dataType);
 }
 function countNonWhite(d){let n=0;for(let i=0;i<d.length;i+=4)if(d[i]<242||d[i+1]<242||d[i+2]<242)n++;return n}
@@ -1599,8 +1603,8 @@ async function visualCompare(user,target,type){
   try{
     const dm=type!=='inline';
     const wrap=s=>type==='align*'?`\\begin{aligned}${s}\\end{aligned}`:s;
-    const ul=state.settings.strictStyle?user:stripLatex(user);
-    const tl=state.settings.strictStyle?target:stripLatex(target);
+    const ul=state.settings.strictStyle?user:stripLaTeX(user);
+    const tl=state.settings.strictStyle?target:stripLaTeX(target);
     katex.render(wrap(ul),ud,{displayMode:dm,throwOnError:false,strict:false});
     katex.render(wrap(tl),td,{displayMode:dm,throwOnError:false,strict:false});
     const[uc,tc]=await Promise.all([
@@ -1835,8 +1839,8 @@ function updateExerciseUI(exercise,idx){
     targetPane.setAttribute('aria-label','Handwritten expression to transcribe');
     targetPane.style.cursor='default';
   }else{
-    renderLatex(expr.latex,expr.type,targetCt);
-    if(state.settings.exerciseShadow)renderLatex(expr.latex,expr.type,card.querySelector('.target-shadow'));
+    renderLaTeX(expr.latex,expr.type,targetCt);
+    if(state.settings.exerciseShadow)renderLaTeX(expr.latex,expr.type,card.querySelector('.target-shadow'));
     targetPane.tabIndex=0;targetPane.setAttribute('role','button');
     targetPane.setAttribute('aria-label','Reveal the target LaTeX source');
     targetPane.style.cursor='';
@@ -1849,7 +1853,7 @@ function updateExerciseUI(exercise,idx){
 // ═══════════════════════════════════════════
 function onEditorChange(exercise,value){
   const card=exercise.cardElement,expr=exercise.expressions[exercise.currentIndex];
-  renderLatex(value,expr.type,card.querySelector('.output-ct'));
+  renderLaTeX(value,expr.type,card.querySelector('.output-ct'));
   const key=card.dataset.prefix+(card.dataset.review?'r':'');
   clearTimeout(debounceTimers.get(key));
   debounceTimers.set(key,setTimeout(async()=>{
@@ -1897,7 +1901,7 @@ function showCompletedState(exercise,card){
   const list=card.querySelector('.done-list');list.classList.remove('hidden');
   list.querySelectorAll('li').forEach((li,i)=>{
     const expr=exercise.expressions[i];
-    renderLatex(expr.latex,expr.type,li.querySelector('.done-render'));
+    renderLaTeX(expr.latex,expr.type,li.querySelector('.done-render'));
     li.addEventListener('click',()=>openPreviewModal(expr.latex,expr.type,{allowCopy:true}));
   });
 }
@@ -1931,7 +1935,7 @@ function openPreviewModal(latex,type,{allowCopy=true}={}){
   setupBiHighlighting(rendered,latexDisp);
 
   // source tab
-  document.getElementById('pp-source-code').innerHTML=`<code>${highlightLatexCode(latex)}</code>`;
+  document.getElementById('pp-source-code').innerHTML=`<code>${highlightLaTeXCode(latex)}</code>`;
   const copyBtn=document.getElementById('pp-copy-btn'),copyNote=document.getElementById('pp-copy-note');
   copyBtn.style.display=allowCopy?'':'none';
   copyNote.style.display=allowCopy?'none':'';
@@ -1949,9 +1953,9 @@ function openPreviewModal(latex,type,{allowCopy=true}={}){
   document.getElementById('pp-edit-top').textContent=et;
   document.getElementById('pp-edit-bot').textContent=eb;
   const editCt=document.getElementById('pp-edit-ct'),editOut=document.getElementById('pp-edit-out');
-  if(!previewEditor)previewEditor=createEditor(editCt,val=>renderLatex(val,currentPreviewType,editOut));
+  if(!previewEditor)previewEditor=createEditor(editCt,val=>renderLaTeX(val,currentPreviewType,editOut));
   previewEditor.dispatch({changes:{from:0,to:previewEditor.state.doc.length,insert:latex}});
-  renderLatex(latex,type,editOut);
+  renderLaTeX(latex,type,editOut);
 
   // tab switching
   modal.querySelectorAll('.tab-btn').forEach(btn=>{
@@ -1990,7 +1994,7 @@ function getPretestQuestions(){
   for(const sec of state.sections)for(const sub of sec.subsections){
     if(sub.isAdvanced||!sub.exercise)continue;
     const exprs=sub.exercise.expressions.filter(e=>!e.isAdvanced);
-    if(!exprs.length)continue;
+    if(!exprs.length||getSubsectionProgress(sec.num,sub.num,sub.exercise)>=exprs.length)continue;
     let expr=exprs.find(e=>e.isPretest)||exprs.reduce((b,e)=>extractCommands(e.latex).length>=extractCommands(b.latex).length?e:b);
     qs.push({expr,sn:sec.num,ssn:sub.num,fullNum:sub.fullNum,label:`${sub.fullNum} \u2014 ${sub.title.replace(/^\d+\.\d+\s*/,'')}`,exercise:sub.exercise});
   }
@@ -2031,12 +2035,12 @@ function showPretestQuestion(idx){
   document.getElementById('pt-prog-fill').style.width=`${(idx/PT.questions.length)*100}%`;
   document.getElementById('pt-sub-lbl').textContent=q.label;
   const tgt=document.getElementById('pt-target');tgt.innerHTML='';
-  renderLatex(q.expr.latex,q.expr.type,tgt);
+  renderLaTeX(q.expr.latex,q.expr.type,tgt);
   const wm={'inline':['\\(','\\)'],'display':['\\[','\\]'],'align*':['\\begin{align*}','\\end{align*}'],'text':['','']};
   const[top,bot]=wm[q.expr.type]??wm['display'];
   document.getElementById('pt-env-top').textContent=top;
   document.getElementById('pt-env-bot').textContent=bot;
-  if(!pretestEditor)pretestEditor=createEditor(document.getElementById('pt-ed-ct'),val=>renderLatex(val,pretestCurrentType,document.getElementById('pt-output')));
+  if(!pretestEditor)pretestEditor=createEditor(document.getElementById('pt-ed-ct'),val=>renderLaTeX(val,pretestCurrentType,document.getElementById('pt-output')));
   pretestEditor.dispatch({changes:{from:0,to:pretestEditor.state.doc.length,insert:''}});
   document.getElementById('pt-output').innerHTML='';
   const checkBtn=document.getElementById('pt-check-btn'),skipBtn=document.getElementById('pt-skip-btn');
@@ -2086,7 +2090,7 @@ function renderScratch(val){
   if(mode==='text'){
     try{katex.render(`\\text{${val}}`,out,{displayMode:false,throwOnError:false,strict:false})}
     catch(_){out.innerHTML='<span style="color:var(--err);font-size:.8rem">Render error</span>'}
-  }else renderLatex(val,mode,out);
+  }else renderLaTeX(val,mode,out);
 }
 function initScratch(){
   if(scratchInited)return;scratchInited=true;
@@ -2174,7 +2178,6 @@ function initRightPanel(){
     btn.addEventListener('click',()=>{
       document.querySelectorAll('#scratch-mode-bar .rp-mode-btn').forEach(b=>b.classList.remove('active'));
       btn.classList.add('active');
-      document.getElementById('scratch-env-bot').textContent=btn.dataset.bot;
       if(scratchEditor)renderScratch(scratchEditor.state.doc.toString());
     });
   });
@@ -2192,24 +2195,27 @@ function initRightPanel(){
 // 20. PROGRESS
 // ═══════════════════════════════════════════
 function getSubsectionProgress(sn,ssn,exercise){
+  const isBasic=state.settings.courseMode==='basic';
   if(!exercise)return 0;
   const done=state.progress[`exercise-${sn}.${ssn}`]||[];
-  return done.filter(i=>!exercise.expressions[i]?.isAdvanced).length;
+  return done.filter(i=>!isBasic||!exercise.expressions[i]?.isAdvanced).length;
 }
 function getReviewProgress(sn,rev){
+  const isBasic=state.settings.courseMode==='basic';
   const done=state.progress[`review-${sn}`]||[];
-  return done.filter(i=>!rev.expressions[i]?.isAdvanced).length;
+  return done.filter(i=>!isBasic||!rev.expressions[i]?.isAdvanced).length;
 }
 function updateSidebarProgress(){
+  const isBasic=state.settings.courseMode==='basic';
   document.querySelectorAll('.nav-sub').forEach(el=>{
     const sn=parseInt(el.dataset.secn),sec=state.sections.find(s=>s.num===sn);if(!sec)return;
     if(el.dataset.review){
       const rev=sec.reviewExercise;if(!rev)return;
-      const total=rev.expressions.filter(e=>!e.isAdvanced).length,prog=getReviewProgress(sn,rev);
+      const total=rev.expressions.filter(e=>!isBasic||!e.isAdvanced).length,prog=getReviewProgress(sn,rev);
       const sp=el.querySelector('.nav-prog');if(sp){sp.textContent=`[${prog}/${total}]`;sp.classList.toggle('done',prog>=total)}
     }else{
       const ssn=parseInt(el.dataset.subn),sub=sec.subsections.find(s=>s.num===ssn);if(!sub?.exercise)return;
-      const total=sub.exercise.expressions.filter(e=>!e.isAdvanced).length,prog=getSubsectionProgress(sn,ssn,sub.exercise);
+      const total=sub.exercise.expressions.filter(e=>!isBasic||!e.isAdvanced).length,prog=getSubsectionProgress(sn,ssn,sub.exercise);
       const sp=el.querySelector('.nav-prog');if(sp){sp.textContent=`[${prog}/${total}]`;sp.classList.toggle('done',prog>=total)}
     }
   });
