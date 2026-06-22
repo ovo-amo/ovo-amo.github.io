@@ -302,7 +302,7 @@
   </tbody>
 </table>
 
-Don't use big symbols just because you feel like it. For instance, <code>\bigcup</code> is reserved for compact notation.
+Don't use big symbols just because you feel like it. For instance, <code>\bigcup</code> is reserved for compact notation, the same way you would use <code>\sum</code> or <code>\prod</code>.
 
 <exercise>
   <expression data-type="display" data-pretest="true">
@@ -916,8 +916,41 @@ Don't use big symbols just because you feel like it. For instance, <code>\bigcup
 <p>One topic deliberately left out is <strong>Ti<em>k</em>Z</strong>, \(\LaTeX\)'s language for drawing figures &mdash; commutative diagrams, graphs, geometric pictures, and more. It is powerful and genuinely fun, but it is a small programming language in its own right and well beyond a basic notation guide. If a diagram is what you need, start from the <a href="https://tikz.dev/">Ti<em>k</em>Z &amp; PGF manual</a> or one of the many online galleries, and borrow liberally. For now, everything in the seven sections above is enough to write your summer's mathematics cleanly.</p>
 
 <p><strong>Enjoy Ross!</strong></p>
+
+<h2 class="basic">Acknowledgments</h2>
+
+<p>I am greatly indebted to the <a href="https://rossprogram.org">Ross Mathematics Program</a> and its community for developing my \(\LaTeX\) skills and guiding me as a mathematician in general, as well as suggesting that I create this site. I would also like to express my sincere appreciation to other open source \(\LaTeX\) software (this site is <a href="https://github.com/ovo-amo/ovo-amo.github.io/tree/main/ross/nutex">open source</a>!) without which this site would not be possible. <a href="https://texnique.xyz">\(\TeX\)nique.xyz</a> provided the inspiration for the interactive exercise style, <a href="https://katex.org/">\(\KaTeX\)</a> made the mathematical rendering possible, and <a href="https://detexify.kirelabs.org/classify.html">de\(\TeX\)ify</a> supported curriculum development.</p>
 </div>
 </main>
+
+<!--
+
+Here's some thoughts about incorporating an option for more detailed feedback.
+
+## Feedback-quality plan (divergence-point feedback)
+
+The goal is to turn the binary pass/fail into a tutor that shows *where* an answer first goes wrong, while staying faithful to the Ross spirit (don't hand them the answer).
+
+**1. Where it hooks in.** The verification path is `onEditorChange → verifyExpression(userInput, targetLatex, type)`, which today returns a boolean (it normalizes both sides via `stripLatex`/`visualCompare` and compares). The plan keeps `verifyExpression` as the source of truth for *correctness* and adds a separate, non-authoritative `diagnose(userInput, targetLatex)` that runs **only after** a failed verify and only when the user pauses (reuse the existing debounce). Diagnosis never blocks or gates correctness — it's advisory, so a quirky diagnosis can never prevent a genuinely-correct answer from passing.
+
+**2. What it compares.** Reuse the existing `BracketParser`/tokenizer that already powers the bracket-matching and the annotated-KaTeX highlighting. Tokenize both the user input and the target into command/group/operator tokens (not raw characters — char diffs are noise). Walk both token streams in parallel to find the **first divergence index**: the first token where they differ in command name, brace structure, or script attachment.
+
+**3. Classify the divergence** into a small set of high-value, teachable categories, each mapped to a one-line message (and reusing the PEEVES messages where they overlap):
+   - *Missing/extra braces* on a multi-token script (`x^10` vs `x^{10}`) — already the most common error.
+   - *Wrong or misspelled command* (`\rightarrow` vs `\to`, `\emptyset` vs `\varnothing`) — suggest the target's command only if the user's is a near-miss by edit distance, otherwise just point to the location.
+   - *Right output, non-idiomatic source* (the near-miss case): if `verifyExpression` says the rendered result matches but the source differs from the target's style (`x^{2}` for `x^2`, bare `|` for `\mid`), surface a gentle "this renders correctly, but the idiomatic form is …" — this is the single highest-leverage addition for Ross, since style is exactly what a clean problem set needs.
+   - *Structural mismatch* (missing `&`/`\\` in an environment, unbalanced `\left…\right`) — reuse the bracket-matcher's existing error state.
+
+**4. How it's surfaced (spoiler-safe).** Three escalating tiers, so it never just gives the answer:
+   - Tier 1 (always): highlight the **diverging token** in the output pane — the existing bi-directional highlighting infrastructure already maps source spans to rendered spans, so we reuse it to tint just the first wrong token.
+   - Tier 2 (the message): a single line naming the *category*, not the fix — "the exponent needs braces here," not "type `x^{10}`."
+   - Tier 3 (opt-in): only if they ask (the existing Hint button, or a new "why?" affordance) does it name the specific command/structure. This preserves the "struggle with the community" ethos.
+
+**5. Guardrails.** Diagnosis is best-effort and silent on failure (wrapped in try/catch, like the renderers); if the tokenizer can't align the streams confidently it shows nothing rather than a misleading message. It respects the existing Strict-Style toggle (the idiomatic-form nudges only fire when strict mode is on, matching current PEEVES behavior). And because it's layered on top of the unchanged `verifyExpression`, it carries zero risk of breaking the correctness logic or the pretest.
+
+**Build order:** (1) the token-level first-divergence finder against the existing parser; (2) Tier-1 highlight reusing the bi-highlighting map; (3) the category classifier + Tier-2 messages; (4) the idiomatic-form near-miss detector gated on Strict Style; (5) Tier-3 on-demand specifics. Each step is independently shippable and testable against a table of (input, target, expected-divergence) fixtures.
+
+-->
 
 <div id="cheatsheet" aria-hidden="true"></div>
 
