@@ -362,11 +362,12 @@ pre.paired{border:none;border-radius:0;margin:0;background:var(--bg-code)}
 /* Cheat-sheet: hidden on screen, revealed only for printing */
 #cheatsheet{display:none}
 @media print{
-  body.printing-cheatsheet *{visibility:hidden!important}
-  body.printing-cheatsheet #cheatsheet,body.printing-cheatsheet #cheatsheet *{visibility:visible!important}
-  body.printing-cheatsheet #cheatsheet{display:block!important;position:absolute;inset:0;margin:0;padding:1.5rem;background:#fff;color:#111;z-index:9999}
+  body.printing-cheatsheet #main-content,body.printing-cheatsheet #sidebar,body.printing-cheatsheet #global-progress,body.printing-cheatsheet #right-panel,body.printing-cheatsheet #mob-toggle{display:none!important}
+  body.printing-cheatsheet{height:0!important;overflow:visible!important}
+  body.printing-cheatsheet #cheatsheet{display:block!important;position:absolute;top:0;left:0;width:100%;margin:0;padding:1.5rem;background:#fff;color:#111}
   body.printing-cheatsheet #cheatsheet .cs-cat{break-inside:avoid}
 }
+
 #cheatsheet{padding:1.5rem;background:#fff;color:#111}
 #cheatsheet h1{font-size:1.4rem;margin:0 0 .25rem}
 #cheatsheet .cs-sub{color:#555;font-size:.85rem;margin:0 0 1.25rem}
