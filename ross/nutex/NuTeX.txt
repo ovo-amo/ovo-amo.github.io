@@ -1,0 +1,86 @@
+<h1>The Core Mechanics</h1>
+<h2 class="basic">Inline vs. Display Math</h2>
+<h2 class="basic">Superscripts, Subscripts, and Grouping</h2>
+<h2 class="basic">Basic Operators and Arithmetic</h2>
+<h2 class="advanced">Nested Subscripts and Order of Operations</h2>
+<h1>Fractions and Structures</h1>
+<h2 class="basic">Standard Fractions</h2>
+<h2 class="basic">Binomial Coefficients</h2>
+<h2 class="advanced">Nested and Continued Fractions</h2>
+<h2 class="advanced">Display-Style Overrides (\dfrac, \tfrac, \cfrac)</h2>
+<h1>Typography, Fonts, and Text</h1>
+<h2 class="basic">Greek Letters and Variants (\varepsilon, \varphi)</h2>
+<h2 class="basic">Regular Text in Math Mode (\text)</h2>
+<h2 class="basic">Standard Math Fonts (\mathbf, \mathrm, \mathcal)</h2>
+<h2 class="advanced">Advanced Math Fonts (\mathbb, \mathfrak, \mathscr)</h2>
+<h2 class="advanced">Spacing Text and Math Dynamically</h2>
+<h1>Radicals and Vertical Positioning</h1>
+<h2 class="basic">Square Roots</h2>
+<h2 class="basic">N-th Roots</h2>
+<h2 class="advanced">Normalizing Radical Heights (\vphantom)</h2>
+<h2 class="advanced">Crushing Bounding Boxes (\smash)</h2>
+<h1>Brackets and Delimiters</h1>
+<h2 class="basic">Basic Brackets and Auto-Sizing (\left, \right)</h2>
+<h2 class="advanced">Manual Sizing (\big, \Big, \bigg, \Bigg)</h2>
+<h2 class="advanced">Invisible Delimiters (\left. and \right.)</h2>
+<h1>Functions and Modulo Arithmetic</h1>
+<h2 class="basic">Standard Functions (\sin, \cos, \ln, \log)</h2>
+<h2 class="basic">Modulo Operators (\pmod, \bmod, \equiv)</h2>
+<h2 class="advanced">Defining Custom Operators (\operatorname)</h2>
+<h1>Limits, Sums, and Integrals</h1>
+<h2 class="basic">Big Operators (\sum, \prod)</h2>
+<h2 class="basic">Integrals and Limits (\int, \lim)</h2>
+<h2 class="advanced">Multiple and Contour Integrals (\iint, \oint)</h2>
+<h2 class="advanced">Multi-line Bounds (\substack, \begin{subarray})</h2>
+<h1>Accents, Arrows, and Decorations</h1>
+<h2 class="basic">Hats, Tildes, and Bars</h2>
+<h2 class="basic">Vectors Notation (\vec, \mathbf)</h2>
+<h2 class="advanced">Overbraces and Underbraces (\overbrace, \underbrace)</h2>
+<h2 class="advanced">Extensible Arrows (\xrightarrow, \xleftarrow)</h2>
+<h2 class="advanced">Stacked Symbols (\overset, \underset, \stackrel)</h2>
+<h1>Logic, Sets, and Geometry</h1>
+<h2 class="basic">Set Notation (\in, \cup, \cap, \subset, \emptyset)</h2>
+<h2 class="basic">Logical Operators (\implies, \iff, \forall, \exists)</h2>
+<h2 class="basic">Geometric Symbols (\angle, \triangle, \perp)</h2>
+<h2 class="advanced">Complex Set-Builder Notation</h2>
+<h1>The Art of Spacing</h1>
+<h2 class="basic">Standard Spacing Commands (\,, \quad, \qquad)</h2>
+<h2 class="advanced">Negative Spacing (\!)</h2>
+<h2 class="advanced">Invisible Phantoms (\phantom, \hphantom, \vphantom)</h2>
+<h2 class="advanced">Zero-Width Laps (\mathllap, \mathrlap, \clap)</h2>
+<h1>Matrices and Arrays</h1>
+<h2 class="basic">Standard Matrices (pmatrix, bmatrix, vmatrix)</h2>
+<h2 class="basic">Piecewise Functions (cases)</h2>
+<h2 class="advanced">Matrix Ellipses (\vdots, \ddots, \hdots)</h2>
+<h2 class="advanced">Custom Array Environments and Borders</h2>
+<h2 class="advanced">Augmented and Block Matrices</h2>
+<h1>Equation Alignment and Multi-line Math</h1>
+<h2 class="basic">The Align Environment (align*)</h2>
+<h2 class="basic">Systems of Equations</h2>
+<h2 class="advanced">The Gather and Multline Environments</h2>
+<h2 class="advanced">Embedded Environments (aligned, split)</h2>
+<h2 class="advanced">Manual Equation Tagging (\tag, \notag)</h2>
+<h1>Advanced Calculus & Differential Geometry</h1>
+<h2 class="basic">Partial Derivatives (\partial)</h2>
+<h2 class="advanced">Index Notation and Tensors (Mixed Sub/Superscripts)</h2>
+<h2 class="advanced">Exterior Derivatives and Wedge Products (\wedge, \text{d})</h2>
+<h2 class="advanced">Christoffel Symbols and Covariant Derivatives (\Gamma, \nabla)</h2>
+<h1>Abstract Algebra & Topology</h1>
+<h2 class="basic">Isomorphisms and Normal Subgroups (\cong, \triangleleft)</h2>
+<h2 class="advanced">Interior, Closure, and Boundary (\mathring, \overline, \partial)</h2>
+<h2 class="advanced">Commutative Diagrams (The CD Environment)</h2>
+<h1>Chemistry Typesetting</h1>
+<h2 class="basic">Chemical Formulas (\require{mhchem}, \ce{})</h2>
+<h2 class="basic">Isotope Notation</h2>
+<h2 class="advanced">Reaction Arrows and Conditions</h2>
+<h2 class="advanced">Bonds and States of Matter</h2>
+<h1>Macros, Colors, and State (The Metagame)</h1>
+<h2 class="basic">Colored Math and Highlights (\color, \textcolor, \colorbox)</h2>
+<h2 class="advanced">Defining Custom Macros (\def, \newcommand)</h2>
+<h2 class="advanced">Re-defining Existing Commands (\renewcommand)</h2>
+<h2 class="advanced">Hyperlinks in Math Mode (\href)</h2>
+<h1>TeXnique Grandmaster (The Final Bosses)</h1>
+<h2 class="advanced">The Standard Model Lagrangian</h2>
+<h2 class="advanced">The Navier-Stokes Equations</h2>
+<h2 class="advanced">The Einstein Field Equations</h2>
+<h2 class="advanced">Schrödinger's Equation in Spherical Coordinates</h2>
